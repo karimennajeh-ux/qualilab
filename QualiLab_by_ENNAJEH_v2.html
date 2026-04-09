@@ -170,6 +170,7 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px 12px;border-bottom:
           <option value="dossier">Importer : Dans dossier local</option>
         </select>
         <button class="btn2 btn" id="imp">Importer</button>
+        <button class="btn2 btn" id="refreshPage">Actualiser cette page</button>
         <button class="btn2 btn" id="rst">Reinitialiser</button>
         <button class="btn3 btn" id="out">Deconnexion</button>
       </div>
@@ -598,7 +599,8 @@ function act(e){const da=e.target.closest("[data-da]"),doo=e.target.closest("[da
 function exp(){const b=new Blob([JSON.stringify(s,null,2)],{type:"application/json"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="qualilab-export.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(u);sync("Export genere")}
 function imp(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{s={...c(D),...JSON.parse(r.result)};log("Importation","Systeme","Importation JSON");save("Importation terminee");render()}catch(e){sync("Importation echouee")}};r.readAsText(f)}
 function rst(){s=c(D);log("Reinitialisation","Systeme","Retour donnees par defaut");save("Donnees reinitialisees");render()}
-$("#lbtn").onclick=login;$("#lpwd").addEventListener("keydown",e=>{if(e.key==="Enter")login()});$("#out").onclick=logout;$("#exp").onclick=handleExportButton;$("#imp").onclick=handleImportButton;$("#file").onchange=e=>imp(e.target.files[0]);$("#docFile").onchange=e=>handleDocumentImport(e.target.files);$("#rst").onclick=rst;
+function refreshCurrentPage(){render();page(currentPage,true);sync("Page actualisee")}
+$("#lbtn").onclick=login;$("#lpwd").addEventListener("keydown",e=>{if(e.key==="Enter")login()});$("#out").onclick=logout;$("#exp").onclick=handleExportButton;$("#imp").onclick=handleImportButton;$("#file").onchange=e=>imp(e.target.files[0]);$("#docFile").onchange=e=>handleDocumentImport(e.target.files);$("#refreshPage").onclick=refreshCurrentPage;$("#rst").onclick=rst;
 ["#ds","#dpf","#dtf","#df","#ods","#odpf","#odtf","#odf","#es","#ef","#ns","#nf","#as","#af","#us","#fsq","#diagFilter"].forEach(id=>{const el=$(id);el.addEventListener("input",render);el.addEventListener("change",render)});
 $("#dadd").onclick=addDoc;$("#dsv").onclick=addDoc;$("#odadd").onclick=addOrgDoc;$("#odsv").onclick=addOrgDoc;$("#eadd").onclick=addEq;$("#esv").onclick=addEq;$("#nadd").onclick=addNc;$("#nsv").onclick=addNc;$("#aadd").onclick=addAud;$("#asv").onclick=addAud;$("#uadd").onclick=addUsr;$("#usv").onclick=addUsr;
 $("#osv").onclick=saveOrg;$("#diagReset").onclick=resetDiag;$("#diagExport").onclick=exportDiag;
