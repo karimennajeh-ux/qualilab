@@ -403,7 +403,6 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px 12px;border-bottom:
 
     <section id="set" class="row h">
       <div class="card org-window">
-        <div class="org-titlebar"><button type="button" id="omod">Modifier</button></div>
         <div class="org-tabs"><span>GENERAL</span><span class="on">ACCREDITATION</span><span class="on">SUIVI L'ACCREDITATION</span></div>
         <div class="org-sheet">
           <div class="org-grid">
@@ -431,11 +430,6 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px 12px;border-bottom:
             <div class="org-field"><label>Prise en charge</label><input id="ocoverage" placeholder="Hebergement / facturation"></div>
             <div class="org-field"><label>Date accreditation</label><input id="oad" type="date"></div>
             <div class="org-field"><label>Date validite</label><input id="ovd" type="date"></div>
-          </div>
-          <div class="org-attach">
-            <h4>Attachement</h4>
-            <table><thead><tr><th>Titre</th><th>Nbr</th><th>Etat</th></tr></thead><tbody><tr><td><textarea id="odocs" placeholder="Documents necessaires : certificat, registre de commerce, statuts, manuel qualite, procedures, etc."></textarea></td><td id="odocCount">0</td><td>En attente</td></tr></tbody></table>
-            <div class="org-legend"><span><i class="org-dot wait"></i>En attente</span><span><i class="org-dot valid"></i>Valider</span></div>
           </div>
           <button class="btn org-save" id="osv">Enregistrer</button>
           <div class="org-footer"><span>Activite Actuelle : <b>- - -</b></span><span id="ocreated">Cree le : -</span></div>
@@ -688,7 +682,7 @@ function addNc(){if(!requirePerm("Ajouter"))return;const r=$("#nr").value.trim()
 function addAud(){if(!requirePerm("Ajouter"))return;const r=$("#ar").value.trim();if(!r){sync("Renseigne la reference de l'audit");return}s.aud.unshift(markSaved({ref:r,ty:$("#aty").value,sc:$("#asc").value.trim()||"-",o:$("#ao").value.trim()||s.u.name,d:$("#ad").value||"-",st:"Planifie",f:"-"}));log("Creation","Audits",r+" ajoute");save("Audit enregistre automatiquement");clearFields(["#ar","#ao","#ad","#asc"]);render()}
 function addRevc(){if(!requirePerm("Ajouter"))return;const r=$("#rr").value.trim(),c=$("#rcli").value.trim(),d=$("#rdem").value.trim();if(!r||!c||!d){sync("Renseigne la reference, le client et la demande du contrat");return}(s.revc||(s.revc=[])).unshift(markSaved({ref:r,client:c,dem:d,scope:$("#rscope").value.trim()||"A revoir",resp:$("#rresp").value.trim()||s.u.name,d:$("#rdate").value||now().slice(0,10),st:"A revoir"}));log("Creation","Revue de contrat",r+" ajoutee");save("Revue de contrat enregistree automatiquement");clearFields(["#rr","#rcli","#rresp","#rdate","#rdem","#rscope"]);render()}
 function addUsr(){if(!requirePerm("Comptes"))return;const n=$("#un").value.trim(),e=$("#ue").value.trim();if(!n||!e){sync("Renseigne le nom et l'adresse mail de l'utilisateur");return}s.usr.unshift(markSaved({name:n,email:e,role:$("#ur").value,dept:$("#ud").value.trim()||"-",ini:ini(n),perms:selectedPerms()}));log("Creation","Utilisateurs",n+" ajoute avec acces : "+selectedPerms().join(", "));save("Utilisateur enregistre automatiquement");clearFields(["#un","#ue","#ud"]);render()}
-function saveOrg(){if(!requirePerm("Parametres"))return;const get=id=>{const el=$("#"+id);return el?el.value.trim():""};s.org=markSaved({...(s.org||{}),name:get("oname"),fiscal:get("ofiscal"),webId:get("owebid"),acc:get("oacc"),accDate:get("oad"),validDate:get("ovd"),manager:get("omgr"),city:get("ocity"),phone:get("otel"),fax:get("ofax"),mail:get("omail"),country:get("ocountry"),address:get("oaddr"),website:get("owebsite"),visavis:get("ovisavis"),billingName:get("obillname"),tunac:get("otunac"),functionName:get("ofunction"),billingPhone:get("obillphone"),mobile:get("ocell"),billingAddress:get("obilladdr"),contactMail:get("ocontactmail"),billingMail:get("obillmail"),coverage:get("ocoverage"),docs:get("odocs"),createdAt:(s.org&&s.org.createdAt)||now()});log("Mise a jour","Parametres","Configuration organisme enregistree et appliquee");save("Configuration organisme enregistree automatiquement");render()}
+function saveOrg(){if(!requirePerm("Parametres"))return;const get=id=>{const el=$("#"+id);return el?el.value.trim():""};s.org=markSaved({...(s.org||{}),name:get("oname"),fiscal:get("ofiscal"),webId:get("owebid"),acc:get("oacc"),accDate:get("oad"),validDate:get("ovd"),manager:get("omgr"),city:get("ocity"),phone:get("otel"),fax:get("ofax"),mail:get("omail"),country:get("ocountry"),address:get("oaddr"),website:get("owebsite"),visavis:get("ovisavis"),billingName:get("obillname"),tunac:get("otunac"),functionName:get("ofunction"),billingPhone:get("obillphone"),mobile:get("ocell"),billingAddress:get("obilladdr"),contactMail:get("ocontactmail"),billingMail:get("obillmail"),coverage:get("ocoverage"),docs:get("odocs")||((s.org&&s.org.docs)||""),createdAt:(s.org&&s.org.createdAt)||now()});log("Mise a jour","Parametres","Configuration organisme enregistree et appliquee");save("Configuration organisme enregistree automatiquement");render()}
 function saveDiag(id,val){const st=diagState();st.answers[id]=val;st.updated=now();log("Diagnostic","ISO 17025",id+" -> "+diagLabel(val));save("Diagnostic ISO 17025 mis a jour");render()}
 function saveDiagNote(id,val){const st=diagState();st.notes[id]=val;st.updated=now();log("Mise a jour","Diagnostic",id+" commentaire enregistre");save("Commentaires diagnostic mis a jour");render()}
 function saveDiagMeta(){const st=diagState();st.person=$("#diagPerson").value.trim();st.date=$("#diagDate").value;st.updated=now();log("Mise a jour","Diagnostic","Informations d evaluation enregistrees");save("Informations evaluation enregistrees");render()}
@@ -702,7 +696,7 @@ function refreshCurrentPage(){render();page(currentPage,true);sync("Page actuali
 $("#lbtn").onclick=login;$("#lpwd").addEventListener("keydown",e=>{if(e.key==="Enter")login()});$("#out").onclick=logout;$("#exp").onclick=handleExportButton;$("#imp").onclick=handleImportButton;$("#file").onchange=e=>imp(e.target.files[0]);$("#docFile").onchange=e=>handleDocumentImport(e.target.files);$("#refreshPage").onclick=refreshCurrentPage;$("#weeklyReport").onclick=downloadWeeklyReport;
 ["#ds","#dpf","#dtf","#df","#ods","#odpf","#odtf","#odf","#es","#ef","#ns","#nf","#as","#af","#rs","#rf","#us","#fsq","#diagFilter"].forEach(id=>{const el=$(id);el.addEventListener("input",render);el.addEventListener("change",render)});
 $("#dadd").onclick=addDoc;$("#dsv").onclick=addDoc;$("#odadd").onclick=addOrgDoc;$("#odsv").onclick=addOrgDoc;$("#eadd").onclick=addEq;$("#esv").onclick=addEq;$("#nadd").onclick=addNc;$("#nsv").onclick=addNc;$("#aadd").onclick=addAud;$("#asv").onclick=addAud;$("#radd").onclick=addRevc;$("#rsv").onclick=addRevc;$("#uadd").onclick=addUsr;$("#usv").onclick=addUsr;
-$("#osv").onclick=saveOrg;$("#omod").onclick=saveOrg;$("#diagReset").onclick=resetDiag;$("#diagExport").onclick=exportDiag;
+$("#osv").onclick=saveOrg;$("#diagReset").onclick=resetDiag;$("#diagExport").onclick=exportDiag;
 $("#pickDir").onclick=chooseRepoDir;$("#scanDir").onclick=()=>scanRepo();$("#fallbackDir").onclick=()=>$("#repoDirFallback").click();$("#repoDirFallback").onchange=e=>scanFallbackDir(e.target.files);$("#pickFiles").onclick=()=>$("#repoFiles").click();$("#repoFiles").onchange=e=>importRepoFiles(e.target.files,importTarget());$("#exportDir").onclick=exportRepoData;
 
 enhanceModulePanels();
