@@ -40,8 +40,8 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px 12px;border-bottom:
           <p class="mut auth-kicker">Connexion locale</p>
           <h2>Bienvenue sur QualiLab</h2>
           <p>Solution de gestion qualite des laboratoires</p>
-          <div class="f"><label>Adresse e-mail</label><input id="lemail" type="email" value="admin@ener.tn"></div>
-          <div class="f" style="margin-top:12px"><label>Mot de passe</label><input id="lpwd" type="password" value="12345678"></div>
+          <div class="f"><label>Adresse e-mail</label><input id="lemail" type="email" value="karimennajeh@gmail.com"></div>
+          <div class="f" style="margin-top:12px"><label>Mot de passe</label><input id="lpwd" type="password" value="09318872karim@"></div>
           <button id="lbtn" class="btn">Se connecter</button>
           <div class="auth-help">Mot de passe oublie ?</div>
           <p id="lmsg" class="mut auth-status">Connexion locale prete.</p>
@@ -90,7 +90,7 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px 12px;border-bottom:
     showPage("hub");
   }
   function secureOpen(){
-    var auth=document.getElementById("auth"),app=document.getElementById("app"),email=(document.getElementById("lemail")||{}).value||"admin@ener.tn";
+    var auth=document.getElementById("auth"),app=document.getElementById("app"),email=(document.getElementById("lemail")||{}).value||"karimennajeh@gmail.com";
     if(auth)auth.classList.add("h");
     if(app)app.classList.remove("h");
     fallbackRender(email);
@@ -638,8 +638,8 @@ function handleDocumentImport(list){if(!list||!list.length)return;const m=$("#im
 function handleExportButton(){const m=$("#expMode").value;if(m==="document"){if(!requirePerm("Telecharger"))return;downloadRepoFile();return}if(!requirePerm("Exporter"))return;if(m==="json"){exp();return}exportRepoData()}
 function clearFields(ids){ids.forEach(id=>{const el=$(id);if(!el)return;if(el.tagName==="SELECT")el.selectedIndex=0;else el.value=""})}
 const PERMS=["Ajouter","Modifier","Supprimer","Valider","Telecharger","Importer","Exporter","Parametres","Comptes"];
-function pilotAccount(){return{name:"Pilote QualiLab",firstName:"Pilote",lastName:"QualiLab",email:"admin@ener.tn",role:"Administrateur",dept:"Pilotage application",func:"Pilote de l'application",matricule:"PILOT-001",ini:"PQ",perms:[...PERMS],passwordHint:"Compte pilote avec toutes les autorisations"}}
-function ensurePilotAccount(){const p=pilotAccount();s.usr=s.usr||[];const i=s.usr.findIndex(x=>String(x.email||"").toLowerCase()===p.email);if(i>=0)s.usr[i]={...s.usr[i],...p};else s.usr.unshift(markSaved(p));if(String((s.u&&s.u.email)||"").toLowerCase()===p.email)s.u={...s.u,...p}}
+function pilotAccount(){return{name:"Pilote QualiLab",firstName:"Pilote",lastName:"QualiLab",email:"karimennajeh@gmail.com",role:"Administrateur",dept:"Pilotage application",func:"Pilote de l'application",matricule:"PILOT-001",ini:"PQ",perms:[...PERMS],passwordHint:"Mot de passe pilote : 09318872karim@"}}
+function ensurePilotAccount(){const p=pilotAccount(),oldEmail="admin@ener.tn";s.usr=s.usr||[];const i=s.usr.findIndex(x=>[p.email,oldEmail].includes(String(x.email||"").toLowerCase()));if(i>=0)s.usr[i]={...s.usr[i],...p};else s.usr.unshift(markSaved(p));if([p.email,oldEmail].includes(String((s.u&&s.u.email)||"").toLowerCase()))s.u={...s.u,...p}}
 function userPerms(u=s.u){if(u&&Array.isArray(u.perms))return u.perms;if(u&&u.role==="Administrateur")return PERMS;return["Telecharger"]}
 function hasPerm(p){return userPerms().includes(p)}
 function requirePerm(p){if(hasPerm(p))return true;sync("Acces refuse : autorisation requise - "+p);return false}
