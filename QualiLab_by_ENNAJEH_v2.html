@@ -368,9 +368,11 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px 12px;border-bottom:
         <button class="btn" id="uadd">Ajouter</button>
       </div>
       <div class="card">
-        <div class="g"><input id="un" placeholder="Nom"><input id="ue" placeholder="Mail"><select id="ur"><option>Administrateur</option><option>Responsable qualite</option><option>Technicien</option><option>Lecture seule</option></select><input id="ud" placeholder="Departement"><button class="btn" id="usv">Enregistrer</button></div>
+        <h3 style="margin-top:0">Creation d'un nouveau utilisateur</h3>
+        <p class="mut" style="margin-top:-6px">Renseigne le compte puis coche les autorisations d'acces avant l'enregistrement.</p>
+        <div class="g"><input id="un" placeholder="Nom complet"><input id="ue" placeholder="Adresse e-mail du compte"><select id="ur"><option>Administrateur</option><option>Responsable qualite</option><option>Technicien</option><option>Lecture seule</option></select><input id="ud" placeholder="Departement / service"><button class="btn" id="usv">Enregistrer le compte</button></div>
         <div class="f" style="margin-top:12px">
-          <label>Autorisations du compte</label>
+          <label>Autorisations et acces du compte</label>
           <div class="perm-grid" id="uperms">
             <label><input type="checkbox" value="Ajouter" checked> Ajouter</label>
             <label><input type="checkbox" value="Modifier" checked> Modifier</label>
