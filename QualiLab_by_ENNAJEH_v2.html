@@ -90,7 +90,13 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px 12px;border-bottom:
     showPage("hub");
   }
   function secureOpen(){
-    var auth=document.getElementById("auth"),app=document.getElementById("app"),email=(document.getElementById("lemail")||{}).value||"karimennajeh@gmail.com";
+    var auth=document.getElementById("auth"),app=document.getElementById("app"),email=(document.getElementById("lemail")||{}).value||"",pwd=(document.getElementById("lpwd")||{}).value||"",msg=document.getElementById("lmsg");
+    if(String(email).trim().toLowerCase()!=="karimennajeh@gmail.com"||String(pwd)!=="09318872karim@"){
+      if(msg)msg.textContent="Acces refuse : e-mail ou mot de passe incorrect.";
+      if(auth)auth.classList.remove("h");
+      if(app)app.classList.add("h");
+      return;
+    }
     if(auth)auth.classList.add("h");
     if(app)app.classList.remove("h");
     fallbackRender(email);
@@ -582,7 +588,8 @@ async function verifyHandle(h,w){if(!h)return false;const o={mode:w?"readwrite":
 function tag(v){return["Valide","Cloture","Cloturee"].includes(v)?"ok":["A valider","A etalonner","En cours","Planifie","Majeure"].includes(v)?"wa":["Obsolete","Hors service","Ouverte","Critique"].includes(v)?"er":"bl"}
 function log(a,m,x){ensureTrailWeek();const u=s.u||{};s.trail.unshift({t:now(),u:u.name||"Utilisateur",email:u.email||"",role:u.role||"",a,m,x});s.trail=s.trail.slice(0,500)}
 function openApp(){$("#auth").classList.add("h");$("#app").classList.remove("h");$("#uname").textContent=s.u.name;$("#urole").textContent=s.u.role+" - "+s.u.dept;pageHistory=[];nextPageHistory=[];currentPage="hub";try{render();page("hub",true);$("#lmsg").textContent="Connexion locale prete."}catch(e){console.error(e);sync("Ouverture partielle de l'application");$("#auth").classList.add("h");$("#app").classList.remove("h")}updateBackButton()}
-function login(){const e=$("#lemail").value.trim();if(!e){$("#lmsg").textContent="Entre une adresse mail.";return}try{const u=s.usr.find(x=>x.email.toLowerCase()===e.toLowerCase());s.u=u||{name:e.split("@")[0].replace(/[._-]/g," ").replace(/\b\w/g,c=>c.toUpperCase()),email:e,role:"Utilisateur",dept:"Session locale",ini:ini(e)};ss(S,JSON.stringify({email:s.u.email}));log("Connexion","Session",e);save("Session ouverte");openApp()}catch(err){console.error(err);$("#lmsg").textContent="Erreur de connexion. Nouvelle tentative avec session locale.";s.u={name:e.split("@")[0]||"Utilisateur",email:e,role:"Utilisateur",dept:"Session locale",ini:ini(e)};$("#auth").classList.add("h");$("#app").classList.remove("h");try{render()}catch(e2){console.error(e2)}}}
+function isPilotLogin(e,p){return String(e||"").trim().toLowerCase()==="karimennajeh@gmail.com"&&String(p||"")==="09318872karim@"}
+function login(){const e=$("#lemail").value.trim(),p=$("#lpwd").value;if(!isPilotLogin(e,p)){$("#lmsg").textContent="Acces refuse : e-mail ou mot de passe incorrect.";sr(S);$("#app").classList.add("h");$("#auth").classList.remove("h");return}try{ensurePilotAccount();const u=s.usr.find(x=>x.email.toLowerCase()===e.toLowerCase())||pilotAccount();s.u=u;ss(S,JSON.stringify({email:s.u.email}));log("Connexion","Session",e);save("Session ouverte");openApp()}catch(err){console.error(err);$("#lmsg").textContent="Erreur de connexion. Verifie l'application puis recommence.";sr(S);$("#auth").classList.remove("h");$("#app").classList.add("h")}}
 function logout(){log("Deconnexion","Session",s.u.email);save("Session fermee");sr(S);pageHistory=[];nextPageHistory=[];currentPage="hub";$("#app").classList.add("h");$("#auth").classList.remove("h");updateBackButton()}
 const moduleRailMeta={db:{cls:"module-db",title:"Tableau de bord",tag:"Pilotage du laboratoire"},docs:{cls:"module-docs",title:"Gestion documentaire",tag:"Documents qualite"},docorg:{cls:"module-docorg",title:"Documentation",tag:"Documents de l'organisme"},eq:{cls:"module-eq",title:"Gestion des equipements",tag:"Suivi et etalonnage"},nc:{cls:"module-nc",title:"Non-conformites",tag:"Actions correctives"},aud:{cls:"module-aud",title:"Audits",tag:"Planification des audits"},revc:{cls:"module-revc",title:"Revue de contrat",tag:"Demandes clients et faisabilite"},usr:{cls:"module-usr",title:"Utilisateurs",tag:"Roles et acces"},set:{cls:"module-set",title:"Parametres",tag:"Configuration organisme"},diag:{cls:"module-diag",title:"Diagnostic ISO 17025",tag:"Auto-evaluation"},repo:{cls:"module-repo",title:"Dossier principal",tag:"Arborescence documentaire"}};
 function buildModuleRail(id){const meta=moduleRailMeta[id];if(!meta)return null;const rail=document.createElement("aside");rail.className="module-rail";const o=s.org||{},name=o.name||"QualiLab by ENNAJEH",mail=o.mail||"contact@qualilab.tn",phone=o.phone||"+216 71 000 000",addr=o.address||"Tunis, Tunisie";rail.innerHTML=`<div class="module-rail-logo"><img src="assets/quali-logo.png" alt="QualiLab"></div><div class="module-rail-head"><b>${esc(meta.title)}</b><span>${esc(meta.tag)}</span></div><div class="module-org"><div class="module-org-card"><strong>Organisme</strong><p>${esc(name)}</p></div><div class="module-org-card"><strong>Reference</strong><p>ISO/IEC 17025<br>${esc(o.acc||"Accredite")}</p></div><div class="module-org-card"><strong>Contact</strong><p>${esc(mail)}<br>${esc(phone)}</p></div><div class="module-org-card"><strong>Adresse</strong><p>${esc(addr)}</p></div></div>`;return rail}
@@ -679,7 +686,7 @@ $("#nav").onclick=e=>{const b=e.target.closest("button[data-p]");if(b)page(b.dat
 async function restoreRepo(){const h=await idbGet("repoHandle");if(!h)return;if(await verifyHandle(h,false)){repoHandle=h;s.repo.folderName=h.name;s.repo.linked=true;s.repo.mode="Dossier reconnecte";await scanRepo(h)}else{s.repo.mode="Reconnecter le dossier local";repoView()}}
 async function restoreOrgDir(){const h=await idbGet("orgHandle");if(!h)return;if(await verifyHandle(h,false)){orgHandle=h;orgRootName=h.name||"QualiLab_Organisme";if(activeOrgProc)await scanOrgProc(activeOrgProc)}}
 ensurePilotAccount();
-const ses=sg(S);if(ses){try{const se=JSON.parse(ses),u=s.usr.find(x=>x.email.toLowerCase()===String(se.email).toLowerCase());if(u)s.u=u;openApp();sync("Session restauree")}catch(e){console.error(e);$("#lmsg").textContent="Connexion locale prete.";$("#auth").classList.remove("h");$("#app").classList.add("h")}}else $("#lmsg").textContent="Connexion locale prete.";
+sr(S);$("#lmsg").textContent="Connexion locale prete.";$("#auth").classList.remove("h");$("#app").classList.add("h");
 restoreRepo();
 restoreOrgDir();
 
