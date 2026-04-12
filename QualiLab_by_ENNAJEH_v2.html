@@ -161,20 +161,6 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px 12px;border-bottom:
     <div class="top">
       <div><b id="pt">Tableau de bord</b><div class="mut" id="ps">Vue globale du systeme qualite</div></div>
       <div class="acts">
-        <span class="st" id="sync">Session locale</span>
-        <select id="expMode">
-          <option value="json">Exporter : Donnees JSON</option>
-          <option value="document">Exporter : Document selectionne</option>
-          <option value="dossier">Exporter : Vers dossier local</option>
-        </select>
-        <button class="btn2 btn" id="exp">Exporter</button>
-        <select id="impMode">
-          <option value="json">Importer : Donnees JSON</option>
-          <option value="documents">Importer : PDF / Word / Excel / Image</option>
-          <option value="dossier">Importer : Dans dossier local</option>
-        </select>
-        <button class="btn2 btn" id="imp">Importer</button>
-        <button class="btn2 btn" id="refreshPage">Actualiser cette page</button>
         <button class="btn3 btn" id="out">Deconnexion</button>
       </div>
     </div>
@@ -556,7 +542,7 @@ function sg(k){try{return localStorage.getItem(k)}catch(e){return M[k]||null}}
 function sr(k){try{localStorage.removeItem(k)}catch(e){delete M[k]}}
 function load(){const r=sg(K);if(!r)return c(D);try{return {...c(D),...JSON.parse(r)}}catch(e){return c(D)}}
 function save(m){ss(K,JSON.stringify(s));sync(m||"Sauvegarde locale active")}
-function sync(m){document.querySelector("#sync").textContent=m}
+function sync(m){const el=document.querySelector("#sync");if(el)el.textContent=m}
 function $(q){return document.querySelector(q)}
 function $all(q){return [...document.querySelectorAll(q)]}
 function ini(n){return String(n||"US").split(" ").filter(Boolean).map(x=>x[0]).join("").toUpperCase().slice(0,2)||"US"}
@@ -679,7 +665,7 @@ function act(e){const da=e.target.closest("[data-da]"),doo=e.target.closest("[da
 function exp(){const b=new Blob([JSON.stringify(s,null,2)],{type:"application/json"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="qualilab-export.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(u);sync("Export genere")}
 function imp(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{s={...c(D),...JSON.parse(r.result)};log("Importation","Systeme","Importation JSON");save("Importation terminee");render()}catch(e){sync("Importation echouee")}};r.readAsText(f)}
 function refreshCurrentPage(){render();page(currentPage,true);sync("Page actualisee")}
-$("#lbtn").onclick=login;$("#lpwd").addEventListener("keydown",e=>{if(e.key==="Enter")login()});$("#out").onclick=logout;$("#exp").onclick=handleExportButton;$("#imp").onclick=handleImportButton;$("#file").onchange=e=>imp(e.target.files[0]);$("#docFile").onchange=e=>handleDocumentImport(e.target.files);$("#refreshPage").onclick=refreshCurrentPage;$("#weeklyReport").onclick=downloadWeeklyReport;
+$("#lbtn").onclick=login;$("#lpwd").addEventListener("keydown",e=>{if(e.key==="Enter")login()});$("#out").onclick=logout;$("#file").onchange=e=>imp(e.target.files[0]);$("#docFile").onchange=e=>handleDocumentImport(e.target.files);$("#weeklyReport").onclick=downloadWeeklyReport;
 ["#ds","#dpf","#dtf","#df","#ods","#odpf","#odtf","#odf","#es","#ef","#ns","#nf","#as","#af","#rs","#rf","#us","#fsq","#diagFilter"].forEach(id=>{const el=$(id);el.addEventListener("input",render);el.addEventListener("change",render)});
 $("#dadd").onclick=addDoc;$("#dsv").onclick=addDoc;$("#odadd").onclick=addOrgDoc;$("#odsv").onclick=addOrgDoc;$("#eadd").onclick=addEq;$("#esv").onclick=addEq;$("#nadd").onclick=addNc;$("#nsv").onclick=addNc;$("#aadd").onclick=addAud;$("#asv").onclick=addAud;$("#radd").onclick=addRevc;$("#rsv").onclick=addRevc;$("#uadd").onclick=addUsr;$("#usv").onclick=addUsr;
 $("#osv").onclick=saveOrg;$("#diagReset").onclick=resetDiag;$("#diagExport").onclick=exportDiag;
