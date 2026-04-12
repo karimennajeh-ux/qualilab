@@ -19,6 +19,7 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px 12px;border-bottom:
 .org-window{padding:0;overflow:hidden;border-radius:14px;background:#f7f8ff;border-color:#d9def2;box-shadow:0 14px 34px rgba(98,110,159,.14);font-family:"Segoe UI",Arial,sans-serif}.org-titlebar{height:34px;background:linear-gradient(180deg,#adb8ea,#909ed7);color:#fff;display:flex;align-items:center;gap:14px;padding:0 12px;font-size:12px;font-weight:800;letter-spacing:.02em}.org-titlebar span,.org-titlebar button{display:inline-flex;align-items:center;gap:5px}.org-titlebar button{border:1px solid rgba(255,255,255,.36);border-radius:10px;background:rgba(255,255,255,.16);color:#fff;padding:5px 10px;font-weight:800;font-size:12px;box-shadow:none}.org-tabs{display:flex;align-items:flex-end;border-bottom:1px solid #d9def2;background:#f2f4fc;padding-left:0}.org-tabs span{padding:9px 12px;border-right:1px solid #d9def2;font-size:12px;font-weight:800;color:#51627f}.org-tabs .on{background:linear-gradient(180deg,#909ed7,#7c89c4);color:#fff}.org-sheet{padding:14px 18px 18px;background:#fff;min-height:520px}.org-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px 52px;max-width:980px}.org-field{display:grid;grid-template-columns:142px minmax(0,1fr);align-items:center;gap:8px;min-height:23px}.org-field label{font-size:12px;color:#25324b;font-weight:800}.org-field input,.org-field select,.org-field textarea{width:100%;border:0;border-bottom:1px solid transparent;background:transparent;border-radius:0;padding:3px 4px;color:#25324b;font-size:12px}.org-field input:focus,.org-field select:focus,.org-field textarea:focus{outline:1px solid #cfd6f4;background:#f8faff}.org-field textarea{min-height:44px;resize:vertical}.org-field.wide{grid-column:1 / -1;grid-template-columns:142px minmax(0,1fr)}.org-attach{width:min(430px,100%);margin-top:22px;border:1px solid #d9def2;background:#fff}.org-attach h4{margin:0;padding:9px 10px;background:#f2f4fc;border-bottom:1px solid #d9def2;font-size:13px;font-weight:800;color:#25324b}.org-attach table{margin:0}.org-attach th{background:linear-gradient(180deg,#909ed7,#7c89c4);color:#fff;border-color:#aeb8e4;padding:8px;font-size:11px}.org-attach td{height:72px;border-color:#d9def2}.org-legend{display:flex;justify-content:flex-end;gap:12px;padding:5px 8px;font-size:10px;color:#51627f}.org-dot{width:7px;height:7px;border-radius:999px;display:inline-block;margin-right:4px}.org-dot.wait{background:#f2c230}.org-dot.valid{background:#3ab956}.org-footer{display:flex;justify-content:space-between;gap:12px;margin-top:22px;padding-top:10px;border-top:1px solid #d9def2;color:#25324b;font-size:13px}.org-footer b{color:#7c89c4}.org-save{margin-top:14px;background:linear-gradient(180deg,#adb8ea,#909ed7)}.org-summary-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}@media(max-width:1050px){.org-grid,.org-summary-grid{grid-template-columns:1fr}.org-field,.org-field.wide{grid-template-columns:130px minmax(0,1fr);grid-column:auto}.org-sheet{min-height:auto}}@media(max-width:620px){.org-field,.org-field.wide{grid-template-columns:1fr}.org-tabs{overflow:auto}.org-footer{display:grid}}
 .org-tabs button{padding:9px 12px;border:0;border-right:1px solid #d9def2;background:transparent;color:#51627f;font-size:12px;font-weight:800}.org-tabs button.on{background:linear-gradient(180deg,#909ed7,#7c89c4);color:#fff}.org-panel h4{margin:0 0 12px;color:#7c89c4;font-size:14px}
 .req-doc{display:grid;gap:8px}.req-doc .reader-actions{margin-top:0}.req-doc-name{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.hub-node.orbit-0{left:calc(50% - 75px);top:calc(50% - 405px)}.hub-node.orbit-1{left:calc(50% + 119px);top:calc(50% - 342px)}.hub-node.orbit-2{left:calc(50% + 239px);top:calc(50% - 177px)}.hub-node.orbit-3{left:calc(50% + 239px);top:calc(50% + 27px)}.hub-node.orbit-4{left:calc(50% + 119px);top:calc(50% + 192px)}.hub-node.orbit-5{left:calc(50% - 75px);top:calc(50% + 255px)}.hub-node.orbit-6{left:calc(50% - 269px);top:calc(50% + 192px)}.hub-node.orbit-7{left:calc(50% - 389px);top:calc(50% + 27px)}.hub-node.orbit-8{left:calc(50% - 389px);top:calc(50% - 177px)}.hub-node.orbit-9{left:calc(50% - 269px);top:calc(50% - 342px)}
 </style>
 </head>
 <body>
@@ -193,16 +194,16 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px 12px;border-bottom:
               <img src="assets/quali-logo.png" alt="QualiLab">
             </div>
           </div>
-          <button class="hub-node hub-purple top" data-go="db"><b>Tableau de bord</b></button>
-          <button class="hub-node hub-orange top-right" data-go="docs"><b>Maitrise documentaire</b></button>
-          <button class="hub-node hub-blue mid-right" data-go="revc"><b>Revue de contrat</b></button>
-          <button class="hub-node hub-green right" data-go="eq"><b>Gestion des equipements</b></button>
-          <button class="hub-node hub-pink bottom-right" data-go="docorg"><b>Organigramme documentaire</b></button>
-          <button class="hub-node hub-blue bottom" data-go="diag"><b>Diagnostic ISO</b></button>
-          <button class="hub-node hub-slate bottom-left" data-go="set"><b>Parametres</b></button>
-          <button class="hub-node hub-violet left-bottom" data-go="usr"><b>Utilisateurs</b></button>
-          <button class="hub-node hub-red left" data-go="aud"><b>Audits</b></button>
-          <button class="hub-node hub-orange top-left" data-go="nc"><b>Non-conformites</b></button>
+          <button class="hub-node hub-purple orbit-0" data-go="db"><b>Tableau de bord</b></button>
+          <button class="hub-node hub-orange orbit-1" data-go="docs"><b>Maitrise documentaire</b></button>
+          <button class="hub-node hub-pink orbit-2" data-go="docorg"><b>Documentation</b></button>
+          <button class="hub-node hub-blue orbit-3" data-go="revc"><b>Revue de contrat</b></button>
+          <button class="hub-node hub-green orbit-4" data-go="eq"><b>Gestion des equipements</b></button>
+          <button class="hub-node hub-orange orbit-5" data-go="nc"><b>Non-conformites</b></button>
+          <button class="hub-node hub-red orbit-6" data-go="aud"><b>Audits</b></button>
+          <button class="hub-node hub-blue orbit-7" data-go="diag"><b>Diagnostic ISO</b></button>
+          <button class="hub-node hub-violet orbit-8" data-go="usr"><b>Utilisateurs</b></button>
+          <button class="hub-node hub-slate orbit-9" data-go="set"><b>Parametres</b></button>
         </div>
       </div>
       <div class="hub-summary">
