@@ -638,6 +638,8 @@ function handleDocumentImport(list){if(!list||!list.length)return;const m=$("#im
 function handleExportButton(){const m=$("#expMode").value;if(m==="document"){if(!requirePerm("Telecharger"))return;downloadRepoFile();return}if(!requirePerm("Exporter"))return;if(m==="json"){exp();return}exportRepoData()}
 function clearFields(ids){ids.forEach(id=>{const el=$(id);if(!el)return;if(el.tagName==="SELECT")el.selectedIndex=0;else el.value=""})}
 const PERMS=["Ajouter","Modifier","Supprimer","Valider","Telecharger","Importer","Exporter","Parametres","Comptes"];
+function pilotAccount(){return{name:"Pilote QualiLab",firstName:"Pilote",lastName:"QualiLab",email:"admin@ener.tn",role:"Administrateur",dept:"Pilotage application",func:"Pilote de l'application",matricule:"PILOT-001",ini:"PQ",perms:[...PERMS],passwordHint:"Compte pilote avec toutes les autorisations"}}
+function ensurePilotAccount(){const p=pilotAccount();s.usr=s.usr||[];const i=s.usr.findIndex(x=>String(x.email||"").toLowerCase()===p.email);if(i>=0)s.usr[i]={...s.usr[i],...p};else s.usr.unshift(markSaved(p));if(String((s.u&&s.u.email)||"").toLowerCase()===p.email)s.u={...s.u,...p}}
 function userPerms(u=s.u){if(u&&Array.isArray(u.perms))return u.perms;if(u&&u.role==="Administrateur")return PERMS;return["Telecharger"]}
 function hasPerm(p){return userPerms().includes(p)}
 function requirePerm(p){if(hasPerm(p))return true;sync("Acces refuse : autorisation requise - "+p);return false}
@@ -676,6 +678,7 @@ $("#procClose").onclick=closeProcessWindow;
 $("#nav").onclick=e=>{const b=e.target.closest("button[data-p]");if(b)page(b.dataset.p)};document.body.onclick=act;document.body.addEventListener("change",diagField);document.body.addEventListener("click",e=>{const b=e.target.closest("[data-go]");if(b)page(b.dataset.go)});
 async function restoreRepo(){const h=await idbGet("repoHandle");if(!h)return;if(await verifyHandle(h,false)){repoHandle=h;s.repo.folderName=h.name;s.repo.linked=true;s.repo.mode="Dossier reconnecte";await scanRepo(h)}else{s.repo.mode="Reconnecter le dossier local";repoView()}}
 async function restoreOrgDir(){const h=await idbGet("orgHandle");if(!h)return;if(await verifyHandle(h,false)){orgHandle=h;orgRootName=h.name||"QualiLab_Organisme";if(activeOrgProc)await scanOrgProc(activeOrgProc)}}
+ensurePilotAccount();
 const ses=sg(S);if(ses){try{const se=JSON.parse(ses),u=s.usr.find(x=>x.email.toLowerCase()===String(se.email).toLowerCase());if(u)s.u=u;openApp();sync("Session restauree")}catch(e){console.error(e);$("#lmsg").textContent="Connexion locale prete.";$("#auth").classList.remove("h");$("#app").classList.add("h")}}else $("#lmsg").textContent="Connexion locale prete.";
 restoreRepo();
 restoreOrgDir();
