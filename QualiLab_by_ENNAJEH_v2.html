@@ -411,6 +411,7 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px 12px;border-bottom:
               <div class="org-field"><label>Organisme</label><input id="oabody" placeholder="Organisme d'accreditation"></div>
               <div class="org-field wide"><label>Portee</label><textarea id="oascope" placeholder="Portee d'accreditation, domaines, methodes, sites..."></textarea></div>
             </div>
+            <div class="acts" style="margin-top:14px;justify-content:flex-start"><button class="btn org-save" id="omodAcc" type="button">Modifier</button><button class="btn org-save" id="osvAcc" type="button">Enregistrer</button></div>
           </div>
           <div class="org-panel h" data-orgpanel="suivi">
             <h4>Suivi de l'accreditation</h4>
@@ -421,6 +422,7 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px 12px;border-bottom:
               <div class="org-field"><label>Echeance action</label><input id="oaactiondate" type="date"></div>
               <div class="org-field wide"><label>Actions suivi</label><textarea id="oaactions" placeholder="Actions a realiser, ecarts, preuves attendues, responsables..."></textarea></div>
             </div>
+            <div class="acts" style="margin-top:14px;justify-content:flex-start"><button class="btn org-save" id="omodSuivi" type="button">Modifier</button><button class="btn org-save" id="osvSuivi" type="button">Enregistrer</button></div>
           </div>
           <div class="org-footer"><span>Activite Actuelle : <b>- - -</b></span><span id="ocreated">Cree le : -</span></div>
         </div>
@@ -713,7 +715,7 @@ function bindClick(id,fn){const el=$("#"+id);if(el)el.addEventListener("click",e
 bindClick("lbtn",login);$("#lpwd").addEventListener("keydown",e=>{if(e.key==="Enter")login()});bindClick("togglePwd",()=>{const p=$("#lpwd"),b=$("#togglePwd"),shown=p.type==="text";p.type=shown?"password":"text";b.textContent=shown?"Afficher":"Masquer";b.setAttribute("aria-label",shown?"Afficher le mot de passe":"Masquer le mot de passe");b.setAttribute("aria-pressed",String(!shown))});bindClick("out",logout);$("#file").onchange=e=>imp(e.target.files[0]);$("#docFile").onchange=e=>handleDocumentImport(e.target.files);$("#orgReqFile").onchange=e=>importReqDoc(e.target.files[0]);bindClick("weeklyReport",downloadWeeklyReport);
 ["#ds","#dpf","#dtf","#df","#ods","#odpf","#odtf","#odf","#es","#ef","#ns","#nf","#as","#af","#rs","#rf","#fsq","#diagFilter"].forEach(id=>{const el=$(id);if(el){el.addEventListener("input",render);el.addEventListener("change",render)}});
 ["dadd","dsv"].forEach(id=>bindClick(id,addDoc));["odadd","odsv"].forEach(id=>bindClick(id,addOrgDoc));["eadd","esv"].forEach(id=>bindClick(id,addEq));["nadd","nsv"].forEach(id=>bindClick(id,addNc));["aadd","asv"].forEach(id=>bindClick(id,addAud));["radd","rsv"].forEach(id=>bindClick(id,addRevc));bindClick("usv",addUsr);
-bindClick("omod",modifyOrg);bindClick("osv",()=>saveOrg());bindClick("orgPrint",printOrgSummary);bindClick("diagReset",resetDiag);bindClick("diagExport",exportDiag);
+["omod","omodAcc","omodSuivi"].forEach(id=>bindClick(id,modifyOrg));["osv","osvAcc","osvSuivi"].forEach(id=>bindClick(id,()=>saveOrg()));bindClick("orgPrint",printOrgSummary);bindClick("diagReset",resetDiag);bindClick("diagExport",exportDiag);
 bindClick("pickDir",chooseRepoDir);bindClick("scanDir",()=>scanRepo());bindClick("fallbackDir",()=>$("#repoDirFallback").click());$("#repoDirFallback").onchange=e=>scanFallbackDir(e.target.files);bindClick("pickFiles",()=>$("#repoFiles").click());$("#repoFiles").onchange=e=>importRepoFiles(e.target.files,importTarget());bindClick("exportDir",exportRepoData);
 
 enhanceModulePanels();
