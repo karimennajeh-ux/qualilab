@@ -2130,6 +2130,17 @@ th {
 .hub-img:not(:empty) {
   line-height:1;
 }
+.hub-img svg {
+  width:34px;
+  height:34px;
+  position:relative;
+  z-index:1;
+  stroke:#fff;
+  fill:none;
+  stroke-width:2.5;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
 .hub-purple .hub-img {background:linear-gradient(135deg,#a94fd8,#7535b5)}
 .hub-orange .hub-img {background:linear-gradient(135deg,#ffb94c,#f07c00)}
 .hub-pink .hub-img {background:linear-gradient(135deg,#f56f92,#df3f70)}
@@ -2339,16 +2350,16 @@ th {
             <img src="assets/quali-logo.png" alt="QualiLab">
             <div><b>QualiLab ERP</b><span>Selection des modules du systeme qualite laboratoire</span></div>
           </div>
-          <button class="hub-node hub-purple orbit-0" data-go="db"><span class="hub-img">TB</span><b>Tableau de bord</b><small>Pilotage</small></button>
-          <button class="hub-node hub-orange orbit-1" data-go="docs"><span class="hub-img">MD</span><b>Maitrise documentaire</b><small>Liste maitresse</small></button>
-          <button class="hub-node hub-pink orbit-2" data-go="docorg"><span class="hub-img">DOC</span><b>Documentation</b><small>Creation</small></button>
-          <button class="hub-node hub-blue orbit-3" data-go="revc"><span class="hub-img">CT</span><b>Revue de contrat</b><small>Clients</small></button>
-          <button class="hub-node hub-green orbit-4" data-go="eq"><span class="hub-img">EQ</span><b>Gestion des equipements</b><small>Etalonnage</small></button>
-          <button class="hub-node hub-orange orbit-5" data-go="nc"><span class="hub-img">NC</span><b>Non-conformites</b><small>Actions</small></button>
-          <button class="hub-node hub-red orbit-6" data-go="aud"><span class="hub-img">AU</span><b>Audits</b><small>Planning</small></button>
-          <button class="hub-node hub-blue orbit-7" data-go="diag"><span class="hub-img">ISO</span><b>Diagnostic ISO</b><small>Evaluation</small></button>
-          <button class="hub-node hub-violet orbit-8" data-go="usr"><span class="hub-img">US</span><b>Utilisateurs</b><small>Acces</small></button>
-          <button class="hub-node hub-slate orbit-9" data-go="set"><span class="hub-img">PR</span><b>Parametres</b><small>Configuration</small></button>
+          <button class="hub-node hub-purple orbit-0" data-go="db"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="6" y="10" width="28" height="20" rx="4"></rect><path d="M12 25h4M20 25h8M13 17v4M20 15v6M27 18v3"></path></svg></span><b>Tableau de bord</b><small>Pilotage</small></button>
+          <button class="hub-node hub-orange orbit-1" data-go="docs"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M11 6h14l5 5v23H11z"></path><path d="M25 6v6h6M16 18h12M16 24h12M16 30h8"></path></svg></span><b>Maitrise documentaire</b><small>Liste maitresse</small></button>
+          <button class="hub-node hub-pink orbit-2" data-go="docorg"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M7 13h12l3 4h11v15H7z"></path><path d="M12 23h16M12 28h10"></path></svg></span><b>Documentation</b><small>Creation</small></button>
+          <button class="hub-node hub-blue orbit-3" data-go="revc"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M10 8h15l5 5v19H10z"></path><path d="M25 8v6h6M15 20h10M15 26h8M27 29l6 6"></path><circle cx="26" cy="27" r="5"></circle></svg></span><b>Revue de contrat</b><small>Clients</small></button>
+          <button class="hub-node hub-green orbit-4" data-go="eq"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M14 28l12-12M12 14l5 5M23 23l5 5"></path><path d="M10 30l4 4 5-5-4-4zM25 15l5-5 2 2-5 5z"></path><circle cx="20" cy="20" r="3"></circle></svg></span><b>Gestion des equipements</b><small>Etalonnage</small></button>
+          <button class="hub-node hub-orange orbit-5" data-go="nc"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 7l15 26H5z"></path><path d="M20 16v8M20 29h.01"></path></svg></span><b>Non-conformites</b><small>Actions</small></button>
+          <button class="hub-node hub-red orbit-6" data-go="aud"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="10" y="8" width="20" height="26" rx="3"></rect><path d="M15 16h10M15 22h10M15 28h6M28 25l3 3 6-7"></path></svg></span><b>Audits</b><small>Planning</small></button>
+          <button class="hub-node hub-blue orbit-7" data-go="diag"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 30h24M12 30V18M20 30V10M28 30V14"></path><path d="M12 18l8-8 8 4"></path></svg></span><b>Diagnostic ISO</b><small>Evaluation</small></button>
+          <button class="hub-node hub-violet orbit-8" data-go="usr"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="16" cy="15" r="6"></circle><path d="M6 32c2-6 7-9 10-9s8 3 10 9"></path><circle cx="28" cy="17" r="4"></circle><path d="M25 27c3 .5 6 2 8 5"></path></svg></span><b>Utilisateurs</b><small>Acces</small></button>
+          <button class="hub-node hub-slate orbit-9" data-go="set"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="5"></circle><path d="M20 7v5M20 28v5M7 20h5M28 20h5M10.8 10.8l3.6 3.6M25.6 25.6l3.6 3.6M29.2 10.8l-3.6 3.6M14.4 25.6l-3.6 3.6"></path></svg></span><b>Parametres</b><small>Configuration</small></button>
       </div>
       <div class="hub-summary">
         <div class="mini"><strong>Acces rapide</strong><span class="bl">10 modules</span></div>
