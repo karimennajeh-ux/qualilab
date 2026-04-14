@@ -265,49 +265,35 @@ table{width:100%;border-collapse:collapse}th,td{padding:10px 12px;border-bottom:
     </section>
 
     <section id="docorg" class="row h">
-      <div class="bar card" style="grid-template-columns:1.3fr auto auto auto auto">
-        <input id="ods" placeholder="Rechercher document organisme">
+      <div class="card">
+        <h3 style="margin-top:0">Nouvelle approche documentation</h3>
+        <p class="mut">Objectif : creer les documents de l'organisme a partir de modeles maitrises, importer les documents prepares, puis les faire passer par creation, verification, approbation et diffusion. Les documents approuves ou diffuses sont ajoutes automatiquement dans la liste maitresse de la Gestion documentaire.</p>
+      </div>
+      <div class="bar card" style="grid-template-columns:1.2fr auto auto auto auto">
+        <input id="ods" placeholder="Rechercher un document">
         <select id="odpf"><option value="all">Tous les processus</option><option>Processus pilotage</option><option>Processus operationnel</option><option>Processus support</option></select>
         <select id="odtf"><option value="all">Tous les types</option><option>Manuel qualite</option><option>Politique qualite</option><option>Procedure</option><option>Instruction</option><option>Formulaire</option><option>Enregistrement</option></select>
         <select id="odf"><option value="all">Tous les statuts</option><option>Brouillon</option><option>En revue</option><option>A corriger</option><option>Approuve</option><option>Diffuse</option><option>Archive</option></select>
         <span class="mut" id="odc"></span>
-        <button class="btn" id="odadd">Ajouter</button>
       </div>
-      <div class="card"><div class="g4"><input id="odt" placeholder="Titre"><input id="odr" placeholder="Ref"><input id="odie" placeholder="Objectif / domaine d'application"><select id="odpr"><option>Processus pilotage</option><option>Processus operationnel</option><option>Processus support</option></select><select id="odty"><option>Manuel qualite</option><option>Politique qualite</option><option>Procedure</option><option>Instruction</option><option>Formulaire</option><option>Enregistrement</option></select><input id="odo" placeholder="Redacteur"><input id="odverif" placeholder="Verificateur"><input id="odapp" placeholder="Approbateur"><select id="odstat"><option>Brouillon</option><option>En revue</option><option>A corriger</option><option>Approuve</option><option>Diffuse</option><option>Archive</option></select><select id="odst"><option>Cloud</option><option>Local</option><option>A definir</option></select><input id="oddiff" placeholder="Diffusion : services / personnes"><textarea id="odbody" placeholder="Contenu principal / resume du document"></textarea><input id="odurl" placeholder="Lien cloud ou chemin fichier Word / Excel / PDF / Image"><button class="btn" id="odsv">Enregistrer brouillon</button></div></div>
       <div class="card">
-        <h3 style="margin-top:0">Creation</h3>
-        <div class="mut" style="margin-bottom:10px">Choisir un modele, importer un document puis suivre : creation, verification, approbation et diffusion dans le systeme de management.</div>
-        <div id="odFlow" class="s4" style="margin-bottom:12px"></div>
+        <h3 style="margin-top:0">1. Bibliotheque des modeles</h3>
+        <div class="mut" style="margin-bottom:10px">Choisir, voir ou modifier un modele avant de creer le document.</div>
         <div id="odModels" class="template-grid"></div>
-        <div class="reader-actions" style="margin:12px 0"><button class="btn" id="odImportBtn" type="button">Importer un document cree</button></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">2. Creation ou importation</h3>
+        <div class="g4"><input id="odt" placeholder="Titre"><input id="odr" placeholder="Reference"><input id="odie" placeholder="Objectif / domaine d'application"><select id="odpr"><option>Processus pilotage</option><option>Processus operationnel</option><option>Processus support</option></select><select id="odty"><option>Manuel qualite</option><option>Politique qualite</option><option>Procedure</option><option>Instruction</option><option>Formulaire</option><option>Enregistrement</option></select><input id="odo" placeholder="Redacteur"><input id="odverif" placeholder="Verificateur"><input id="odapp" placeholder="Approbateur"><select id="odstat"><option>Brouillon</option><option>En revue</option><option>A corriger</option><option>Approuve</option><option>Diffuse</option><option>Archive</option></select><select id="odst"><option>Cloud</option><option>Local</option><option>A definir</option></select><input id="oddiff" placeholder="Diffusion : services / personnes"><textarea id="odbody" placeholder="Contenu principal / resume du document"></textarea><input id="odurl" placeholder="Lien cloud ou chemin fichier Word / Excel / PDF / Image"><button class="btn" id="odsv">Enregistrer brouillon</button><button class="btn2 btn" id="odImportBtn" type="button">Importer un document cree</button></div>
+      </div>
+      <div class="card">
+        <h3 style="margin-top:0">3. Workflow de validation</h3>
+        <div id="odFlow" class="s4" style="margin-bottom:12px"></div>
         <div id="odImported" class="list"></div>
       </div>
-      <div class="card"><h3 style="margin-top:0">Organigramme et repartition des documents</h3><div id="odSummary" class="list"></div></div>
-      <div id="procPanel" class="card h" style="padding:0">
-        <div class="modal-head">
-          <div class="modal-brand">
-            <div class="mark">Q</div>
-            <div>
-              <b id="procTitle">Processus</b>
-              <p>4 dossiers documentaires - style QualiLab</p>
-            </div>
-          </div>
-          <button class="btn3 btn" id="procClose">Fermer</button>
-        </div>
-        <div class="modal-body">
-          <div id="procStorage" class="storage-box"></div>
-          <div id="procFolders" class="folder-grid"></div>
-          <div class="reader-grid">
-            <div class="card">
-              <h3 style="margin-top:0">Documents stockes</h3>
-              <div id="procReaderList" class="reader-list"></div>
-            </div>
-            <div class="card reader-preview">
-              <h3 style="margin-top:0">Lecture directe</h3>
-              <div id="procReaderPreview" class="list"></div>
-</div>
-</div>
-</div>
+      <div class="card">
+        <h3 style="margin-top:0">4. Liste et apercu</h3>
+        <div id="odSummary" class="list"></div>
+      </div>
       <div class="tb"><table><thead><tr><th>Ref</th><th>Titre</th><th>Objectif</th><th>Processus</th><th>Type</th><th>Version</th><th>Statut</th><th>Validation</th><th>Stockage</th><th>Actions</th></tr></thead><tbody id="odtab"></tbody></table></div>
     </section>
 
@@ -664,7 +650,7 @@ async function openOrgFile(id){if(!id)return;let f=null;const src=orgFilesMap.ge
 function openProcessWindow(proc){activeOrgProc=proc;activeOrgType="";activeOrgStatus="";$("#procTitle").textContent=proc;$("#procStorage").innerHTML=processStorage(proc);$("#procFolders").innerHTML=orgFolders(proc);$("#procPanel").classList.remove("h");$("#procReaderList").innerHTML=`<div class="it"><b>Documents stockes</b><p>Charge le contenu du dossier <code>${esc(processRootPath(proc))}</code> pour lire les fichiers dans l'application.</p></div>`;$("#procReaderPreview").innerHTML=orgPreviewDefault();scanOrgProc(proc);$("#procPanel").scrollIntoView({behavior:"smooth",block:"start"})}
 function closeProcessWindow(){$("#procPanel").classList.add("h");activeOrgProc="";activeOrgType="";activeOrgStatus=""}
 function docs(){s.docs=(s.docs||[]).map(normDoc);const q=$("#ds").value.trim().toLowerCase(),pf=$("#dpf").value,tf=$("#dtf").value,f=$("#df").value,all=s.docs,arr=all.filter(x=>[x.ref,x.title,x.p,x.type,x.o,x.store,x.url,x.verif,x.app,x.diff].join(" ").toLowerCase().includes(q)&&(pf==="all"||x.p===pf)&&(tf==="all"||x.type===tf)&&(f==="all"||x.st===f));$("#dc").textContent=arr.length+" document"+(arr.length>1?"s":"");$("#dSummary").innerHTML=all.length?docSummary(all):`<div class="e">Aucun document.</div>`;$("#dtab").innerHTML=arr.length?arr.map(x=>`<tr><td>${x.ref}</td><td><b>${x.title}</b><br><small>${docStoragePath(x)}</small></td><td>${x.p}</td><td>${x.type}</td><td>${x.v}</td><td><span class="${tag(x.st)}">${x.st}</span></td><td>${storageCell(x)}</td><td>${x.o}</td><td>${esc(x.verif)}<br>${esc(x.app)}</td><td>${esc(x.review)}</td><td>${esc(x.diff)}</td><td><button class="btn2 btn" data-dcycle="${x.id}">Cycle</button> <button class="btn2 btn" data-dread="${x.id}">Lire</button> <button class="btn2 btn" data-ddetail="${x.id}">Fiche</button> <button class="btn3 btn" data-do="${x.id}">Obsolete</button> <button class="btn3 btn" data-dd="${x.id}">Supprimer</button></td></tr>`).join(""):`<tr><td colspan="12" class="e">Aucun document.</td></tr>`}
-function orgDocsView(){s.orgDocs=(s.orgDocs||c(D.orgDocs)).map(normDoc);const q=$("#ods").value.trim().toLowerCase(),pf=$("#odpf").value,tf=$("#odtf").value,f=$("#odf").value,all=s.orgDocs,arr=all.filter(x=>[x.ref,x.title,x.ie,x.p,x.type,x.o,x.store,x.url,x.verif,x.app,x.diff,x.body].join(" ").toLowerCase().includes(q)&&(pf==="all"||x.p===pf)&&(tf==="all"||x.type===tf)&&(f==="all"||x.st===f));$("#odc").textContent=arr.length+" document"+(arr.length>1?"s":"");$("#odModels").innerHTML=templateCards();$("#odFlow").innerHTML=orgWorkflowCards(all);$("#odImported").innerHTML=orgImportedList(all);$("#odSummary").innerHTML=all.length?orgProcessButtons(all):`<div class="e">Aucun document organisme.</div>`;$("#odtab").innerHTML=arr.length?arr.map(x=>`<tr><td>${esc(x.ref)}</td><td><b>${esc(x.title)}</b><br><small>${esc(x.body||"-")}</small></td><td>${esc(x.ie||"-")}</td><td>${esc(x.p)}</td><td>${esc(x.type)}</td><td>${esc(x.v)}</td><td><span class="${tag(x.st)}">${esc(x.st)}</span></td><td>${esc(x.o||"-")}<br>${esc(x.verif||"-")}<br>${esc(x.app||"-")}</td><td>${storageCell(x)}</td><td><button class="btn2 btn" data-odreview="${x.id}">Verification</button> <button class="btn2 btn" data-odapprove="${x.id}">Approbation</button> <button class="btn2 btn" data-oddiffuse="${x.id}">Diffuser</button> <button class="btn2 btn" data-odcorrect="${x.id}">Correction</button> <button class="btn2 btn" data-oddetail="${x.id}">Fiche</button> <button class="btn2 btn" data-odread="${x.id}">Lire</button> <button class="btn3 btn" data-odarchive="${x.id}">Archiver</button> <button class="btn3 btn" data-odd="${x.id}">Supprimer</button></td></tr>`).join(""):`<tr><td colspan="10" class="e">Aucun document organisme.</td></tr>`;if(activeOrgProc&&!$("#procPanel").classList.contains("h"))openProcessWindow(activeOrgProc)}
+function orgDocsView(){s.orgDocs=(s.orgDocs||c(D.orgDocs)).map(normDoc);const q=$("#ods").value.trim().toLowerCase(),pf=$("#odpf").value,tf=$("#odtf").value,f=$("#odf").value,all=s.orgDocs,arr=all.filter(x=>[x.ref,x.title,x.ie,x.p,x.type,x.o,x.store,x.url,x.verif,x.app,x.diff,x.body].join(" ").toLowerCase().includes(q)&&(pf==="all"||x.p===pf)&&(tf==="all"||x.type===tf)&&(f==="all"||x.st===f));$("#odc").textContent=arr.length+" document"+(arr.length>1?"s":"");$("#odModels").innerHTML=templateCards();$("#odFlow").innerHTML=orgWorkflowCards(all);$("#odImported").innerHTML=orgImportedList(all);$("#odSummary").innerHTML=all.length?docSummary(all):`<div class="e">Aucun document organisme.</div>`;$("#odtab").innerHTML=arr.length?arr.map(x=>`<tr><td>${esc(x.ref)}</td><td><b>${esc(x.title)}</b><br><small>${esc(x.body||"-")}</small></td><td>${esc(x.ie||"-")}</td><td>${esc(x.p)}</td><td>${esc(x.type)}</td><td>${esc(x.v)}</td><td><span class="${tag(x.st)}">${esc(x.st)}</span></td><td>${esc(x.o||"-")}<br>${esc(x.verif||"-")}<br>${esc(x.app||"-")}</td><td>${storageCell(x)}</td><td><button class="btn2 btn" data-odreview="${x.id}">Verification</button> <button class="btn2 btn" data-odapprove="${x.id}">Approbation</button> <button class="btn2 btn" data-oddiffuse="${x.id}">Diffuser</button> <button class="btn2 btn" data-odcorrect="${x.id}">Correction</button> <button class="btn2 btn" data-oddetail="${x.id}">Fiche</button> <button class="btn2 btn" data-odread="${x.id}">Lire</button> <button class="btn3 btn" data-odarchive="${x.id}">Archiver</button> <button class="btn3 btn" data-odd="${x.id}">Supprimer</button></td></tr>`).join(""):`<tr><td colspan="10" class="e">Aucun document organisme.</td></tr>`;if(activeOrgProc&&$("#procPanel")&&!$("#procPanel").classList.contains("h"))openProcessWindow(activeOrgProc)}
 function eq(){const q=$("#es").value.trim().toLowerCase(),f=$("#ef").value,arr=s.eq.filter(x=>[x.id,x.n,x.m,x.sn].join(" ").toLowerCase().includes(q)&&(f==="all"||x.st===f));$("#ec").textContent=arr.length+" equipement"+(arr.length>1?"s":"");$("#etab").innerHTML=arr.length?arr.map(x=>`<tr><td>${x.id}</td><td>${x.n}</td><td>${x.m} / ${x.sn}</td><td>${x.l}</td><td>${x.nx}</td><td><span class="${tag(x.st)}">${x.st}</span></td><td>${x.ciq}</td><td>${x.u}</td><td><button class="btn2 btn" data-et="${x.id}">Changer statut</button> <button class="btn3 btn" data-ed="${x.id}">Supprimer</button></td></tr>`).join(""):`<tr><td colspan="9" class="e">Aucun equipement.</td></tr>`}
 function nc(){const q=$("#ns").value.trim().toLowerCase(),f=$("#nf").value,arr=s.nc.filter(x=>[x.ref,x.desc,x.act,x.o].join(" ").toLowerCase().includes(q)&&(f==="all"||x.st===f));$("#ncn").textContent=arr.length+" non-conformite"+(arr.length>1?"s":"");$("#ntab").innerHTML=arr.length?arr.map(x=>`<tr><td>${x.ref}</td><td>${x.desc}</td><td><span class="${tag(x.g)}">${x.g}</span></td><td>${x.act}</td><td><span class="${tag(x.st)}">${x.st}</span></td><td>${x.o}</td><td>${x.due}</td><td><button class="btn2 btn" data-nt="${x.ref}">Avancer</button> <button class="btn3 btn" data-nd="${x.ref}">Supprimer</button></td></tr>`).join(""):`<tr><td colspan="8" class="e">Aucune NC.</td></tr>`}
 function aud(){const q=$("#as").value.trim().toLowerCase(),f=$("#af").value,arr=s.aud.filter(x=>[x.ref,x.ty,x.sc,x.o].join(" ").toLowerCase().includes(q)&&(f==="all"||x.st===f));$("#ac").textContent=arr.length+" audit"+(arr.length>1?"s":"");$("#atab").innerHTML=arr.length?arr.map(x=>`<tr><td>${x.ref}</td><td>${x.ty}</td><td>${x.sc}</td><td>${x.o}</td><td>${x.d}</td><td><span class="${tag(x.st)}">${x.st}</span></td><td>${x.f}</td><td><button class="btn2 btn" data-at="${x.ref}">Avancer</button> <button class="btn3 btn" data-ad="${x.ref}">Supprimer</button></td></tr>`).join(""):`<tr><td colspan="8" class="e">Aucun audit.</td></tr>`}
