@@ -2014,8 +2014,7 @@ th {
 }
 
 .hub-node {
-  width:300px;
-  height: 300px;
+  position:absolute;
   margin: 10px;
   display: flex;
   align-items: center;
@@ -2068,9 +2067,48 @@ th {
 .hub-page:before,.hub-page:after {
   opacity:.35;
 }
+.hub-top-actions {
+  position:absolute;
+  top:18px;
+  right:22px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  z-index:4;
+}
+.hub-action-icon {
+  width:36px;
+  height:36px;
+  border:1px solid rgba(33,72,130,.12);
+  border-radius:14px;
+  background:rgba(255,255,255,.9);
+  color:#2f67d8;
+  display:grid;
+  place-items:center;
+  box-shadow:0 10px 24px rgba(34,55,99,.1);
+  cursor:pointer;
+}
+.hub-action-icon svg {
+  width:18px;
+  height:18px;
+  stroke:currentColor;
+  fill:none;
+  stroke-width:2.4;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.hub-action-icon.profile svg {
+  width:20px;
+  height:20px;
+}
+.hub-action-icon:hover {
+  transform:translateY(-2px);
+  box-shadow:0 14px 28px rgba(34,55,99,.16);
+}
 .hub-node {
-  width:156px !important;
-  height:152px !important;
+  min-width:150px !important;
+  height:150px !important;
+  /* min-height:300px !important; */
   flex-direction:column !important;
   gap:8px !important;
   justify-content:center !important;
@@ -2092,6 +2130,8 @@ th {
 .hub-img {
   width:64px;
   height:58px;
+  min-width: 50px;
+  min-height:50px;
   border-radius:20px;
   display:grid !important;
   place-items:center;
@@ -2157,9 +2197,7 @@ th {
   margin:8px auto 0;
 }
 .hub-app-head {
-  flex:0 0 100%;
-  width:min(920px,100%);
-  max-width:920px;
+  width:100%;
   margin:0 auto 10px;
   display:flex;
   align-items:center;
@@ -2346,6 +2384,11 @@ th {
 
     <section id="hub" class="row">
       <div class="hub-page">
+          <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+            <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+            <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+            <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          </div>
           <div class="hub-app-head">
             <img src="assets/quali-logo.png" alt="QualiLab">
             <div><b>QualiLab ERP</b><span>Selection des modules du systeme qualite laboratoire</span></div>
