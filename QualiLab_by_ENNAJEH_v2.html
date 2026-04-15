@@ -2306,7 +2306,7 @@ th {
 (function(){
   function setText(sel,val){var el=document.querySelector(sel);if(el)el.textContent=val}
   function showPage(id){
-    ["hub","db","docs","docorg","eq","nc","aud","revc","usr","set","diag","repo"].forEach(function(x){
+    ["hub","db","docs","docorg","eq","nc","aud","revc","usr","set","diag","risk","repo"].forEach(function(x){
       var el=document.getElementById(x);
       if(el)el.classList.toggle("h",x!==id);
     });
@@ -2407,6 +2407,7 @@ th {
       <button data-p="usr"><span class="menu-ico">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¹Ã…â€œÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¤</span><span class="menu-label">Utilisateurs</span></button>
       <button data-p="set"><span class="menu-ico">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â</span><span class="menu-label">Parametres</span></button>
       <button data-p="diag"><span class="menu-ico">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â </span><span class="menu-label">Diagnostic ISO 17025</span></button>
+      <button data-p="risk"><span class="menu-ico">AR</span><span class="menu-label">Analyse de risque</span></button>
       <button data-p="repo"><span class="menu-ico">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â</span><span class="menu-label">Dossier principal</span></button>
       <button data-p="docorg"><span class="menu-ico">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â</span><span class="menu-label">Documentation</span></button>
     </div>
@@ -2441,9 +2442,10 @@ th {
           <button class="hub-node hub-blue orbit-7" data-go="diag"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 30h24M12 30V18M20 30V10M28 30V14"></path><path d="M12 18l8-8 8 4"></path></svg></span><b>Diagnostic ISO</b><small></small></button>
           <button class="hub-node hub-violet orbit-8" data-go="usr"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="16" cy="15" r="6"></circle><path d="M6 32c2-6 7-9 10-9s8 3 10 9"></path><circle cx="28" cy="17" r="4"></circle><path d="M25 27c3 .5 6 2 8 5"></path></svg></span><b>Utilisateurs</b><small></small></button>
           <button class="hub-node hub-slate orbit-9" data-go="set"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="5"></circle><path d="M20 7v5M20 28v5M7 20h5M28 20h5M10.8 10.8l3.6 3.6M25.6 25.6l3.6 3.6M29.2 10.8l-3.6 3.6M14.4 25.6l-3.6 3.6"></path></svg></span><b>Parametres</b><small></small></button>
+          <button class="hub-node hub-red orbit-10" data-go="risk"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5l13 5v9c0 8-5 13-13 16C12 32 7 27 7 19v-9z"></path><path d="M14 25l6-10 6 10M17 21h6"></path></svg></span><b>Analyse de risque</b><small></small></button>
       </div>
       <div class="hub-summary">
-        <div class="mini"><strong>Acces rapide</strong><span class="bl">10 modules</span></div>
+        <div class="mini"><strong>Acces rapide</strong><span class="bl">11 modules</span></div>
         <div class="mini"><strong>Presentation</strong><span class="ok">Apres connexion</span></div>
         <div class="mini"><strong>Interface</strong><span class="wa">Responsive</span></div>
       </div>
@@ -2686,6 +2688,24 @@ th {
       </div>
     </section>
 
+    <section id="risk" class="row h">
+      <div class="bar card" style="grid-template-columns:1fr auto">
+        <input placeholder="Rechercher risque">
+        <span class="mut">0 risque</span>
+      </div>
+      <div class="card">
+        <div class="g4">
+          <input placeholder="Reference">
+          <input placeholder="Risque">
+          <select><option>Faible</option><option>Moyen</option><option>Eleve</option><option>Critique</option></select>
+          <input placeholder="Responsable">
+          <textarea placeholder="Action de maitrise"></textarea>
+          <button class="btn" type="button">Enregistrer</button>
+        </div>
+      </div>
+      <div class="tb"><table><thead><tr><th>Ref</th><th>Risque</th><th>Niveau</th><th>Responsable</th><th>Actions</th></tr></thead><tbody><tr><td colspan="5" class="e">Aucun risque.</td></tr></tbody></table></div>
+    </section>
+
     <section id="repo" class="row h">
       <div class="card">
         <h3>Bibliotheque documentaire locale</h3>
@@ -2827,12 +2847,12 @@ function openApp(){$("#auth").classList.add("h");$("#app").classList.remove("h")
 function isPilotLogin(e,p){return String(e||"").trim().toLowerCase()==="karimennajeh@gmail.com"&&String(p||"")==="09318872karim@"}
 function login(){const e=$("#lemail").value.trim(),p=$("#lpwd").value;if(!isPilotLogin(e,p)){$("#lmsg").textContent="Acces refuse : e-mail ou mot de passe incorrect.";sr(S);$("#app").classList.add("h");$("#auth").classList.remove("h");return}try{ensurePilotAccount();const u=s.usr.find(x=>x.email.toLowerCase()===e.toLowerCase())||pilotAccount();s.u=u;ss(S,JSON.stringify({email:s.u.email}));log("Connexion","Session",e);save("Session ouverte");openApp()}catch(err){console.error(err);$("#lmsg").textContent="Erreur de connexion. Verifie l'application puis recommence.";sr(S);$("#auth").classList.remove("h");$("#app").classList.add("h")}}
 function logout(){log("Deconnexion","Session",s.u.email);save("Session fermee");sr(S);pageHistory=[];nextPageHistory=[];currentPage="hub";$("#app").classList.add("h");$("#auth").classList.remove("h");updateBackButton()}
-const moduleRailMeta={db:{cls:"module-db",title:"Tableau de bord",tag:""},docs:{cls:"module-docs",title:"Maitrise documentaire",tag:""},docorg:{cls:"module-docorg",title:"Documentation",tag:""},eq:{cls:"module-eq",title:"Gestion des equipements",tag:""},nc:{cls:"module-nc",title:"Non-conformites",tag:""},aud:{cls:"module-aud",title:"Audits",tag:""},revc:{cls:"module-revc",title:"Revue de contrat",tag:""},usr:{cls:"module-usr",title:"Utilisateurs",tag:""},set:{cls:"module-set",title:"Parametres",tag:""},diag:{cls:"module-diag",title:"Diagnostic ISO 17025",tag:""},repo:{cls:"module-repo",title:"Dossier principal",tag:""}};
+const moduleRailMeta={db:{cls:"module-db",title:"Tableau de bord",tag:""},docs:{cls:"module-docs",title:"Maitrise documentaire",tag:""},docorg:{cls:"module-docorg",title:"Documentation",tag:""},eq:{cls:"module-eq",title:"Gestion des equipements",tag:""},nc:{cls:"module-nc",title:"Non-conformites",tag:""},aud:{cls:"module-aud",title:"Audits",tag:""},revc:{cls:"module-revc",title:"Revue de contrat",tag:""},usr:{cls:"module-usr",title:"Utilisateurs",tag:""},set:{cls:"module-set",title:"Parametres",tag:""},diag:{cls:"module-diag",title:"Diagnostic ISO 17025",tag:""},risk:{cls:"module-nc",title:"Analyse de risque",tag:""},repo:{cls:"module-repo",title:"Dossier principal",tag:""}};
 function moduleOrgRailHtml(){const o=s.org||{},name=o.name||"QualiLab by ENNAJEH",mail=o.mail||"contact@qualilab.tn",phone=o.phone||"+216 71 000 000",addr=[o.address,o.city].filter(Boolean).join(" - ")||"Tunis, Tunisie",ref=o.accRef||o.acc||"Accredite";return `<div class="module-org"><div class="module-org-card"><strong>Organisme</strong><p>${esc(name)}</p></div><div class="module-org-card"><strong>Reference</strong><p>${esc(o.accStd||"ISO/IEC 17025:2017")}<br>${esc(ref)}</p></div><div class="module-org-card"><strong>Contact</strong><p>${esc(mail)}<br>${esc(phone)}</p></div><div class="module-org-card"><strong>Adresse</strong><p>${esc(addr)}</p></div></div>`}
 function buildModuleRail(id){const meta=moduleRailMeta[id];if(!meta)return null;const rail=document.createElement("aside");rail.className="module-rail";rail.innerHTML=`<div class="module-rail-logo"><img src="assets/quali-logo.png" alt="QualiLab"></div><div class="module-rail-head"><b>${esc(meta.title)}</b><span>${esc(meta.tag)}</span></div>${moduleOrgRailHtml()}`;return rail}
 function updateModuleRails(){Object.keys(moduleRailMeta).forEach(id=>{const org=$("#"+id+" .module-org");if(org)org.outerHTML=moduleOrgRailHtml()})}
 function enhanceModulePanels(){Object.keys(moduleRailMeta).forEach(id=>{const section=$("#"+id);if(!section||section.dataset.railReady==="1")return;section.dataset.railReady="1";section.classList.add("module-shell",moduleRailMeta[id].cls);const body=document.createElement("div");body.className="module-content";while(section.firstChild)body.appendChild(section.firstChild);section.appendChild(buildModuleRail(id));section.appendChild(body)})}
-function page(id,skipHistory){const m={hub:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],db:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],docs:["Maitrise documentaire",""],docorg:["Documentation",""],eq:["Gestion des equipements",""],nc:["Non-conformites",""],aud:["Audits",""],revc:["Revue de contrat",""],usr:["Utilisateurs",""],set:["Parametres",""],diag:["Diagnostic ISO 17025",""],repo:["Dossier principal",""]};if(!skipHistory&&currentPage&&currentPage!==id){pageHistory.push(currentPage);nextPageHistory=[]}currentPage=id;["hub","db","docs","docorg","eq","nc","aud","revc","usr","set","diag","repo"].forEach(x=>$("#"+x).classList.toggle("h",x!==id));$("#app").classList.toggle("hub-mode",id==="hub");$all("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.p===id));$("#pt").textContent=m[id][0];$("#ps").textContent=m[id][1];placeBackButton();updateBackButton()}
+function page(id,skipHistory){const m={hub:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],db:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],docs:["Maitrise documentaire",""],docorg:["Documentation",""],eq:["Gestion des equipements",""],nc:["Non-conformites",""],aud:["Audits",""],revc:["Revue de contrat",""],usr:["Utilisateurs",""],set:["Parametres",""],diag:["Diagnostic ISO 17025",""],risk:["Analyse de risque",""],repo:["Dossier principal",""]};if(!skipHistory&&currentPage&&currentPage!==id){pageHistory.push(currentPage);nextPageHistory=[]}currentPage=id;["hub","db","docs","docorg","eq","nc","aud","revc","usr","set","diag","risk","repo"].forEach(x=>$("#"+x).classList.toggle("h",x!==id));$("#app").classList.toggle("hub-mode",id==="hub");$all("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.p===id));$("#pt").textContent=m[id][0];$("#ps").textContent=m[id][1];placeBackButton();updateBackButton()}
 function goBackPage(){if(pageHistory.length){nextPageHistory.push(currentPage);page(pageHistory.pop(),true);return}if(sessionActive()&&currentPage==="hub"){logout();return}if(sessionActive()){nextPageHistory.push(currentPage);page("hub",true)}}
 function goNextPage(){if(!sessionActive()||!nextPageHistory.length)return;page(nextPageHistory.pop(),true)}
 function render(){dashboardStats();alerts();trail();quick();docs();orgDocsView();eq();nc();aud();revc();usr();settings();diagView();repoView();updateModuleRails();$("#uname").textContent=s.u.name;$("#urole").textContent=s.u.role+" - "+s.u.dept}
