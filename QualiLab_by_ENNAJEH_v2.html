@@ -1037,13 +1037,16 @@ th {
 }
 .doc-row-actions {
   display:flex;
-  flex-wrap:wrap;
+  flex-wrap:nowrap;
   gap:6px;
   margin-top:10px;
   padding-top:10px;
   border-top:1px dashed #dbe6f5;
+  overflow-x:auto;
+  white-space:nowrap;
 }
 .doc-row-actions .btn {
+  flex:0 0 auto;
   min-height:28px;
   padding:6px 10px;
   border-radius:8px;
