@@ -1017,6 +1017,59 @@ th {
   box-sizing:border-box;
   text-align:center;
 }
+.risk-register {
+  border-collapse:collapse;
+  min-width:1480px;
+}
+.risk-register th,.risk-register td {
+  border:1px solid #7f8f57;
+  padding:7px 8px;
+  vertical-align:top;
+}
+.risk-register th {
+  background:#d9ead3;
+  color:#10260f;
+  text-align:center;
+  font-weight:800;
+}
+.risk-register .risk-form-title th {
+  background:#c6e0b4;
+  font-size:15px;
+}
+.risk-register .risk-sub th {
+  background:#e2f0d9;
+  font-size:12px;
+}
+.risk-register td {
+  background:#fff;
+  color:#1f2a37;
+  font-size:12px;
+}
+.risk-register .risk-score {
+  text-align:center;
+  font-weight:800;
+}
+.risk-register tr.risk-acceptable td {
+  background:#e2f0d9;
+}
+.risk-register tr.risk-watch td {
+  background:#fff2cc;
+}
+.risk-register tr.risk-major td {
+  background:#f4cccc;
+}
+.risk-register tr.risk-major .risk-score {
+  background:#e06666;
+  color:#fff;
+}
+.risk-legend {
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.risk-legend .mini:nth-child(1){background:#e2f0d9}
+.risk-legend .mini:nth-child(2){background:#fff2cc}
+.risk-legend .mini:nth-child(3){background:#f4cccc}
 .reader-grid {
   display:grid;
   grid-template-columns:1fr 1.1fr;
@@ -2689,21 +2742,36 @@ th {
     </section>
 
     <section id="risk" class="row h">
-      <div class="bar card" style="grid-template-columns:1fr auto">
-        <input placeholder="Rechercher risque">
-        <span class="mut">0 risque</span>
+      <div class="bar card" style="grid-template-columns:1.2fr auto auto">
+        <input id="riskSearch" placeholder="Rechercher risque">
+        <select id="riskSheet"><option value="all">Toutes les feuilles</option><option>risques impartialite</option><option>risques d'activite</option></select>
+        <span class="mut" id="riskCount"></span>
       </div>
       <div class="card">
+        <h3>Registre des risques FPil-33</h3>
+        <div class="risk-legend mb12">
+          <div class="mini"><strong>Risques acceptables</strong><span class="ok">C <= 5</span></div>
+          <div class="mini"><strong>Risques a surveiller</strong><span class="wa">6 a 12</span></div>
+          <div class="mini"><strong>Risques majeurs</strong><span class="er">C >= 15</span></div>
+        </div>
         <div class="g4">
-          <input placeholder="Reference">
-          <input placeholder="Risque">
-          <select><option>Faible</option><option>Moyen</option><option>Eleve</option><option>Critique</option></select>
-          <input placeholder="Responsable">
-          <textarea placeholder="Action de maitrise"></textarea>
-          <button class="btn" type="button">Enregistrer</button>
+          <select id="riskCategory"><option>risques impartialite</option><option>risques d'activite</option></select>
+          <input id="riskChapter" placeholder="Paragraphe / chapitre de la norme">
+          <input id="riskText" placeholder="Risque">
+          <select id="riskP"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select>
+          <select id="riskG"><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select>
+          <textarea id="riskAction" placeholder="Actions a realiser"></textarea>
+          <input id="riskDelay" placeholder="Delai">
+          <input id="riskResp" placeholder="Responsable / Operateur">
+          <select id="riskFollow"><option>en cours</option><option>Realise</option><option>Realisee</option></select>
+          <select id="riskRp"><option selected>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select>
+          <select id="riskRg"><option>1</option><option>2</option><option>3</option><option>4</option><option selected>5</option></select>
+          <input id="riskCrit" placeholder="Critere d'evaluation">
+          <input id="riskEff" placeholder="Efficacite">
+          <button class="btn" id="riskSave" type="button">Enregistrer</button>
         </div>
       </div>
-      <div class="tb"><table><thead><tr><th>Ref</th><th>Risque</th><th>Niveau</th><th>Responsable</th><th>Actions</th></tr></thead><tbody><tr><td colspan="5" class="e">Aucun risque.</td></tr></tbody></table></div>
+      <div class="tb"><table class="risk-register"><thead><tr class="risk-form-title"><th colspan="14">FORMULAIRE - Registre des risques - Ref FPil-33</th></tr><tr><th rowspan="2">Paragraphe / chapitre</th><th rowspan="2">Risque</th><th colspan="3">Evaluation initiale</th><th rowspan="2">Actions a realiser</th><th rowspan="2">Delai</th><th rowspan="2">Responsable / Operateur</th><th rowspan="2">Suivi</th><th colspan="3">Reevaluation</th><th rowspan="2">Critere d'evaluation</th><th rowspan="2">Efficacite</th></tr><tr class="risk-sub"><th>P</th><th>G</th><th>C</th><th>P</th><th>G</th><th>C</th></tr></thead><tbody id="riskTab"></tbody></table></div>
     </section>
 
     <section id="repo" class="row h">
@@ -2786,6 +2854,23 @@ const DIAG_ITEMS=[
 {id:"d806",chapter:"8",clause:"8.8",title:"Audits internes",q:"Des audits internes couvrant le systeme de management et les activites sont-ils planifies et realises ?"},
 {id:"d807",chapter:"8",clause:"8.9",title:"Revues de direction",q:"Les revues de direction sont-elles planifiees avec decisions, plans d'actions et suivi formel ?"}
 ];
+const RISK_DEFAULTS=[
+{sheet:"risques impartialite",chapter:"Impartialite",risk:"Existence de pressions internes indues resultant d'objectifs commerciaux.",p:3,g:5,action:"Organigramme separe, engagement de la direction, code ethique et engagement d'impartialite.",delay:"1 mois",resp:"Responsable laboratoire",follow:"Realise",rp:1,rg:5,criterion:"Absence de non-conformite ou reclamation due aux pressions internes.",eff:"Efficace"},
+{sheet:"risques impartialite",chapter:"Impartialite",risk:"Non respect des planifications des missions.",p:3,g:3,action:"Suivre les planifications hebdomadaires et tracer les ecarts.",delay:"Six mois",resp:"Responsable du laboratoire",follow:"Realise",rp:1,rg:3,criterion:"Respect des planifications hebdomadaires des missions.",eff:"Efficace"},
+{sheet:"risques impartialite",chapter:"Impartialite",risk:"Reclamations des clients.",p:4,g:5,action:"Modifier la procedure de traitement des reclamations et suivre les actions.",delay:"1 mois",resp:"Responsable laboratoire / qualite",follow:"Realise",rp:1,rg:5,criterion:"Application de la procedure Pil-05.",eff:"Efficace"},
+{sheet:"risques impartialite",chapter:"Impartialite",risk:"Perte d'impartialite causee par les relations personnelles.",p:3,g:5,action:"Signer l'engagement de confidentialite, d'impartialite et le code ethique.",delay:"1 mois",resp:"Tous les employes",follow:"Realise",rp:1,rg:5,criterion:"Absence de cas declare ou de conflit identifie.",eff:"Efficace"},
+{sheet:"risques impartialite",chapter:"Impartialite",risk:"Existence de conflit d'interet dus a des activites personnelles.",p:3,g:5,action:"Appliquer la charte de declaration des conflits d'interets.",delay:"1 mois",resp:"Tous les employes",follow:"Realise",rp:1,rg:5,criterion:"Declaration et maitrise des conflits potentiels.",eff:"Efficace"},
+{sheet:"risques impartialite",chapter:"Confidentialite",risk:"Divulgation non autorisee des informations confidentielles.",p:3,g:5,action:"Signer un engagement sur l'honneur et sensibiliser le personnel.",delay:"Six mois",resp:"Tous les employes",follow:"En cours",rp:1,rg:5,criterion:"Absence de divulgation non autorisee.",eff:"Efficace"},
+{sheet:"risques d'activite",chapter:"Personnel",risk:"Absentéisme.",p:4,g:5,action:"Encourager la polyvalence, designer des suppleants et sensibiliser a la securite.",delay:"6 mois",resp:"Gerant",follow:"Realise",rp:1,rg:5,criterion:"Suppleants designes, formations realisees et rappel securite effectue.",eff:"Efficace"},
+{sheet:"risques d'activite",chapter:"Personnel",risk:"Personnel inapte a la realisation des prestations.",p:4,g:4,action:"Programmer la visite medicale annuelle et conserver les certificats d'aptitude.",delay:"1 an",resp:"Responsable laboratoire",follow:"Realise",rp:1,rg:4,criterion:"Certificat d'aptitude disponible.",eff:"Efficace"},
+{sheet:"risques d'activite",chapter:"Personnel",risk:"Depart de collaborateurs occupant des postes cles.",p:3,g:4,action:"Former les suppleants, organiser la passation et motiver les collaborateurs.",delay:"3 mois",resp:"Directeur / Responsable technique",follow:"Realisee",rp:1,rg:4,criterion:"Suppleants RMQ et RT designes.",eff:"Efficace"},
+{sheet:"risques d'activite",chapter:"Installation et conditions ambiantes",risk:"Depassement des conditions ambiantes maitrisees.",p:3,g:5,action:"Surveiller temperature et humidite, entretenir les climatiseurs et verifier l'eclairage.",delay:"6 mois",resp:"Responsable laboratoire",follow:"En cours",rp:1,rg:5,criterion:"Enregistrements des conditions ambiantes disponibles.",eff:"Efficace"},
+{sheet:"risques d'activite",chapter:"Equipement",risk:"Degradation des equipements et derive non detectee.",p:4,g:5,action:"Suivre les derives, raccourcir la periodicite si necessaire et renouveler les equipements critiques.",delay:"Immediatement",resp:"Responsable laboratoire",follow:"Realise",rp:1,rg:5,criterion:"Suivi metrologique et verification interne disponibles.",eff:"Efficace"},
+{sheet:"risques d'activite",chapter:"Tracabilite metrologique",risk:"Perte des enregistrements numeriques et papier.",p:3,g:5,action:"Archiver cinq ans, sauvegarder les donnees et verifier les back-up.",delay:"Immediatement",resp:"RMQ / Responsable laboratoire",follow:"Realise",rp:1,rg:5,criterion:"Archives et sauvegardes exploitables.",eff:"Efficace"},
+{sheet:"risques d'activite",chapter:"Prestataires externes",risk:"Mauvais choix et selection des prestataires externes.",p:4,g:5,action:"Appliquer la procedure de choix, suivi et evaluation des prestataires.",delay:"Immediatement",resp:"Responsable achat / laboratoire",follow:"Realise",rp:1,rg:5,criterion:"Evaluation fournisseurs et meilleures CMC suivies.",eff:"Efficace"},
+{sheet:"risques d'activite",chapter:"Revue des demandes, appels d'offres et contrats",risk:"Nouveau client pouvant engendrer un risque d'impartialite.",p:5,g:4,action:"Faire signer les engagements de confidentialite, impartialite et code ethique.",delay:"Immediatement",resp:"Tous les employes",follow:"Realise",rp:1,rg:4,criterion:"Engagements signes et disponibles.",eff:"Efficace"},
+{sheet:"risques d'activite",chapter:"Selection, verification et validation des methodes",risk:"Utiliser des methodes non validees ou non applicables.",p:3,g:5,action:"Utiliser des methodes normalisees, verifier les versions et planifier les CIL.",delay:"Immediatement",resp:"RMQ / Responsable laboratoire",follow:"Realise",rp:1,rg:5,criterion:"Methodes valides, veille normative et preuves conservees.",eff:"Efficace"}
+];
 const D={u:{name:"John Doe",email:"john.doe@ener.tn",role:"Administrateur",dept:"Direction",ini:"JD"},org:{name:"QualiLab by ENNAJEH",fiscal:"MF-2026-001",acc:"Accredite",accDate:"2026-01-15",validDate:"2027-01-15",manager:"John Doe",phone:"+216 71 000 000",fax:"+216 71 000 001",mail:"contact@qualilab.tn",address:"Zone industrielle, Tunis, Tunisie",docs:"Manuel qualite\nCertificat d'accreditation\nAnnexe technique\nPolitique qualite de l'organisme"},diag:{person:"",date:"",answers:{},notes:{},updated:""},repo:{folderName:"QualiLab_Documents",linked:false,files:[],selected:"",mode:"Aucune liaison active"},docs:[{id:1,ref:"PRO-LAB-001",title:"Programme d'etalonnage",p:"Processus support",type:"Procedure",v:"2.1",st:"A valider",o:"Resp. qualite",d:"2026-04-01"},{id:2,ref:"INS-LAB-004",title:"Utilisation balance analytique",p:"Processus operationnel",type:"Instruction",v:"1.3",st:"Valide",o:"Technicien senior",d:"2026-03-18"}],orgDocs:[{id:101,ref:"PRO-PIL-001",title:"Audit client",ie:"IE-01",p:"Processus pilotage",type:"Procedure",page:"1/3",v:"1.0",st:"Valide",o:"Direction",d:"2026-03-12"},{id:102,ref:"INS-OPE-002",title:"Reception et traitement des echantillons",ie:"IE-02",p:"Processus operationnel",type:"Instruction",page:"1/2",v:"2.0",st:"A valider",o:"Chef laboratoire",d:"2026-04-02"},{id:103,ref:"FOR-SUP-003",title:"Demande d'achat de consommables",ie:"IE-03",p:"Processus support",type:"Formulaire",page:"1/1",v:"1.4",st:"Valide",o:"Service achats",d:"2026-02-20"},{id:104,ref:"ENR-SUP-004",title:"Fiche de maintenance preventive",ie:"IE-04",p:"Processus support",type:"Enregistrement",page:"1/1",v:"3.1",st:"Valide",o:"Metrologie",d:"2026-03-25"}],eq:[{id:"EQ-001",n:"Balance analytique",m:"Mettler XS-205",sn:"SN-1234",l:"2026-01-10",nx:"2026-04-10",st:"A etalonner",ciq:"Quotidien",u:"+/- 0.1 mg"},{id:"EQ-002",n:"pH-metre",m:"Metrohm 914",sn:"SN-5678",l:"2026-02-01",nx:"2026-08-01",st:"Valide",ciq:"Avant usage",u:"+/- 0.01 pH"}],nc:[{ref:"NC-2026-001",desc:"Certificat manquant",g:"Critique",act:"Bloquer l'equipement",st:"Ouverte",o:"Resp. qualite",due:"2026-04-10"},{ref:"NC-2026-002",desc:"Rapport incomplet",g:"Majeure",act:"Corriger modele",st:"En cours",o:"Technicien",due:"2026-04-15"}],aud:[{ref:"AI-2026-001",ty:"Audit interne",sc:"Equipements et tracabilite",o:"A. Bensalem",d:"2026-04-20",st:"Planifie",f:"-"},{ref:"AC-2026-001",ty:"Audit externe (client)",sc:"Systeme complet",o:"Direction",d:"2026-05-05",st:"En cours",f:"2 actions"}],revc:[{ref:"RC-2026-001",client:"Client pharmaceutique",dem:"Etalonnage balances de precision",scope:"Capacite validee, methode disponible, delai confirme",resp:"Resp. qualite",d:"2026-04-12",st:"Approuvee"},{ref:"RC-2026-002",client:"Client industriel",dem:"Verification d'un pH-metre terrain",scope:"Ressources a confirmer et besoin de retour client",resp:"Chef laboratoire",d:"2026-04-14",st:"En attente client"}],usr:[{name:"John Doe",email:"john.doe@ener.tn",role:"Administrateur",dept:"Direction",ini:"JD"},{name:"Amina El Idrissi",email:"amina@ener.tn",role:"Responsable qualite",dept:"Qualite",ini:"AE"}],trailWeek:"",trailArchive:[],trail:[{t:"2026-04-07 09:30",u:"John Doe",a:"Connexion",m:"Session",x:"Ouverture de l'application"},{t:"2026-04-07 09:10",u:"Amina El Idrissi",a:"Creation",m:"NC",x:"NC-2026-001 ajoutee"}]};
 let s=load();
 let repoHandle=null,repoFilesMap=new Map(),previewUrl="";
@@ -2855,7 +2940,7 @@ function enhanceModulePanels(){Object.keys(moduleRailMeta).forEach(id=>{const se
 function page(id,skipHistory){const m={hub:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],db:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],docs:["Maitrise documentaire",""],docorg:["Documentation",""],eq:["Gestion des equipements",""],nc:["Non-conformites",""],aud:["Audits",""],revc:["Revue de contrat",""],usr:["Utilisateurs",""],set:["Parametres",""],diag:["Diagnostic ISO 17025",""],risk:["Analyse de risque",""],repo:["Dossier principal",""]};if(!skipHistory&&currentPage&&currentPage!==id){pageHistory.push(currentPage);nextPageHistory=[]}currentPage=id;["hub","db","docs","docorg","eq","nc","aud","revc","usr","set","diag","risk","repo"].forEach(x=>$("#"+x).classList.toggle("h",x!==id));$("#app").classList.toggle("hub-mode",id==="hub");$all("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.p===id));$("#pt").textContent=m[id][0];$("#ps").textContent=m[id][1];placeBackButton();updateBackButton()}
 function goBackPage(){if(pageHistory.length){nextPageHistory.push(currentPage);page(pageHistory.pop(),true);return}if(sessionActive()&&currentPage==="hub"){logout();return}if(sessionActive()){nextPageHistory.push(currentPage);page("hub",true)}}
 function goNextPage(){if(!sessionActive()||!nextPageHistory.length)return;page(nextPageHistory.pop(),true)}
-function render(){dashboardStats();alerts();trail();quick();docs();orgDocsView();eq();nc();aud();revc();usr();settings();diagView();repoView();updateModuleRails();$("#uname").textContent=s.u.name;$("#urole").textContent=s.u.role+" - "+s.u.dept}
+function render(){dashboardStats();alerts();trail();quick();docs();orgDocsView();eq();nc();aud();revc();usr();settings();diagView();riskView();repoView();updateModuleRails();$("#uname").textContent=s.u.name;$("#urole").textContent=s.u.role+" - "+s.u.dept}
 function dashboardStats(){const a=[["Documents",s.docs.length,"DOC","k-blue"],["Equipements",s.eq.length,"EQ","k-green"],["Non-conformites ouvertes",s.nc.filter(x=>x.st==="Ouverte").length,"NC","k-orange"],["Audits a realiser",s.aud.filter(x=>x.st!=="Cloture").length,"AUD","k-red"]];$("#stats").innerHTML=a.map(x=>`<div class="card stat k-card ${x[3]}"><div class="kpi"><i>${x[2]}</i><div><div class="mut">${x[0]}</div><b>${x[1]}</b><div class="mut">Mise a jour locale</div></div></div></div>`).join("")}
 function stats(){const a=[["Documents",s.docs.length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾","k-blue"],["Equipements",s.eq.length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âª","k-green"],["Non-conformites ouvertes",s.nc.filter(x=>x.st==="Ouverte").length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â","k-orange"],["Audits a realiser",s.aud.filter(x=>x.st!=="Cloture").length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹","k-red"]];$("#stats").innerHTML=a.map(x=>`<div class="card stat k-card ${x[3]}"><div class="kpi"><i>${x[2]}</i><div><div class="mut">${x[0]}</div><b>${x[1]}</b><div class="mut">Mise a jour locale</div></div></div></div>`).join("")}
 function alerts(){let a=[];s.eq.filter(x=>x.st!=="Valide").forEach(x=>a.push([x.id+" - "+x.n,"Statut: "+x.st]));s.nc.filter(x=>x.st!=="Cloturee").forEach(x=>a.push([x.ref,x.desc]));(s.revc||[]).filter(x=>x.st!=="Approuvee").forEach(x=>a.push([x.ref+" - "+x.client,"Revue de contrat : "+x.st]));$("#alerts").innerHTML=a.length?a.slice(0,8).map(x=>`<div class="it"><b>${x[0]}</b><p>${x[1]}</p></div>`).join(""):`<div class="e">Aucune alerte.</div>`}
@@ -2912,6 +2997,12 @@ function orgSummarySections(o){return[{title:"General",rows:[["Nom",o.name],["Co
 function orgSummaryBlock(o){return orgSummarySections(o).map(sec=>`<div class="it"><b>${esc(sec.title)}</b>${sec.rows.map(x=>`<p>${esc(x[0])} : ${esc(x[1]||"-")}</p>`).join("")}</div>`).join("")}
 function settings(){const o=s.org||c(D.org),set=(id,v)=>{const el=$("#"+id);if(el)el.value=v||""};set("oname",o.name);set("oacc",o.acc||"Accredite");set("oad",o.accDate);set("ovd",o.validDate);set("omgr",o.manager);set("otel",o.phone);set("ofax",o.fax);set("omail",o.mail);set("oaddr",o.address);set("ocity",o.city);set("oaref",o.accRef);set("oastd",o.accStd||"ISO/IEC 17025:2017");set("oabody",o.accBody);set("oascope",o.accScope);set("oaresp",o.accResp);set("oanext",o.accNext);set("oadec",o.accDecision||"Maintien");set("oaactiondate",o.accActionDate);set("oaactions",o.accActions);switchOrgTab();const docs=orgRequiredDocs(o),cr=$("#ocreated"),act=$("#oactivity");if(cr)cr.textContent="Modifier le : "+(o.updatedAt||"-");if(act)act.textContent=o.lastAction||"- - -";$("#orgsum").innerHTML=orgSummaryBlock(o);$("#orgdocs").innerHTML=orgConfigReqRow(o)+(docs.length?docs.map(reqDocRow).join(""):`<div class="e">Aucun document renseigne.</div>`);if($("#orgReqPreview")&&!$("#orgReqPreview").innerHTML.trim())$("#orgReqPreview").innerHTML=`<div class="it"><b>Lecture directe</b><p>Importe un document necessaire puis clique sur Lire dans l'application.</p></div>`}
 function diagView(){const st=diagState(),m=diagMetrics(),f=$("#diagFilter").value,arr=DIAG_ITEMS.filter(it=>f==="all"||it.chapter===f);$("#diagPerson").value=st.person||"";$("#diagDate").value=st.date||"";$("#diagCount").textContent=`${m.answered}/${DIAG_ITEMS.length} exigences evaluees - Score global ${m.score}%`;$("#diagList").innerHTML=arr.map(it=>`<div class="it"><b>${it.clause} - ${it.title}</b><p>${it.q}</p><div class="f mt8"><label>Evaluation</label><select data-diag="${it.id}"><option value="">Choisir</option><option value="yes"${(st.answers[it.id]||"")==="yes"?" selected":""}>Oui et je peux le prouver</option><option value="partial"${(st.answers[it.id]||"")==="partial"?" selected":""}>Partiellement ou en cours</option><option value="no"${(st.answers[it.id]||"")==="no"?" selected":""}>Non</option><option value="na"${(st.answers[it.id]||"")==="na"?" selected":""}>Non applicable</option></select></div><div class="f mt8"><label>Preuves / commentaires</label><textarea data-dnote="${it.id}" placeholder="Procedure, enregistrement, preuve, action a lancer...">${esc(st.notes[it.id]||"")}</textarea></div></div>`).join("")||`<div class="e">Aucune exigence pour ce filtre.</div>`;const low=m.chapters.filter(x=>x.score<70).sort((a,b)=>a.score-b.score);const actions=DIAG_ITEMS.filter(it=>["partial","no"].includes(st.answers[it.id]||"")).slice(0,6);$("#diagReport").innerHTML=`<div class="it"><div class="diag-score">${m.score}%</div><p>Taux de completion : ${m.completion}%</p><p>Evaluateur : ${st.person||"-"}</p><p>Date d'evaluation : ${st.date||"-"}</p><span class="diag-badge">${diagLevel(m.score)}</span><p>Ce diagnostic s'appuie sur les chapitres 4 a 8 de la norme NF EN ISO/IEC 17025:2017 et sur la logique de ton outil d'auto-evaluation.</p></div><div class="radar-box">${radarSvg(m.chapters,220)}</div><div class="list">${m.chapters.map(c=>`<div class="mini"><strong>Chapitre ${c.chapter}</strong><span class="${diagTheme(c.score)}">${c.score}%</span></div>`).join("")}</div><div class="it"><b>Conclusion generale</b><p>${m.score>=85?"Le systeme de management parait mature et proche d'un bon niveau de conformite ISO 17025. Les actions doivent surtout consolider les preuves et la robustesse documentaire.":m.score>=65?"Le systeme est en progression mais plusieurs exigences restent a consolider avant de viser sereinement une evaluation selon l'ISO 17025.":m.score>=45?"Le systeme presente des bases utiles mais l'ecart reste important. Une feuille de route priorisee est necessaire avant toute demarche d'accreditation.":"Le niveau de maitrise est encore insuffisant. Il faut structurer rapidement le systeme documentaire, les processus et les preuves de mise en oeuvre."}</p></div><div class="it"><b>Priorites par chapitre</b><p>${low.length?low.map(c=>`Chapitre ${c.chapter} (${c.score}%)`).join(" ; "):"Aucun chapitre critique detecte."}</p></div><div class="diag-actions">${actions.length?actions.map(it=>`<div class="it"><b>${it.clause} - ${it.title}</b><p>${diagLabel(st.answers[it.id])}</p><p>${st.notes[it.id]?esc(st.notes[it.id]):"Action recommande : formaliser la preuve, definir un responsable et une echeance."}</p></div>`).join(""):`<div class="it"><b>Plan d'actions</b><p>Aucune action prioritaire n'est detectee pour le moment. Continue de renseigner les preuves pour fiabiliser le rapport final.</p></div>`}</div><div class="it"><b>Decision de preparation</b><p>${m.score>=75&&m.completion>=70?"Le laboratoire peut envisager une preparation avancee a l'evaluation, sous reserve de verification des preuves documentaires et des enregistrements.":"Le laboratoire doit d'abord renforcer les exigences insuffisamment couvertes, en priorisant les chapitres et questions notes comme non conformes ou partiellement conformes."}</p><p>Derniere mise a jour : ${st.updated||"-"}</p></div>`}
+function riskScore(x){return Number(x.p||0)*Number(x.g||0)}
+function riskReScore(x){return Number(x.rp||0)*Number(x.rg||0)}
+function riskClass(v){return v>=15?"risk-major":v>=6?"risk-watch":"risk-acceptable"}
+function riskItems(){if(!Array.isArray(s.risk)||!s.risk.length)s.risk=c(RISK_DEFAULTS).map((x,i)=>markSaved({...x,id:"RISK-"+String(i+1).padStart(3,"0")}));return s.risk}
+function riskView(){const tab=$("#riskTab");if(!tab)return;const q=($("#riskSearch").value||"").toLowerCase(),sheet=$("#riskSheet").value,items=riskItems().filter(x=>(sheet==="all"||x.sheet===sheet)&&[x.sheet,x.chapter,x.risk,x.action,x.resp,x.follow,x.criterion,x.eff].join(" ").toLowerCase().includes(q));$("#riskCount").textContent=`${items.length} risque${items.length>1?"s":""}`;tab.innerHTML=items.map(x=>{const c0=riskScore(x),c1=riskReScore(x);return `<tr class="${riskClass(c0)}"><td>${esc(x.chapter)}</td><td>${esc(x.risk)}</td><td class="risk-score">${esc(x.p)}</td><td class="risk-score">${esc(x.g)}</td><td class="risk-score">${c0}</td><td>${esc(x.action)}</td><td>${esc(x.delay)}</td><td>${esc(x.resp)}</td><td>${esc(x.follow)}</td><td class="risk-score">${esc(x.rp)}</td><td class="risk-score">${esc(x.rg)}</td><td class="risk-score">${c1}</td><td>${esc(x.criterion)}</td><td>${esc(x.eff)}</td></tr>`}).join("")||`<tr><td colspan="14" class="e">Aucun risque trouve.</td></tr>`}
+function addRisk(){if(!requirePerm("Ajouter"))return;const risk=$("#riskText").value.trim(),chapter=$("#riskChapter").value.trim();if(!risk||!chapter){sync("Renseigne le chapitre et le risque");return}const x=markSaved({id:"RISK-"+stamp(),sheet:$("#riskCategory").value,chapter,risk,p:+$("#riskP").value,g:+$("#riskG").value,action:$("#riskAction").value.trim()||"-",delay:$("#riskDelay").value.trim()||"-",resp:$("#riskResp").value.trim()||s.u.name,follow:$("#riskFollow").value,rp:+$("#riskRp").value,rg:+$("#riskRg").value,criterion:$("#riskCrit").value.trim()||"-",eff:$("#riskEff").value.trim()||"A verifier"});riskItems().unshift(x);log("Creation","Analyse de risque",x.risk);save("Risque enregistre automatiquement");clearFields(["#riskChapter","#riskText","#riskAction","#riskDelay","#riskResp","#riskCrit","#riskEff"]);render()}
 function repoView(){const q=$("#fsq")?$("#fsq").value.trim().toLowerCase():"",files=((s.repo&&s.repo.files)||[]).filter(x=>[x.name,x.path,x.module,x.label].join(" ").toLowerCase().includes(q));$("#fcount").textContent=`${files.length} fichier${files.length>1?"s":""} - ${s.repo&&s.repo.mode?s.repo.mode:"Aucune liaison active"}`;$("#filelist").innerHTML=files.length?files.map(x=>`<div class="it"><b>${esc(x.name)}</b><p>${esc(x.module)} - ${esc(x.label)}</p><p>${esc(x.path)}</p><p>Taille : ${fmtSize(x.size)} | Modifie : ${esc(x.modified||"-")}</p><div style="margin-top:10px"><button class="btn2 btn" data-rf="${esc(x.id)}">Ouvrir</button></div></div>`).join(""):`<div class="e">Aucun fichier detecte. Connecte ou charge le dossier local.</div>`;if(!s.repo||!s.repo.selected)$("#filepreview").innerHTML=previewDefault()}
 async function chooseRepoDir(){if(!window.showDirectoryPicker){sync("Utilise Chrome ou Edge pour connecter un dossier local");return}try{const h=await window.showDirectoryPicker({mode:"readwrite"});if(!await verifyHandle(h,true)){sync("Autorisation refusee pour le dossier");return}repoHandle=h;await idbSet("repoHandle",h);s.repo.folderName=h.name;s.repo.linked=true;s.repo.mode="Dossier connecte";log("Connexion","Dossier local",h.name+" connecte");await scanRepo()}catch(e){if(e&&e.name!=="AbortError")sync("Connexion du dossier echouee")}}
 async function scanRepo(h=repoHandle){if(!h){sync("Aucun dossier connecte");return}repoFilesMap=new Map();const out=[];const walk=async(dir,p="")=>{for await(const [name,entry] of dir.entries()){const cur=p?`${p}/${name}`:name;if(entry.kind==="directory")await walk(entry,cur);else{const f=await entry.getFile(),t=fileType(name);out.push({id:cur,name,path:cur,module:moduleFromPath(cur),label:t.label,kind:t.kind,size:f.size,modified:fmtDate(f.lastModified)});repoFilesMap.set(cur,entry)}}};try{await walk(h);s.repo.files=out.sort((a,b)=>a.path.localeCompare(b.path));s.repo.mode="Dossier connecte";save("Dossier local scanne");repoView()}catch(e){sync("Scan du dossier echoue")}}
@@ -2970,8 +3061,8 @@ function imp(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{s={...c(
 function refreshCurrentPage(){render();page(currentPage,true);sync("Page actualisee")}
 function bindClick(id,fn){const el=$("#"+id);if(el)el.addEventListener("click",e=>{e.preventDefault();fn(e)})}
 bindClick("lbtn",login);$("#lpwd").addEventListener("keydown",e=>{if(e.key==="Enter")login()});bindClick("togglePwd",()=>{const p=$("#lpwd"),b=$("#togglePwd"),shown=p.type==="text";p.type=shown?"password":"text";b.textContent=shown?"Afficher":"Masquer";b.setAttribute("aria-label",shown?"Afficher le mot de passe":"Masquer le mot de passe");b.setAttribute("aria-pressed",String(!shown))});bindClick("out",logout);$("#file").onchange=e=>imp(e.target.files[0]);$("#docFile").onchange=e=>handleDocumentImport(e.target.files);$("#odImportFile").onchange=e=>importOrgDocs(e.target.files);$("#orgReqFile").onchange=e=>importReqDoc(e.target.files[0]);bindClick("weeklyReport",downloadWeeklyReport);
-["#ds","#dpf","#dtf","#df","#ods","#odpf","#odtf","#odf","#es","#ef","#ns","#nf","#as","#af","#rs","#rf","#fsq","#diagFilter"].forEach(id=>{const el=$(id);if(el){el.addEventListener("input",render);el.addEventListener("change",render)}});
-["dadd","dsv"].forEach(id=>bindClick(id,addDoc));bindClick("dmaster",exportMasterList);["odadd","odsv"].forEach(id=>bindClick(id,addOrgDoc));bindClick("odImportBtn",()=>{$("#odImportFile").value="";$("#odImportFile").click()});["eadd","esv"].forEach(id=>bindClick(id,addEq));["nadd","nsv"].forEach(id=>bindClick(id,addNc));["aadd","asv"].forEach(id=>bindClick(id,addAud));["radd","rsv"].forEach(id=>bindClick(id,addRevc));bindClick("usv",addUsr);
+["#ds","#dpf","#dtf","#df","#ods","#odpf","#odtf","#odf","#es","#ef","#ns","#nf","#as","#af","#rs","#rf","#fsq","#diagFilter","#riskSearch","#riskSheet"].forEach(id=>{const el=$(id);if(el){el.addEventListener("input",render);el.addEventListener("change",render)}});
+["dadd","dsv"].forEach(id=>bindClick(id,addDoc));bindClick("dmaster",exportMasterList);["odadd","odsv"].forEach(id=>bindClick(id,addOrgDoc));bindClick("odImportBtn",()=>{$("#odImportFile").value="";$("#odImportFile").click()});["eadd","esv"].forEach(id=>bindClick(id,addEq));["nadd","nsv"].forEach(id=>bindClick(id,addNc));["aadd","asv"].forEach(id=>bindClick(id,addAud));["radd","rsv"].forEach(id=>bindClick(id,addRevc));bindClick("usv",addUsr);bindClick("riskSave",addRisk);
 ["omod","omodAcc","omodSuivi"].forEach(id=>bindClick(id,modifyOrg));["osv","osvAcc","osvSuivi"].forEach(id=>bindClick(id,()=>saveOrg()));bindClick("orgPrint",printOrgSummary);bindClick("diagReset",resetDiag);bindClick("diagExport",exportDiag);
 bindClick("pickDir",chooseRepoDir);bindClick("scanDir",()=>scanRepo());bindClick("fallbackDir",()=>$("#repoDirFallback").click());$("#repoDirFallback").onchange=e=>scanFallbackDir(e.target.files);bindClick("pickFiles",()=>$("#repoFiles").click());$("#repoFiles").onchange=e=>importRepoFiles(e.target.files,importTarget());bindClick("exportDir",exportRepoData);
 
