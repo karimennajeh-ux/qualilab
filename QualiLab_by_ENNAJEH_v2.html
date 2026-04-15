@@ -997,8 +997,13 @@ th {
 .template-card {
   background:#fbfcff
 }
+.template-card .reader-actions {
+  flex-wrap:nowrap;
+  gap:6px;
+}
 .template-card .reader-actions .btn {
-  width:118px;
+  width:calc((100% - 12px)/3);
+  min-width:0;
   min-height:34px;
   display:inline-flex;
   align-items:center;
