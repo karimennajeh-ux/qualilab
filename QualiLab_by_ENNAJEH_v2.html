@@ -1049,16 +1049,16 @@ th {
   text-align:center;
   font-weight:800;
 }
-.risk-register tr.risk-acceptable td {
+.risk-register .risk-score.risk-acceptable {
   background:#e2f0d9;
 }
-.risk-register tr.risk-watch td {
+.risk-register .risk-score.risk-watch {
   background:#fff2cc;
 }
-.risk-register tr.risk-major td {
+.risk-register .risk-score.risk-major {
   background:#f4cccc;
 }
-.risk-register tr.risk-major .risk-score {
+.risk-register .risk-score.risk-major {
   background:#e06666;
   color:#fff;
 }
@@ -2998,7 +2998,7 @@ function riskScore(x){return Number(x.p||0)*Number(x.g||0)}
 function riskReScore(x){return Number(x.rp||0)*Number(x.rg||0)}
 function riskClass(v){return v>=15?"risk-major":v>=6?"risk-watch":"risk-acceptable"}
 function riskItems(){if(!Array.isArray(s.risk))s.risk=c(RISK_DEFAULTS);return s.risk}
-function riskView(){const tab=$("#riskTab");if(!tab)return;const q=($("#riskSearch").value||"").toLowerCase(),sheet=$("#riskSheet").value,items=riskItems().filter(x=>(sheet==="all"||x.sheet===sheet)&&[x.sheet,x.chapter,x.risk,x.action,x.resp,x.follow,x.criterion,x.eff].join(" ").toLowerCase().includes(q));$("#riskCount").textContent=`${items.length} risque${items.length>1?"s":""}`;$("#riskSave").textContent=editingRiskId?"Modifier":"Enregistrer";tab.innerHTML=items.map(x=>{const c0=riskScore(x),c1=riskReScore(x);return `<tr class="${riskClass(c0)}"><td>${esc(x.chapter)}</td><td>${esc(x.risk)}</td><td class="risk-score">${esc(x.p)}</td><td class="risk-score">${esc(x.g)}</td><td class="risk-score">${c0}</td><td>${esc(x.action)}</td><td>${esc(x.delay)}</td><td>${esc(x.resp)}</td><td>${esc(x.follow)}</td><td class="risk-score">${esc(x.rp)}</td><td class="risk-score">${esc(x.rg)}</td><td class="risk-score">${c1}</td><td>${esc(x.criterion)}</td><td>${esc(x.eff)}</td><td><div class="risk-actions"><button class="btn2 btn" data-risk-edit="${esc(x.id)}" type="button">Modifier</button><button class="btn2 btn" data-risk-del="${esc(x.id)}" type="button">Supprimer</button></div></td></tr>`}).join("")||`<tr><td colspan="15" class="e">Aucun risque trouve.</td></tr>`}
+function riskView(){const tab=$("#riskTab");if(!tab)return;const q=($("#riskSearch").value||"").toLowerCase(),sheet=$("#riskSheet").value,items=riskItems().filter(x=>(sheet==="all"||x.sheet===sheet)&&[x.sheet,x.chapter,x.risk,x.action,x.resp,x.follow,x.criterion,x.eff].join(" ").toLowerCase().includes(q));$("#riskCount").textContent=`${items.length} risque${items.length>1?"s":""}`;$("#riskSave").textContent=editingRiskId?"Modifier":"Enregistrer";tab.innerHTML=items.map(x=>{const c0=riskScore(x),c1=riskReScore(x),cl0=riskClass(c0),cl1=riskClass(c1);return `<tr><td>${esc(x.chapter)}</td><td>${esc(x.risk)}</td><td class="risk-score ${cl0}">${esc(x.p)}</td><td class="risk-score ${cl0}">${esc(x.g)}</td><td class="risk-score ${cl0}">${c0}</td><td>${esc(x.action)}</td><td>${esc(x.delay)}</td><td>${esc(x.resp)}</td><td>${esc(x.follow)}</td><td class="risk-score ${cl1}">${esc(x.rp)}</td><td class="risk-score ${cl1}">${esc(x.rg)}</td><td class="risk-score ${cl1}">${c1}</td><td>${esc(x.criterion)}</td><td>${esc(x.eff)}</td><td><div class="risk-actions"><button class="btn2 btn" data-risk-edit="${esc(x.id)}" type="button">Modifier</button><button class="btn2 btn" data-risk-del="${esc(x.id)}" type="button">Supprimer</button></div></td></tr>`}).join("")||`<tr><td colspan="15" class="e">Aucun risque trouve.</td></tr>`}
 function riskFormData(){return markSaved({id:editingRiskId||"RISK-"+stamp(),sheet:$("#riskCategory").value,chapter:$("#riskChapter").value.trim(),risk:$("#riskText").value.trim(),p:+$("#riskP").value,g:+$("#riskG").value,action:$("#riskAction").value.trim()||"-",delay:$("#riskDelay").value.trim()||"-",resp:$("#riskResp").value.trim()||s.u.name,follow:$("#riskFollow").value,rp:+$("#riskRp").value,rg:+$("#riskRg").value,criterion:$("#riskCrit").value.trim()||"-",eff:$("#riskEff").value.trim()||"A verifier"})}
 function resetRiskForm(){editingRiskId="";clearFields(["#riskChapter","#riskText","#riskAction","#riskDelay","#riskResp","#riskCrit","#riskEff"])}
 function addRisk(){if(!requirePerm(editingRiskId?"Modifier":"Ajouter"))return;const risk=$("#riskText").value.trim(),chapter=$("#riskChapter").value.trim();if(!risk||!chapter){sync("Renseigne le chapitre et le risque");return}const x=riskFormData(),items=riskItems(),i=items.findIndex(v=>v.id===editingRiskId);if(i>=0){items[i]={...items[i],...x};log("Modification","Analyse de risque",x.risk);save("Risque modifie automatiquement")}else{items.unshift(x);log("Creation","Analyse de risque",x.risk);save("Risque enregistre automatiquement")}resetRiskForm();render()}
