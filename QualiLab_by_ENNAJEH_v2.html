@@ -1075,6 +1075,66 @@ th {
   font-size:12px;
   min-width:72px;
 }
+.swot-board {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.swot-box {
+  border:1px solid #dce5f4;
+  border-left:7px solid #0f766e;
+  border-radius:18px;
+  background:#fff;
+  padding:14px;
+  min-height:160px;
+}
+.swot-box h3 {
+  margin:0 0 10px;
+}
+.swot-box .it {
+  margin-bottom:8px;
+}
+.swot-forces {
+  border-left-color:#169b62;
+}
+.swot-faiblesses {
+  border-left-color:#ef8f1a;
+}
+.swot-opportunites {
+  border-left-color:#2f80ed;
+}
+.swot-menaces {
+  border-left-color:#e5484d;
+}
+.swot-register {
+  min-width:1180px;
+}
+.swot-register th,.swot-register td {
+  vertical-align:top;
+}
+.swot-type {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:92px;
+  padding:5px 9px;
+  border-radius:999px;
+  background:#ecfdf5;
+  color:#0f766e;
+  font-weight:800;
+}
+.swot-type.faiblesses {
+  background:#fff7ed;
+  color:#c2410c;
+}
+.swot-type.opportunites {
+  background:#eff6ff;
+  color:#1d4ed8;
+}
+.swot-type.menaces {
+  background:#fef2f2;
+  color:#b91c1c;
+}
 .risk-titlebar {
   display:flex;
   align-items:center;
@@ -1789,6 +1849,9 @@ th {
 .module-risk .module-rail {
   background:linear-gradient(180deg,#607d8b,#455a64)
 }
+.module-swot .module-rail {
+  background:linear-gradient(180deg,#0f766e,#115e59)
+}
 @media(max-width:1080px) {
   .module-shell {
     grid-template-columns:1fr
@@ -1801,6 +1864,9 @@ th {
   }
   .module-org {
     grid-template-columns:repeat(3,minmax(0,1fr))
+  }
+  .swot-board {
+    grid-template-columns:1fr
   }
 }
 @media(max-width:760px) {
@@ -2450,7 +2516,7 @@ th {
 (function(){
   function setText(sel,val){var el=document.querySelector(sel);if(el)el.textContent=val}
   function showPage(id){
-    ["hub","db","docs","docorg","eq","nc","aud","revc","usr","set","diag","risk","repo"].forEach(function(x){
+    ["hub","db","docs","docorg","eq","nc","aud","revc","usr","set","diag","risk","swot","repo"].forEach(function(x){
       var el=document.getElementById(x);
       if(el)el.classList.toggle("h",x!==id);
     });
@@ -2552,6 +2618,7 @@ th {
       <button data-p="set"><span class="menu-ico">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â</span><span class="menu-label">Parametres</span></button>
       <button data-p="diag"><span class="menu-ico">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â </span><span class="menu-label">Diagnostic ISO 17025</span></button>
       <button data-p="risk"><span class="menu-ico">AR</span><span class="menu-label">Analyse de risque</span></button>
+      <button data-p="swot"><span class="menu-ico">SW</span><span class="menu-label">Analyse SWOT</span></button>
       <button data-p="repo"><span class="menu-ico">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â</span><span class="menu-label">Dossier principal</span></button>
       <button data-p="docorg"><span class="menu-ico">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â</span><span class="menu-label">Documentation</span></button>
     </div>
@@ -2587,9 +2654,10 @@ th {
           <button class="hub-node hub-violet orbit-8" data-go="usr"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="16" cy="15" r="6"></circle><path d="M6 32c2-6 7-9 10-9s8 3 10 9"></path><circle cx="28" cy="17" r="4"></circle><path d="M25 27c3 .5 6 2 8 5"></path></svg></span><b>Utilisateurs</b><small></small></button>
           <button class="hub-node hub-slate orbit-9" data-go="set"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="5"></circle><path d="M20 7v5M20 28v5M7 20h5M28 20h5M10.8 10.8l3.6 3.6M25.6 25.6l3.6 3.6M29.2 10.8l-3.6 3.6M14.4 25.6l-3.6 3.6"></path></svg></span><b>Parametres</b><small></small></button>
           <button class="hub-node hub-red orbit-10" data-go="risk"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5l13 5v9c0 8-5 13-13 16C12 32 7 27 7 19v-9z"></path><path d="M14 25l6-10 6 10M17 21h6"></path></svg></span><b>Analyse de risque</b><small></small></button>
+          <button class="hub-node hub-green orbit-11" data-go="swot"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 30V10M8 30h24"></path><path d="M14 25l5-7 5 4 7-11"></path><circle cx="19" cy="18" r="2"></circle><circle cx="24" cy="22" r="2"></circle><circle cx="31" cy="11" r="2"></circle></svg></span><b>Analyse SWOT</b><small></small></button>
       </div>
       <div class="hub-summary">
-        <div class="mini"><strong>Acces rapide</strong><span class="bl">11 modules</span></div>
+        <div class="mini"><strong>Acces rapide</strong><span class="bl">12 modules</span></div>
         <div class="mini"><strong>Presentation</strong><span class="ok">Apres connexion</span></div>
         <div class="mini"><strong>Interface</strong><span class="wa">Responsive</span></div>
       </div>
@@ -2899,6 +2967,33 @@ th {
       <div class="tb"><table class="risk-register"><thead><tr class="risk-form-title"><th colspan="15">Rigistre des risques</th></tr><tr><th rowspan="2">Paragraphe / chapitre</th><th rowspan="2">Risque</th><th colspan="3">Evaluation initiale</th><th rowspan="2">Actions a realiser</th><th rowspan="2">Delai</th><th rowspan="2">Responsable / Operateur</th><th rowspan="2">Suivi</th><th colspan="3">Reevaluation</th><th rowspan="2">Critere d'evaluation</th><th rowspan="2">Efficacite</th><th rowspan="2">Actions</th></tr><tr class="risk-sub"><th>P</th><th>G</th><th>C</th><th>P</th><th>G</th><th>C</th></tr></thead><tbody id="riskTab"></tbody></table></div>
     </section>
 
+    <section id="swot" class="row h">
+      <div class="bar card" style="grid-template-columns:1.2fr auto auto">
+        <input id="swotSearch" placeholder="Rechercher dans l'analyse SWOT">
+        <select id="swotType"><option value="all">Tous</option><option>Forces</option><option>Faiblesses</option><option>Opportunites</option><option>Menaces</option></select>
+        <span class="mut" id="swotCount"></span>
+      </div>
+      <div class="card">
+        <h3>Analyse SWOT FPil-32</h3>
+        <div class="g4">
+          <select id="swotCat"><option>Forces</option><option>Faiblesses</option><option>Opportunites</option><option>Menaces</option></select>
+          <input id="swotItem" placeholder="Element SWOT">
+          <textarea id="swotAction" placeholder="Plan d'action associe"></textarea>
+          <input id="swotResp" placeholder="Responsable">
+          <input id="swotDelay" placeholder="Delais">
+          <select id="swotFollow"><option>en cours</option><option>Realise</option><option>Realise partiellement</option><option>A planifier</option></select>
+          <button class="btn" id="swotSave" type="button">Enregistrer</button>
+        </div>
+      </div>
+      <div class="swot-board">
+        <div class="swot-box swot-forces"><h3>Forces</h3><div id="swotForces" class="list"></div></div>
+        <div class="swot-box swot-faiblesses"><h3>Faiblesses</h3><div id="swotFaiblesses" class="list"></div></div>
+        <div class="swot-box swot-opportunites"><h3>Opportunites</h3><div id="swotOpportunites" class="list"></div></div>
+        <div class="swot-box swot-menaces"><h3>Menaces</h3><div id="swotMenaces" class="list"></div></div>
+      </div>
+      <div class="tb"><table class="swot-register"><thead><tr><th>Type</th><th>Element</th><th>Plan d'action</th><th>Responsable</th><th>Delais</th><th>Suivi</th><th>Actions</th></tr></thead><tbody id="swotTab"></tbody></table></div>
+    </section>
+
     <section id="repo" class="row h">
       <div class="card">
         <h3>Bibliotheque documentaire locale</h3>
@@ -2980,6 +3075,20 @@ const DIAG_ITEMS=[
 {id:"d807",chapter:"8",clause:"8.9",title:"Revues de direction",q:"Les revues de direction sont-elles planifiees avec decisions, plans d'actions et suivi formel ?"}
 ];
 const RISK_DEFAULTS=[];
+const SWOT_DEFAULTS=[
+{id:"SWOT-001",type:"Forces",item:"Une bonne image de marque du laboratoire",action:"Maintenir la communication avec les clients et valoriser les accreditations.",resp:"Direction",delay:"En permanence",follow:"en cours"},
+{id:"SWOT-002",type:"Forces",item:"Performance commerciale du laboratoire",action:"Suivre les indicateurs commerciaux et les retours clients.",resp:"Direction",delay:"En permanence",follow:"en cours"},
+{id:"SWOT-003",type:"Forces",item:"Des etalons de bonne qualite pour les travaux d'etalonnage",action:"Assurer la disponibilite et la tracabilite des etalons.",resp:"RT",delay:"En permanence",follow:"en cours"},
+{id:"SWOT-004",type:"Forces",item:"Portee d'accreditation du laboratoire (5 accreditations)",action:"Communiquer les competences accreditees aux clients potentiels.",resp:"RMQ",delay:"En permanence",follow:"en cours"},
+{id:"SWOT-005",type:"Faiblesses",item:"Augmentation de la charge de travail par rapport a l'effectif existant",action:"Augmenter les capacites d'ENER pour faire face aux besoins des clients : moyens humains, materiels et logistiques.",resp:"Direction",delay:"fin 2025",follow:"en cours"},
+{id:"SWOT-006",type:"Faiblesses",item:"Depart de deux cadres experimentes (RT-SUP RT)",action:"Realiser les formations necessaires pour assurer la continuite des competences.",resp:"RMQ",delay:"En permanence",follow:"en cours"},
+{id:"SWOT-007",type:"Opportunites",item:"Comprehension de l'importance de la fonction metrologie dans les entreprises",action:"Encourager les clients a beneficier des avantages lors d'etablissement de conventions.",resp:"Direction",delay:"En permanence",follow:"Realise"},
+{id:"SWOT-008",type:"Opportunites",item:"Les clients demandent des constats de verification avec declaration de conformite sous accreditation",action:"Inclure les declarations de conformite lors de la prochaine evaluation TUNAC.",resp:"RT / RMQ",delay:"En permanence",follow:"en cours"},
+{id:"SWOT-009",type:"Opportunites",item:"Accreditation en caracterisation d'enceintes climatiques et en simulation electrique de temperature",action:"Finaliser les preparatifs et planifier les evaluations d'accreditation avec TUNAC.",resp:"RT / SUP RT / RMQ",delay:"2024-03-01",follow:"Realise"},
+{id:"SWOT-010",type:"Menaces",item:"Dependance envers des prestataires externes exclusifs",action:"Signer des conventions et accords de partenariat avec les prestataires critiques.",resp:"Direction",delay:"En permanence",follow:"Realise"},
+{id:"SWOT-011",type:"Menaces",item:"Conjoncture economique difficile qui engendre des impayes",action:"Ameliorer la gestion financiere de la societe ENER et renforcer le recouvrement.",resp:"Direction / RT",delay:"En permanence",follow:"Realise partiellement"},
+{id:"SWOT-012",type:"Menaces",item:"Concurrence deloyale",action:"Renforcer la communication technique avec les clients pour consolider leur confiance.",resp:"Direction",delay:"En permanence",follow:"en cours"}
+];
 const D={u:{name:"John Doe",email:"john.doe@ener.tn",role:"Administrateur",dept:"Direction",ini:"JD"},org:{name:"QualiLab by ENNAJEH",fiscal:"MF-2026-001",acc:"Accredite",accDate:"2026-01-15",validDate:"2027-01-15",manager:"John Doe",phone:"+216 71 000 000",fax:"+216 71 000 001",mail:"contact@qualilab.tn",address:"Zone industrielle, Tunis, Tunisie",docs:"Manuel qualite\nCertificat d'accreditation\nAnnexe technique\nPolitique qualite de l'organisme"},diag:{person:"",date:"",answers:{},notes:{},updated:""},repo:{folderName:"QualiLab_Documents",linked:false,files:[],selected:"",mode:"Aucune liaison active"},docs:[{id:1,ref:"PRO-LAB-001",title:"Programme d'etalonnage",p:"Processus support",type:"Procedure",v:"2.1",st:"A valider",o:"Resp. qualite",d:"2026-04-01"},{id:2,ref:"INS-LAB-004",title:"Utilisation balance analytique",p:"Processus operationnel",type:"Instruction",v:"1.3",st:"Valide",o:"Technicien senior",d:"2026-03-18"}],orgDocs:[{id:101,ref:"PRO-PIL-001",title:"Audit client",ie:"IE-01",p:"Processus pilotage",type:"Procedure",page:"1/3",v:"1.0",st:"Valide",o:"Direction",d:"2026-03-12"},{id:102,ref:"INS-OPE-002",title:"Reception et traitement des echantillons",ie:"IE-02",p:"Processus operationnel",type:"Instruction",page:"1/2",v:"2.0",st:"A valider",o:"Chef laboratoire",d:"2026-04-02"},{id:103,ref:"FOR-SUP-003",title:"Demande d'achat de consommables",ie:"IE-03",p:"Processus support",type:"Formulaire",page:"1/1",v:"1.4",st:"Valide",o:"Service achats",d:"2026-02-20"},{id:104,ref:"ENR-SUP-004",title:"Fiche de maintenance preventive",ie:"IE-04",p:"Processus support",type:"Enregistrement",page:"1/1",v:"3.1",st:"Valide",o:"Metrologie",d:"2026-03-25"}],eq:[{id:"EQ-001",n:"Balance analytique",m:"Mettler XS-205",sn:"SN-1234",l:"2026-01-10",nx:"2026-04-10",st:"A etalonner",ciq:"Quotidien",u:"+/- 0.1 mg"},{id:"EQ-002",n:"pH-metre",m:"Metrohm 914",sn:"SN-5678",l:"2026-02-01",nx:"2026-08-01",st:"Valide",ciq:"Avant usage",u:"+/- 0.01 pH"}],nc:[{ref:"NC-2026-001",desc:"Certificat manquant",g:"Critique",act:"Bloquer l'equipement",st:"Ouverte",o:"Resp. qualite",due:"2026-04-10"},{ref:"NC-2026-002",desc:"Rapport incomplet",g:"Majeure",act:"Corriger modele",st:"En cours",o:"Technicien",due:"2026-04-15"}],aud:[{ref:"AI-2026-001",ty:"Audit interne",sc:"Equipements et tracabilite",o:"A. Bensalem",d:"2026-04-20",st:"Planifie",f:"-"},{ref:"AC-2026-001",ty:"Audit externe (client)",sc:"Systeme complet",o:"Direction",d:"2026-05-05",st:"En cours",f:"2 actions"}],revc:[{ref:"RC-2026-001",client:"Client pharmaceutique",dem:"Etalonnage balances de precision",scope:"Capacite validee, methode disponible, delai confirme",resp:"Resp. qualite",d:"2026-04-12",st:"Approuvee"},{ref:"RC-2026-002",client:"Client industriel",dem:"Verification d'un pH-metre terrain",scope:"Ressources a confirmer et besoin de retour client",resp:"Chef laboratoire",d:"2026-04-14",st:"En attente client"}],usr:[{name:"John Doe",email:"john.doe@ener.tn",role:"Administrateur",dept:"Direction",ini:"JD"},{name:"Amina El Idrissi",email:"amina@ener.tn",role:"Responsable qualite",dept:"Qualite",ini:"AE"}],trailWeek:"",trailArchive:[],trail:[{t:"2026-04-07 09:30",u:"John Doe",a:"Connexion",m:"Session",x:"Ouverture de l'application"},{t:"2026-04-07 09:10",u:"Amina El Idrissi",a:"Creation",m:"NC",x:"NC-2026-001 ajoutee"}]};
 let s=load();
 const RISK_EMPTY_VERSION="risk-empty-20260415";
@@ -2987,7 +3096,7 @@ try{if(localStorage.getItem(RISK_EMPTY_VERSION)!=="1"){s.risk=[];localStorage.se
 let repoHandle=null,repoFilesMap=new Map(),previewUrl="";
 let orgHandle=null,orgFilesMap=new Map(),orgPreviewUrl="",activeOrgProc="",orgRootName="QualiLab_Organisme",orgFiles=[],activeOrgType="",activeOrgStatus="";
 let orgReqFilesMap=new Map(),orgReqPreviewUrl="",activeOrgReqDoc="",orgDocFilesMap=new Map();
-let currentPage="hub",pageHistory=[],nextPageHistory=[],currentOrgTab="general",editingRiskId="";
+let currentPage="hub",pageHistory=[],nextPageHistory=[],currentOrgTab="general",editingRiskId="",editingSwotId="";
 function c(v){return JSON.parse(JSON.stringify(v))}
 function ss(k,v){try{localStorage.setItem(k,v)}catch(e){M[k]=v;sync("Session locale sans stockage")}}
 function sg(k){try{return localStorage.getItem(k)}catch(e){return M[k]||null}}
@@ -3043,15 +3152,15 @@ function openApp(){$("#auth").classList.add("h");$("#app").classList.remove("h")
 function isPilotLogin(e,p){return String(e||"").trim().toLowerCase()==="karimennajeh@gmail.com"&&String(p||"")==="09318872karim@"}
 function login(){const e=$("#lemail").value.trim(),p=$("#lpwd").value;if(!isPilotLogin(e,p)){$("#lmsg").textContent="Acces refuse : e-mail ou mot de passe incorrect.";sr(S);$("#app").classList.add("h");$("#auth").classList.remove("h");return}try{ensurePilotAccount();const u=s.usr.find(x=>x.email.toLowerCase()===e.toLowerCase())||pilotAccount();s.u=u;ss(S,JSON.stringify({email:s.u.email}));log("Connexion","Session",e);save("Session ouverte");openApp()}catch(err){console.error(err);$("#lmsg").textContent="Erreur de connexion. Verifie l'application puis recommence.";sr(S);$("#auth").classList.remove("h");$("#app").classList.add("h")}}
 function logout(){log("Deconnexion","Session",s.u.email);save("Session fermee");sr(S);pageHistory=[];nextPageHistory=[];currentPage="hub";$("#app").classList.add("h");$("#auth").classList.remove("h");updateBackButton()}
-const moduleRailMeta={db:{cls:"module-db",title:"Tableau de bord",tag:""},docs:{cls:"module-docs",title:"Maitrise documentaire",tag:""},docorg:{cls:"module-docorg",title:"Documentation",tag:""},eq:{cls:"module-eq",title:"Gestion des equipements",tag:""},nc:{cls:"module-nc",title:"Non-conformites",tag:""},aud:{cls:"module-aud",title:"Audits",tag:""},revc:{cls:"module-revc",title:"Revue de contrat",tag:""},usr:{cls:"module-usr",title:"Utilisateurs",tag:""},set:{cls:"module-set",title:"Parametres",tag:""},diag:{cls:"module-diag",title:"Diagnostic ISO 17025",tag:""},risk:{cls:"module-risk",title:"Analyse de risque",tag:""},repo:{cls:"module-repo",title:"Dossier principal",tag:""}};
+const moduleRailMeta={db:{cls:"module-db",title:"Tableau de bord",tag:""},docs:{cls:"module-docs",title:"Maitrise documentaire",tag:""},docorg:{cls:"module-docorg",title:"Documentation",tag:""},eq:{cls:"module-eq",title:"Gestion des equipements",tag:""},nc:{cls:"module-nc",title:"Non-conformites",tag:""},aud:{cls:"module-aud",title:"Audits",tag:""},revc:{cls:"module-revc",title:"Revue de contrat",tag:""},usr:{cls:"module-usr",title:"Utilisateurs",tag:""},set:{cls:"module-set",title:"Parametres",tag:""},diag:{cls:"module-diag",title:"Diagnostic ISO 17025",tag:""},risk:{cls:"module-risk",title:"Analyse de risque",tag:""},swot:{cls:"module-swot",title:"Analyse SWOT",tag:""},repo:{cls:"module-repo",title:"Dossier principal",tag:""}};
 function moduleOrgRailHtml(){const o=s.org||{},name=o.name||"QualiLab by ENNAJEH",mail=o.mail||"contact@qualilab.tn",phone=o.phone||"+216 71 000 000",addr=[o.address,o.city].filter(Boolean).join(" - ")||"Tunis, Tunisie",ref=o.accRef||o.acc||"Accredite";return `<div class="module-org"><div class="module-org-card"><strong>Organisme</strong><p>${esc(name)}</p></div><div class="module-org-card"><strong>Reference</strong><p>${esc(o.accStd||"ISO/IEC 17025:2017")}<br>${esc(ref)}</p></div><div class="module-org-card"><strong>Contact</strong><p>${esc(mail)}<br>${esc(phone)}</p></div><div class="module-org-card"><strong>Adresse</strong><p>${esc(addr)}</p></div></div>`}
 function buildModuleRail(id){const meta=moduleRailMeta[id];if(!meta)return null;const rail=document.createElement("aside");rail.className="module-rail";rail.innerHTML=`<div class="module-rail-logo"><img src="assets/quali-logo.png" alt="QualiLab"></div><div class="module-rail-head"><b>${esc(meta.title)}</b><span>${esc(meta.tag)}</span></div>${moduleOrgRailHtml()}`;return rail}
 function updateModuleRails(){Object.keys(moduleRailMeta).forEach(id=>{const org=$("#"+id+" .module-org");if(org)org.outerHTML=moduleOrgRailHtml()})}
 function enhanceModulePanels(){Object.keys(moduleRailMeta).forEach(id=>{const section=$("#"+id);if(!section||section.dataset.railReady==="1")return;section.dataset.railReady="1";section.classList.add("module-shell",moduleRailMeta[id].cls);const body=document.createElement("div");body.className="module-content";while(section.firstChild)body.appendChild(section.firstChild);section.appendChild(buildModuleRail(id));section.appendChild(body)})}
-function page(id,skipHistory){const m={hub:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],db:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],docs:["Maitrise documentaire",""],docorg:["Documentation",""],eq:["Gestion des equipements",""],nc:["Non-conformites",""],aud:["Audits",""],revc:["Revue de contrat",""],usr:["Utilisateurs",""],set:["Parametres",""],diag:["Diagnostic ISO 17025",""],risk:["Analyse de risque",""],repo:["Dossier principal",""]};if(!skipHistory&&currentPage&&currentPage!==id){pageHistory.push(currentPage);nextPageHistory=[]}currentPage=id;["hub","db","docs","docorg","eq","nc","aud","revc","usr","set","diag","risk","repo"].forEach(x=>$("#"+x).classList.toggle("h",x!==id));$("#app").classList.toggle("hub-mode",id==="hub");$all("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.p===id));$("#pt").textContent=m[id][0];$("#ps").textContent=m[id][1];placeBackButton();updateBackButton()}
+function page(id,skipHistory){const m={hub:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],db:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],docs:["Maitrise documentaire",""],docorg:["Documentation",""],eq:["Gestion des equipements",""],nc:["Non-conformites",""],aud:["Audits",""],revc:["Revue de contrat",""],usr:["Utilisateurs",""],set:["Parametres",""],diag:["Diagnostic ISO 17025",""],risk:["Analyse de risque",""],swot:["Analyse SWOT",""],repo:["Dossier principal",""]};if(!skipHistory&&currentPage&&currentPage!==id){pageHistory.push(currentPage);nextPageHistory=[]}currentPage=id;["hub","db","docs","docorg","eq","nc","aud","revc","usr","set","diag","risk","swot","repo"].forEach(x=>$("#"+x).classList.toggle("h",x!==id));$("#app").classList.toggle("hub-mode",id==="hub");$all("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.p===id));$("#pt").textContent=m[id][0];$("#ps").textContent=m[id][1];placeBackButton();updateBackButton()}
 function goBackPage(){if(pageHistory.length){nextPageHistory.push(currentPage);page(pageHistory.pop(),true);return}if(sessionActive()&&currentPage==="hub"){logout();return}if(sessionActive()){nextPageHistory.push(currentPage);page("hub",true)}}
 function goNextPage(){if(!sessionActive()||!nextPageHistory.length)return;page(nextPageHistory.pop(),true)}
-function render(){dashboardStats();alerts();trail();quick();docs();orgDocsView();eq();nc();aud();revc();usr();settings();diagView();riskView();repoView();updateModuleRails();$("#uname").textContent=s.u.name;$("#urole").textContent=s.u.role+" - "+s.u.dept}
+function render(){dashboardStats();alerts();trail();quick();docs();orgDocsView();eq();nc();aud();revc();usr();settings();diagView();riskView();swotView();repoView();updateModuleRails();$("#uname").textContent=s.u.name;$("#urole").textContent=s.u.role+" - "+s.u.dept}
 function dashboardStats(){const a=[["Documents",s.docs.length,"DOC","k-blue"],["Equipements",s.eq.length,"EQ","k-green"],["Non-conformites ouvertes",s.nc.filter(x=>x.st==="Ouverte").length,"NC","k-orange"],["Audits a realiser",s.aud.filter(x=>x.st!=="Cloture").length,"AUD","k-red"]];$("#stats").innerHTML=a.map(x=>`<div class="card stat k-card ${x[3]}"><div class="kpi"><i>${x[2]}</i><div><div class="mut">${x[0]}</div><b>${x[1]}</b><div class="mut">Mise a jour locale</div></div></div></div>`).join("")}
 function stats(){const a=[["Documents",s.docs.length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾","k-blue"],["Equipements",s.eq.length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âª","k-green"],["Non-conformites ouvertes",s.nc.filter(x=>x.st==="Ouverte").length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â","k-orange"],["Audits a realiser",s.aud.filter(x=>x.st!=="Cloture").length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹","k-red"]];$("#stats").innerHTML=a.map(x=>`<div class="card stat k-card ${x[3]}"><div class="kpi"><i>${x[2]}</i><div><div class="mut">${x[0]}</div><b>${x[1]}</b><div class="mut">Mise a jour locale</div></div></div></div>`).join("")}
 function alerts(){let a=[];s.eq.filter(x=>x.st!=="Valide").forEach(x=>a.push([x.id+" - "+x.n,"Statut: "+x.st]));s.nc.filter(x=>x.st!=="Cloturee").forEach(x=>a.push([x.ref,x.desc]));(s.revc||[]).filter(x=>x.st!=="Approuvee").forEach(x=>a.push([x.ref+" - "+x.client,"Revue de contrat : "+x.st]));$("#alerts").innerHTML=a.length?a.slice(0,8).map(x=>`<div class="it"><b>${x[0]}</b><p>${x[1]}</p></div>`).join(""):`<div class="e">Aucune alerte.</div>`}
@@ -3138,6 +3247,16 @@ function filteredRisks(){const q=($("#riskSearch").value||"").toLowerCase(),shee
 function riskRowsHtml(items,actions=false){return items.map(x=>{const c0=riskScore(x),c1=riskReScore(x);return `<tr><td>${esc(x.chapter)}</td><td>${esc(x.risk)}</td><td>${esc(x.p)}</td><td>${esc(x.g)}</td><td>${c0}</td><td>${esc(x.action)}</td><td>${esc(x.delay)}</td><td>${esc(x.resp)}</td><td>${esc(x.follow)}</td><td>${esc(x.rp)}</td><td>${esc(x.rg)}</td><td>${c1}</td><td>${esc(x.criterion)}</td><td>${esc(x.eff)}</td>${actions?`<td>${esc(x.id)}</td>`:""}</tr>`}).join("")||`<tr><td colspan="${actions?15:14}">Aucun risque trouve.</td></tr>`}
 function printRiskRegister(){const q=($("#riskSearch").value||"").toLowerCase(),sheet=$("#riskSheet").value,items=riskItems().filter(x=>(sheet==="all"||x.sheet===sheet)&&[x.sheet,x.chapter,x.risk,x.action,x.resp,x.follow,x.criterion,x.eff].join(" ").toLowerCase().includes(q));const rows=items.map(x=>{const c0=riskScore(x),c1=riskReScore(x);return `<tr><td>${esc(x.chapter)}</td><td>${esc(x.risk)}</td><td>${esc(x.p)}</td><td>${esc(x.g)}</td><td>${c0}</td><td>${esc(x.action)}</td><td>${esc(x.delay)}</td><td>${esc(x.resp)}</td><td>${esc(x.follow)}</td><td>${esc(x.rp)}</td><td>${esc(x.rg)}</td><td>${c1}</td><td>${esc(x.criterion)}</td><td>${esc(x.eff)}</td></tr>`}).join("")||`<tr><td colspan="14">Aucun risque trouve.</td></tr>`,html=`<!doctype html><html lang="fr"><meta charset="utf-8"><title>Rigistre des risques</title><style>body{font:12px Segoe UI,Arial,sans-serif;color:#1f2a37;padding:22px}h1{margin:0 0 8px;color:#10260f}.meta{margin:0 0 14px;color:#6f7d99;font-weight:700}table{width:100%;border-collapse:collapse}th,td{border:1px solid #7f8f57;padding:6px;vertical-align:top;text-align:left}th{background:#fff;text-align:center}.score{text-align:center;font-weight:700}@page{size:landscape;margin:12mm}</style><body><h1>Rigistre des risques</h1><p class="meta">Derniere mise a jour : ${esc(s.riskUpdatedAt||"-")}</p><table><thead><tr><th rowspan="2">Paragraphe / chapitre</th><th rowspan="2">Risque</th><th colspan="3">Evaluation initiale</th><th rowspan="2">Actions a realiser</th><th rowspan="2">Delai</th><th rowspan="2">Responsable / Operateur</th><th rowspan="2">Suivi</th><th colspan="3">Reevaluation</th><th rowspan="2">Critere d'evaluation</th><th rowspan="2">Efficacite</th></tr><tr><th>P</th><th>G</th><th>C</th><th>P</th><th>G</th><th>C</th></tr></thead><tbody>${rows}</tbody></table></body></html>`;const w=window.open("","_blank","width=1200,height=900");if(!w){sync("Autorise les fenetres popup pour imprimer le registre des risques");return}w.document.open();w.document.write(html);w.document.close();w.onload=()=>setTimeout(()=>w.print(),250);sync("Rigistre des risques pret a imprimer")}
 function downloadRiskExcel(){if(!requirePerm("Telecharger"))return;const rows=riskRowsHtml(filteredRisks()),html=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8"><style>table{border-collapse:collapse}th,td{border:1px solid #7f8f57;padding:6px;vertical-align:top}th{text-align:center;font-weight:700}</style></head><body><table><thead><tr><th colspan="14">Rigistre des risques</th></tr><tr><th colspan="14">Derniere mise a jour : ${esc(s.riskUpdatedAt||"-")}</th></tr><tr><th rowspan="2">Paragraphe / chapitre</th><th rowspan="2">Risque</th><th colspan="3">Evaluation initiale</th><th rowspan="2">Actions a realiser</th><th rowspan="2">Delai</th><th rowspan="2">Responsable / Operateur</th><th rowspan="2">Suivi</th><th colspan="3">Reevaluation</th><th rowspan="2">Critere d'evaluation</th><th rowspan="2">Efficacite</th></tr><tr><th>P</th><th>G</th><th>C</th><th>P</th><th>G</th><th>C</th></tr></thead><tbody>${rows}</tbody></table></body></html>`;downloadText("Rigistre_des_risques_"+stamp()+".xls",html,"application/vnd.ms-excel;charset=utf-8");log("Telechargement","Analyse de risque","Rigistre des risques exporte sous Excel");save("Registre des risques telecharge sous Excel")}
+function swotItems(){if(!Array.isArray(s.swot))s.swot=c(SWOT_DEFAULTS);return s.swot}
+function swotClass(t){return String(t||"").toLowerCase().replaceAll("é","e").replaceAll("è","e").replaceAll(" ","-")}
+function filteredSwot(){const q=($("#swotSearch").value||"").toLowerCase(),type=$("#swotType").value;return swotItems().filter(x=>(type==="all"||x.type===type)&&[x.type,x.item,x.action,x.resp,x.delay,x.follow].join(" ").toLowerCase().includes(q))}
+function swotMini(items,type){const arr=items.filter(x=>x.type===type);return arr.length?arr.map(x=>`<div class="it"><b>${esc(x.item)}</b><p>${esc(x.action||"-")}</p><p>${esc(x.resp||"-")} | ${esc(x.delay||"-")} | ${tag(x.follow||"-")}</p></div>`).join(""):`<div class="e">Aucun element.</div>`}
+function swotView(){const tab=$("#swotTab");if(!tab)return;const items=filteredSwot();$("#swotCount").textContent=`${items.length} element${items.length>1?"s":""}`;$("#swotSave").textContent=editingSwotId?"Modifier":"Enregistrer";$("#swotForces").innerHTML=swotMini(swotItems(),"Forces");$("#swotFaiblesses").innerHTML=swotMini(swotItems(),"Faiblesses");$("#swotOpportunites").innerHTML=swotMini(swotItems(),"Opportunites");$("#swotMenaces").innerHTML=swotMini(swotItems(),"Menaces");tab.innerHTML=items.map(x=>`<tr><td><span class="swot-type ${swotClass(x.type)}">${esc(x.type)}</span></td><td>${esc(x.item)}</td><td>${esc(x.action||"-")}</td><td>${esc(x.resp||"-")}</td><td>${esc(x.delay||"-")}</td><td>${tag(x.follow||"-")}</td><td><div class="risk-actions"><button class="btn2 btn" data-swot-edit="${esc(x.id)}" type="button">Modifier</button><button class="btn2 btn" data-swot-del="${esc(x.id)}" type="button">Supprimer</button></div></td></tr>`).join("")||`<tr><td colspan="7" class="e">Aucun element SWOT trouve.</td></tr>`}
+function swotFormData(){return markSaved({id:editingSwotId||"SWOT-"+stamp(),type:$("#swotCat").value,item:$("#swotItem").value.trim(),action:$("#swotAction").value.trim()||"-",resp:$("#swotResp").value.trim()||s.u.name,delay:$("#swotDelay").value.trim()||"-",follow:$("#swotFollow").value})}
+function resetSwotForm(){editingSwotId="";clearFields(["#swotItem","#swotAction","#swotResp","#swotDelay"])}
+function addSwot(){if(!requirePerm(editingSwotId?"Modifier":"Ajouter"))return;const item=$("#swotItem").value.trim();if(!item){sync("Renseigne l'element SWOT");return}const x=swotFormData(),items=swotItems(),i=items.findIndex(v=>v.id===editingSwotId);if(i>=0){items[i]={...items[i],...x};log("Modification","Analyse SWOT",x.type+" - "+x.item);save("Element SWOT modifie automatiquement")}else{items.unshift(x);log("Creation","Analyse SWOT",x.type+" - "+x.item);save("Element SWOT enregistre automatiquement")}resetSwotForm();render()}
+function editSwot(id){if(!requirePerm("Modifier"))return;const x=swotItems().find(v=>v.id===id);if(!x)return;editingSwotId=id;$("#swotCat").value=x.type||"Forces";$("#swotItem").value=x.item||"";$("#swotAction").value=x.action||"";$("#swotResp").value=x.resp||"";$("#swotDelay").value=x.delay||"";$("#swotFollow").value=x.follow||"en cours";sync("Element SWOT charge pour modification");render()}
+function deleteSwot(id){if(!requirePerm("Supprimer"))return;const items=swotItems(),x=items.find(v=>v.id===id);s.swot=items.filter(v=>v.id!==id);if(editingSwotId===id)resetSwotForm();log("Suppression","Analyse SWOT",x?x.item:id);save("Element SWOT supprime automatiquement");render()}
 function repoView(){const q=$("#fsq")?$("#fsq").value.trim().toLowerCase():"",files=((s.repo&&s.repo.files)||[]).filter(x=>[x.name,x.path,x.module,x.label].join(" ").toLowerCase().includes(q));$("#fcount").textContent=`${files.length} fichier${files.length>1?"s":""} - ${s.repo&&s.repo.mode?s.repo.mode:"Aucune liaison active"}`;$("#filelist").innerHTML=files.length?files.map(x=>`<div class="it"><b>${esc(x.name)}</b><p>${esc(x.module)} - ${esc(x.label)}</p><p>${esc(x.path)}</p><p>Taille : ${fmtSize(x.size)} | Modifie : ${esc(x.modified||"-")}</p><div style="margin-top:10px"><button class="btn2 btn" data-rf="${esc(x.id)}">Ouvrir</button></div></div>`).join(""):`<div class="e">Aucun fichier detecte. Connecte ou charge le dossier local.</div>`;if(!s.repo||!s.repo.selected)$("#filepreview").innerHTML=previewDefault()}
 async function chooseRepoDir(){if(!window.showDirectoryPicker){sync("Utilise Chrome ou Edge pour connecter un dossier local");return}try{const h=await window.showDirectoryPicker({mode:"readwrite"});if(!await verifyHandle(h,true)){sync("Autorisation refusee pour le dossier");return}repoHandle=h;await idbSet("repoHandle",h);s.repo.folderName=h.name;s.repo.linked=true;s.repo.mode="Dossier connecte";log("Connexion","Dossier local",h.name+" connecte");await scanRepo()}catch(e){if(e&&e.name!=="AbortError")sync("Connexion du dossier echouee")}}
 async function scanRepo(h=repoHandle){if(!h){sync("Aucun dossier connecte");return}repoFilesMap=new Map();const out=[];const walk=async(dir,p="")=>{for await(const [name,entry] of dir.entries()){const cur=p?`${p}/${name}`:name;if(entry.kind==="directory")await walk(entry,cur);else{const f=await entry.getFile(),t=fileType(name);out.push({id:cur,name,path:cur,module:moduleFromPath(cur),label:t.label,kind:t.kind,size:f.size,modified:fmtDate(f.lastModified)});repoFilesMap.set(cur,entry)}}};try{await walk(h);s.repo.files=out.sort((a,b)=>a.path.localeCompare(b.path));s.repo.mode="Dossier connecte";save("Dossier local scanne");repoView()}catch(e){sync("Scan du dossier echoue")}}
@@ -3197,11 +3316,12 @@ function imp(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{s={...c(
 function refreshCurrentPage(){render();page(currentPage,true);sync("Page actualisee")}
 function bindClick(id,fn){const el=$("#"+id);if(el)el.addEventListener("click",e=>{e.preventDefault();fn(e)})}
 bindClick("lbtn",login);$("#lpwd").addEventListener("keydown",e=>{if(e.key==="Enter")login()});bindClick("togglePwd",()=>{const p=$("#lpwd"),b=$("#togglePwd"),shown=p.type==="text";p.type=shown?"password":"text";b.textContent=shown?"Afficher":"Masquer";b.setAttribute("aria-label",shown?"Afficher le mot de passe":"Masquer le mot de passe");b.setAttribute("aria-pressed",String(!shown))});bindClick("out",logout);$("#file").onchange=e=>imp(e.target.files[0]);$("#docFile").onchange=e=>handleDocumentImport(e.target.files);$("#odImportFile").onchange=e=>importOrgDocs(e.target.files);$("#orgReqFile").onchange=e=>importReqDoc(e.target.files[0]);bindClick("weeklyReport",downloadWeeklyReport);
-["#ds","#dpf","#dtf","#df","#ods","#odpf","#odtf","#odf","#es","#ef","#ns","#nf","#nAudit","#nAuditNew","#as","#af","#rs","#rf","#fsq","#diagFilter","#riskSearch","#riskSheet"].forEach(id=>{const el=$(id);if(el){el.addEventListener("input",render);el.addEventListener("change",render)}});
+["#ds","#dpf","#dtf","#df","#ods","#odpf","#odtf","#odf","#es","#ef","#ns","#nf","#nAudit","#nAuditNew","#as","#af","#rs","#rf","#fsq","#diagFilter","#riskSearch","#riskSheet","#swotSearch","#swotType"].forEach(id=>{const el=$(id);if(el){el.addEventListener("input",render);el.addEventListener("change",render)}});
 ["#naStart","#naEnd"].forEach(id=>{const el=$(id);if(el){el.addEventListener("input",updateAuditDuration);el.addEventListener("change",updateAuditDuration)}});
 ["#naMajor","#naMinor"].forEach(id=>{const el=$(id);if(el){el.addEventListener("input",updateNcCountFields);el.addEventListener("change",updateNcCountFields)}});
-["dadd","dsv"].forEach(id=>bindClick(id,addDoc));bindClick("dmaster",exportMasterList);["odadd","odsv"].forEach(id=>bindClick(id,addOrgDoc));bindClick("odImportBtn",()=>{$("#odImportFile").value="";$("#odImportFile").click()});["eadd","esv"].forEach(id=>bindClick(id,addEq));["nadd","nsv"].forEach(id=>bindClick(id,addNc));bindClick("naSave",addNcAudit);["aadd","asv"].forEach(id=>bindClick(id,addAud));["radd","rsv"].forEach(id=>bindClick(id,addRevc));bindClick("usv",addUsr);bindClick("riskSave",addRisk);bindClick("riskPrint",printRiskRegister);bindClick("riskDownload",downloadRiskExcel);
+["dadd","dsv"].forEach(id=>bindClick(id,addDoc));bindClick("dmaster",exportMasterList);["odadd","odsv"].forEach(id=>bindClick(id,addOrgDoc));bindClick("odImportBtn",()=>{$("#odImportFile").value="";$("#odImportFile").click()});["eadd","esv"].forEach(id=>bindClick(id,addEq));["nadd","nsv"].forEach(id=>bindClick(id,addNc));bindClick("naSave",addNcAudit);["aadd","asv"].forEach(id=>bindClick(id,addAud));["radd","rsv"].forEach(id=>bindClick(id,addRevc));bindClick("usv",addUsr);bindClick("riskSave",addRisk);bindClick("riskPrint",printRiskRegister);bindClick("riskDownload",downloadRiskExcel);bindClick("swotSave",addSwot);
 $("#riskTab").addEventListener("click",e=>{const edit=e.target.closest("[data-risk-edit]"),del=e.target.closest("[data-risk-del]");if(edit)editRisk(edit.dataset.riskEdit);if(del)deleteRisk(del.dataset.riskDel)});
+$("#swotTab").addEventListener("click",e=>{const edit=e.target.closest("[data-swot-edit]"),del=e.target.closest("[data-swot-del]");if(edit)editSwot(edit.dataset.swotEdit);if(del)deleteSwot(del.dataset.swotDel)});
 $("#ncAuditGroups").addEventListener("click",e=>{const ap=e.target.closest("[data-na-print]"),ad=e.target.closest("[data-na-download]"),lp=e.target.closest("[data-nalist-print]"),ld=e.target.closest("[data-nalist-download]");if(ap)handleNcAuditExport(ap.dataset.naPrint,"print",false);if(ad)handleNcAuditExport(ad.dataset.naDownload,"download",false);if(lp)handleNcAuditExport(lp.dataset.nalistPrint,"print",true);if(ld)handleNcAuditExport(ld.dataset.nalistDownload,"download",true)});
 bindClick("ncClosedPrint",()=>handleNcClosedExport("print"));bindClick("ncClosedDownload",()=>handleNcClosedExport("download"));
 ["omod","omodAcc","omodSuivi"].forEach(id=>bindClick(id,modifyOrg));["osv","osvAcc","osvSuivi"].forEach(id=>bindClick(id,()=>saveOrg()));bindClick("orgPrint",printOrgSummary);bindClick("diagReset",resetDiag);bindClick("diagExport",exportDiag);
