@@ -1210,6 +1210,44 @@ th {
   background:#fef2f2;
   color:#b91c1c;
 }
+.sat-intro {
+  border-left:6px solid #14b8a6;
+  background:linear-gradient(135deg,#f0fdfa,#eef6ff);
+}
+.sat-question {
+  border:1px solid #dbe6f5;
+  border-radius:16px;
+  padding:14px;
+  background:#fff;
+  margin-bottom:10px;
+}
+.sat-question b {
+  display:block;
+  margin-bottom:10px;
+  color:#1f2a37;
+}
+.sat-scale {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:8px;
+}
+.sat-scale.yesno {
+  grid-template-columns:repeat(2,minmax(0,160px));
+}
+.sat-scale label {
+  display:flex;
+  align-items:center;
+  gap:6px;
+  border:1px solid #dbe6f5;
+  border-radius:12px;
+  padding:9px 10px;
+  background:#f8fbff;
+  font-weight:700;
+}
+.sat-group-title {
+  margin:18px 0 10px;
+  color:#0f766e;
+}
 .risk-titlebar {
   display:flex;
   align-items:center;
@@ -1927,6 +1965,9 @@ th {
 .module-swot .module-rail {
   background:linear-gradient(180deg,#0f766e,#115e59)
 }
+.module-sat .module-rail {
+  background:linear-gradient(180deg,#14b8a6,#0f766e)
+}
 @media(max-width:1080px) {
   .module-shell {
     grid-template-columns:1fr
@@ -1948,6 +1989,9 @@ th {
     writing-mode:horizontal-tb;
     transform:none;
     min-height:64px
+  }
+  .sat-scale {
+    grid-template-columns:1fr
   }
 }
 @media(max-width:760px) {
@@ -2597,7 +2641,7 @@ th {
 (function(){
   function setText(sel,val){var el=document.querySelector(sel);if(el)el.textContent=val}
   function showPage(id){
-    ["hub","db","docs","docorg","eq","nc","aud","revc","usr","set","diag","risk","swot","repo"].forEach(function(x){
+    ["hub","db","docs","docorg","eq","nc","aud","revc","usr","set","diag","risk","swot","sat","repo"].forEach(function(x){
       var el=document.getElementById(x);
       if(el)el.classList.toggle("h",x!==id);
     });
@@ -2700,6 +2744,7 @@ th {
       <button data-p="diag"><span class="menu-ico">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â </span><span class="menu-label">Diagnostic ISO 17025</span></button>
       <button data-p="risk"><span class="menu-ico">AR</span><span class="menu-label">Analyse de risque</span></button>
       <button data-p="swot"><span class="menu-ico">SW</span><span class="menu-label">Analyse SWOT</span></button>
+      <button data-p="sat"><span class="menu-ico">SC</span><span class="menu-label">Satisfaction client</span></button>
       <button data-p="repo"><span class="menu-ico">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã‚ÂÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¡ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â</span><span class="menu-label">Dossier principal</span></button>
       <button data-p="docorg"><span class="menu-ico">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â</span><span class="menu-label">Documentation</span></button>
     </div>
@@ -2736,9 +2781,10 @@ th {
           <button class="hub-node hub-slate orbit-9" data-go="set"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="5"></circle><path d="M20 7v5M20 28v5M7 20h5M28 20h5M10.8 10.8l3.6 3.6M25.6 25.6l3.6 3.6M29.2 10.8l-3.6 3.6M14.4 25.6l-3.6 3.6"></path></svg></span><b>Parametres</b><small></small></button>
           <button class="hub-node hub-red orbit-10" data-go="risk"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5l13 5v9c0 8-5 13-13 16C12 32 7 27 7 19v-9z"></path><path d="M14 25l6-10 6 10M17 21h6"></path></svg></span><b>Analyse de risque</b><small></small></button>
           <button class="hub-node hub-green orbit-11" data-go="swot"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 30V10M8 30h24"></path><path d="M14 25l5-7 5 4 7-11"></path><circle cx="19" cy="18" r="2"></circle><circle cx="24" cy="22" r="2"></circle><circle cx="31" cy="11" r="2"></circle></svg></span><b>Analyse SWOT</b><small></small></button>
+          <button class="hub-node hub-blue orbit-12" data-go="sat"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 9h24v22H8z"></path><path d="M14 17h12M14 23h8"></path><path d="M28 24l3 3 6-8"></path></svg></span><b>Satisfaction client</b><small></small></button>
       </div>
       <div class="hub-summary">
-        <div class="mini"><strong>Acces rapide</strong><span class="bl">12 modules</span></div>
+        <div class="mini"><strong>Acces rapide</strong><span class="bl">13 modules</span></div>
         <div class="mini"><strong>Presentation</strong><span class="ok">Apres connexion</span></div>
         <div class="mini"><strong>Interface</strong><span class="wa">Responsive</span></div>
       </div>
@@ -3087,6 +3133,37 @@ th {
       <div class="tb"><table class="swot-register"><thead><tr><th>Type</th><th>Element</th><th>Plan d'action</th><th>Responsable</th><th>Delais</th><th>Suivi</th><th>Actions</th></tr></thead><tbody id="swotTab"></tbody></table></div>
     </section>
 
+    <section id="sat" class="row h">
+      <div class="card sat-intro">
+        <h3>Enquete de satisfaction client</h3>
+        <p class="mut">Cher client, votre avis nous aide a ameliorer nos prestations afin de mieux satisfaire vos exigences. En cas d'absence de retour, le client est considere satisfait a 100%.</p>
+      </div>
+      <div class="card">
+        <h3>Identification client</h3>
+        <div class="g4">
+          <input id="satCompany" placeholder="Societe">
+          <input id="satName" placeholder="Nom et prenom">
+          <input id="satFunction" placeholder="Fonction">
+          <input id="satEmail" type="email" placeholder="E-mail">
+          <input id="satTel" placeholder="TEL">
+          <input id="satFax" placeholder="FAX">
+          <input id="satDate" type="date" title="Date enquete">
+          <button class="btn" id="satSave" type="button">Enregistrer</button>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Questionnaire</h3>
+        <div id="satQuestions"></div>
+        <textarea id="satNotes" placeholder="Vos remarques et suggestions"></textarea>
+      </div>
+      <div class="bar card" style="grid-template-columns:1.2fr auto auto">
+        <input id="satSearch" placeholder="Rechercher une enquete">
+        <span class="mut" id="satCount"></span>
+        <button class="btn2 btn" id="satClear" type="button">Nouveau questionnaire</button>
+      </div>
+      <div class="tb"><table><thead><tr><th>Date</th><th>Societe</th><th>Nom</th><th>Email</th><th>Score</th><th>Remarques</th><th>Actions</th></tr></thead><tbody id="satTab"></tbody></table></div>
+    </section>
+
     <section id="repo" class="row h">
       <div class="card">
         <h3>Bibliotheque documentaire locale</h3>
@@ -3182,6 +3259,13 @@ const SWOT_DEFAULTS=[
 {id:"SWOT-011",type:"Menaces",item:"Conjoncture economique difficile qui engendre des impayes",action:"Ameliorer la gestion financiere de la societe ENER et renforcer le recouvrement.",resp:"Direction / RT",delay:"En permanence",follow:"Realise partiellement"},
 {id:"SWOT-012",type:"Menaces",item:"Concurrence deloyale",action:"Renforcer la communication technique avec les clients pour consolider leur confiance.",resp:"Direction",delay:"En permanence",follow:"en cours"}
 ];
+const SAT_SCALE=["Insatisfait","Peu satisfait","Satisfait","Tres satisfait"];
+const SAT_QUESTIONS=[
+{group:"Accueil et contact",items:[["sat-q1","L'accueil telephonique","rating"],["sat-q2","Les delais de reponses a vos demandes","rating"],["sat-q3","Le traitement de vos reclamations","rating"]]},
+{group:"Revue des demandes, contrat et appels d'offres",items:[["sat-q4","La comprehension de votre besoin","rating"],["sat-q5","Le traitement de votre demande","rating"],["sat-q6","Le delai de traitement de votre demande","rating"],["sat-q7","La reactivite du service commercial","rating"],["sat-q8","Les delais de planification d'intervention","rating"],["sat-q9","Les portees d'accreditation du laboratoire","rating"],["sat-q10","La tarification","rating"]]},
+{group:"Qualite de la prestation",items:[["sat-q11","La qualite technique de prestation","rating"],["sat-q12","La qualification des operateurs","rating"],["sat-q13","La qualite des etalons utilises","rating"],["sat-q14","Le delai de l'emission des certificats / rapport / constat","rating"],["sat-q15","La qualite et la clarte des certificats / rapport / constat","rating"],["sat-q16","Le respect des exigences de la securite","rating"]]},
+{group:"Communication et Information",items:[["sat-q17","Connaissez-vous le site web d'ENER Metrologie ?","yesno"],["sat-q18","Si oui, comment jugez-vous le site web ?","rating"],["sat-q19","Connaissez-vous la page Facebook d'ENER Metrologie ?","yesno"],["sat-q20","Si oui, comment jugez-vous la page Facebook ?","rating"]]}
+];
 const D={u:{name:"John Doe",email:"john.doe@ener.tn",role:"Administrateur",dept:"Direction",ini:"JD"},org:{name:"QualiLab by ENNAJEH",fiscal:"MF-2026-001",acc:"Accredite",accDate:"2026-01-15",validDate:"2027-01-15",manager:"John Doe",phone:"+216 71 000 000",fax:"+216 71 000 001",mail:"contact@qualilab.tn",address:"Zone industrielle, Tunis, Tunisie",docs:"Manuel qualite\nCertificat d'accreditation\nAnnexe technique\nPolitique qualite de l'organisme"},diag:{person:"",date:"",answers:{},notes:{},updated:""},repo:{folderName:"QualiLab_Documents",linked:false,files:[],selected:"",mode:"Aucune liaison active"},docs:[{id:1,ref:"PRO-LAB-001",title:"Programme d'etalonnage",p:"Processus support",type:"Procedure",v:"2.1",st:"A valider",o:"Resp. qualite",d:"2026-04-01"},{id:2,ref:"INS-LAB-004",title:"Utilisation balance analytique",p:"Processus operationnel",type:"Instruction",v:"1.3",st:"Valide",o:"Technicien senior",d:"2026-03-18"}],orgDocs:[{id:101,ref:"PRO-PIL-001",title:"Audit client",ie:"IE-01",p:"Processus pilotage",type:"Procedure",page:"1/3",v:"1.0",st:"Valide",o:"Direction",d:"2026-03-12"},{id:102,ref:"INS-OPE-002",title:"Reception et traitement des echantillons",ie:"IE-02",p:"Processus operationnel",type:"Instruction",page:"1/2",v:"2.0",st:"A valider",o:"Chef laboratoire",d:"2026-04-02"},{id:103,ref:"FOR-SUP-003",title:"Demande d'achat de consommables",ie:"IE-03",p:"Processus support",type:"Formulaire",page:"1/1",v:"1.4",st:"Valide",o:"Service achats",d:"2026-02-20"},{id:104,ref:"ENR-SUP-004",title:"Fiche de maintenance preventive",ie:"IE-04",p:"Processus support",type:"Enregistrement",page:"1/1",v:"3.1",st:"Valide",o:"Metrologie",d:"2026-03-25"}],eq:[{id:"EQ-001",n:"Balance analytique",m:"Mettler XS-205",sn:"SN-1234",l:"2026-01-10",nx:"2026-04-10",st:"A etalonner",ciq:"Quotidien",u:"+/- 0.1 mg"},{id:"EQ-002",n:"pH-metre",m:"Metrohm 914",sn:"SN-5678",l:"2026-02-01",nx:"2026-08-01",st:"Valide",ciq:"Avant usage",u:"+/- 0.01 pH"}],nc:[{ref:"NC-2026-001",desc:"Certificat manquant",g:"Critique",act:"Bloquer l'equipement",st:"Ouverte",o:"Resp. qualite",due:"2026-04-10"},{ref:"NC-2026-002",desc:"Rapport incomplet",g:"Majeure",act:"Corriger modele",st:"En cours",o:"Technicien",due:"2026-04-15"}],aud:[{ref:"AI-2026-001",ty:"Audit interne",sc:"Equipements et tracabilite",o:"A. Bensalem",d:"2026-04-20",st:"Planifie",f:"-"},{ref:"AC-2026-001",ty:"Audit externe (client)",sc:"Systeme complet",o:"Direction",d:"2026-05-05",st:"En cours",f:"2 actions"}],revc:[{ref:"RC-2026-001",client:"Client pharmaceutique",dem:"Etalonnage balances de precision",scope:"Capacite validee, methode disponible, delai confirme",resp:"Resp. qualite",d:"2026-04-12",st:"Approuvee"},{ref:"RC-2026-002",client:"Client industriel",dem:"Verification d'un pH-metre terrain",scope:"Ressources a confirmer et besoin de retour client",resp:"Chef laboratoire",d:"2026-04-14",st:"En attente client"}],usr:[{name:"John Doe",email:"john.doe@ener.tn",role:"Administrateur",dept:"Direction",ini:"JD"},{name:"Amina El Idrissi",email:"amina@ener.tn",role:"Responsable qualite",dept:"Qualite",ini:"AE"}],trailWeek:"",trailArchive:[],trail:[{t:"2026-04-07 09:30",u:"John Doe",a:"Connexion",m:"Session",x:"Ouverture de l'application"},{t:"2026-04-07 09:10",u:"Amina El Idrissi",a:"Creation",m:"NC",x:"NC-2026-001 ajoutee"}]};
 let s=load();
 const RISK_EMPTY_VERSION="risk-empty-20260415";
@@ -3245,15 +3329,15 @@ function openApp(){$("#auth").classList.add("h");$("#app").classList.remove("h")
 function isPilotLogin(e,p){return String(e||"").trim().toLowerCase()==="karimennajeh@gmail.com"&&String(p||"")==="09318872karim@"}
 function login(){const e=$("#lemail").value.trim(),p=$("#lpwd").value;if(!isPilotLogin(e,p)){$("#lmsg").textContent="Acces refuse : e-mail ou mot de passe incorrect.";sr(S);$("#app").classList.add("h");$("#auth").classList.remove("h");return}try{ensurePilotAccount();const u=s.usr.find(x=>x.email.toLowerCase()===e.toLowerCase())||pilotAccount();s.u=u;ss(S,JSON.stringify({email:s.u.email}));log("Connexion","Session",e);save("Session ouverte");openApp()}catch(err){console.error(err);$("#lmsg").textContent="Erreur de connexion. Verifie l'application puis recommence.";sr(S);$("#auth").classList.remove("h");$("#app").classList.add("h")}}
 function logout(){log("Deconnexion","Session",s.u.email);save("Session fermee");sr(S);pageHistory=[];nextPageHistory=[];currentPage="hub";$("#app").classList.add("h");$("#auth").classList.remove("h");updateBackButton()}
-const moduleRailMeta={db:{cls:"module-db",title:"Tableau de bord",tag:""},docs:{cls:"module-docs",title:"Maitrise documentaire",tag:""},docorg:{cls:"module-docorg",title:"Documentation",tag:""},eq:{cls:"module-eq",title:"Gestion des equipements",tag:""},nc:{cls:"module-nc",title:"Non-conformites",tag:""},aud:{cls:"module-aud",title:"Audits",tag:""},revc:{cls:"module-revc",title:"Revue de contrat",tag:""},usr:{cls:"module-usr",title:"Utilisateurs",tag:""},set:{cls:"module-set",title:"Parametres",tag:""},diag:{cls:"module-diag",title:"Diagnostic ISO 17025",tag:""},risk:{cls:"module-risk",title:"Analyse de risque",tag:""},swot:{cls:"module-swot",title:"Analyse SWOT",tag:""},repo:{cls:"module-repo",title:"Dossier principal",tag:""}};
+const moduleRailMeta={db:{cls:"module-db",title:"Tableau de bord",tag:""},docs:{cls:"module-docs",title:"Maitrise documentaire",tag:""},docorg:{cls:"module-docorg",title:"Documentation",tag:""},eq:{cls:"module-eq",title:"Gestion des equipements",tag:""},nc:{cls:"module-nc",title:"Non-conformites",tag:""},aud:{cls:"module-aud",title:"Audits",tag:""},revc:{cls:"module-revc",title:"Revue de contrat",tag:""},usr:{cls:"module-usr",title:"Utilisateurs",tag:""},set:{cls:"module-set",title:"Parametres",tag:""},diag:{cls:"module-diag",title:"Diagnostic ISO 17025",tag:""},risk:{cls:"module-risk",title:"Analyse de risque",tag:""},swot:{cls:"module-swot",title:"Analyse SWOT",tag:""},sat:{cls:"module-sat",title:"Satisfaction client",tag:""},repo:{cls:"module-repo",title:"Dossier principal",tag:""}};
 function moduleOrgRailHtml(){const o=s.org||{},name=o.name||"QualiLab by ENNAJEH",mail=o.mail||"contact@qualilab.tn",phone=o.phone||"+216 71 000 000",addr=[o.address,o.city].filter(Boolean).join(" - ")||"Tunis, Tunisie",ref=o.accRef||o.acc||"Accredite";return `<div class="module-org"><div class="module-org-card"><strong>Organisme</strong><p>${esc(name)}</p></div><div class="module-org-card"><strong>Reference</strong><p>${esc(o.accStd||"ISO/IEC 17025:2017")}<br>${esc(ref)}</p></div><div class="module-org-card"><strong>Contact</strong><p>${esc(mail)}<br>${esc(phone)}</p></div><div class="module-org-card"><strong>Adresse</strong><p>${esc(addr)}</p></div></div>`}
 function buildModuleRail(id){const meta=moduleRailMeta[id];if(!meta)return null;const rail=document.createElement("aside");rail.className="module-rail";rail.innerHTML=`<div class="module-rail-logo"><img src="assets/quali-logo.png" alt="QualiLab"></div><div class="module-rail-head"><b>${esc(meta.title)}</b><span>${esc(meta.tag)}</span></div>${moduleOrgRailHtml()}`;return rail}
 function updateModuleRails(){Object.keys(moduleRailMeta).forEach(id=>{const org=$("#"+id+" .module-org");if(org)org.outerHTML=moduleOrgRailHtml()})}
 function enhanceModulePanels(){Object.keys(moduleRailMeta).forEach(id=>{const section=$("#"+id);if(!section||section.dataset.railReady==="1")return;section.dataset.railReady="1";section.classList.add("module-shell",moduleRailMeta[id].cls);const body=document.createElement("div");body.className="module-content";while(section.firstChild)body.appendChild(section.firstChild);section.appendChild(buildModuleRail(id));section.appendChild(body)})}
-function page(id,skipHistory){const m={hub:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],db:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],docs:["Maitrise documentaire",""],docorg:["Documentation",""],eq:["Gestion des equipements",""],nc:["Non-conformites",""],aud:["Audits",""],revc:["Revue de contrat",""],usr:["Utilisateurs",""],set:["Parametres",""],diag:["Diagnostic ISO 17025",""],risk:["Analyse de risque",""],swot:["Analyse SWOT",""],repo:["Dossier principal",""]};if(!skipHistory&&currentPage&&currentPage!==id){pageHistory.push(currentPage);nextPageHistory=[]}currentPage=id;["hub","db","docs","docorg","eq","nc","aud","revc","usr","set","diag","risk","swot","repo"].forEach(x=>$("#"+x).classList.toggle("h",x!==id));$("#app").classList.toggle("hub-mode",id==="hub");$all("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.p===id));$("#pt").textContent=m[id][0];$("#ps").textContent=m[id][1];placeBackButton();updateBackButton()}
+function page(id,skipHistory){const m={hub:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],db:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],docs:["Maitrise documentaire",""],docorg:["Documentation",""],eq:["Gestion des equipements",""],nc:["Non-conformites",""],aud:["Audits",""],revc:["Revue de contrat",""],usr:["Utilisateurs",""],set:["Parametres",""],diag:["Diagnostic ISO 17025",""],risk:["Analyse de risque",""],swot:["Analyse SWOT",""],sat:["Satisfaction client",""],repo:["Dossier principal",""]};if(!skipHistory&&currentPage&&currentPage!==id){pageHistory.push(currentPage);nextPageHistory=[]}currentPage=id;["hub","db","docs","docorg","eq","nc","aud","revc","usr","set","diag","risk","swot","sat","repo"].forEach(x=>$("#"+x).classList.toggle("h",x!==id));$("#app").classList.toggle("hub-mode",id==="hub");$all("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.p===id));$("#pt").textContent=m[id][0];$("#ps").textContent=m[id][1];placeBackButton();updateBackButton()}
 function goBackPage(){if(pageHistory.length){nextPageHistory.push(currentPage);page(pageHistory.pop(),true);return}if(sessionActive()&&currentPage==="hub"){logout();return}if(sessionActive()){nextPageHistory.push(currentPage);page("hub",true)}}
 function goNextPage(){if(!sessionActive()||!nextPageHistory.length)return;page(nextPageHistory.pop(),true)}
-function render(){dashboardStats();alerts();trail();quick();docs();orgDocsView();eq();nc();aud();revc();usr();settings();diagView();riskView();swotView();repoView();updateModuleRails();$("#uname").textContent=s.u.name;$("#urole").textContent=s.u.role+" - "+s.u.dept}
+function render(){dashboardStats();alerts();trail();quick();docs();orgDocsView();eq();nc();aud();revc();usr();settings();diagView();riskView();swotView();satView();repoView();updateModuleRails();$("#uname").textContent=s.u.name;$("#urole").textContent=s.u.role+" - "+s.u.dept}
 function dashboardStats(){const a=[["Documents",s.docs.length,"DOC","k-blue"],["Equipements",s.eq.length,"EQ","k-green"],["Non-conformites ouvertes",s.nc.filter(x=>x.st==="Ouverte").length,"NC","k-orange"],["Audits a realiser",s.aud.filter(x=>x.st!=="Cloture").length,"AUD","k-red"]];$("#stats").innerHTML=a.map(x=>`<div class="card stat k-card ${x[3]}"><div class="kpi"><i>${x[2]}</i><div><div class="mut">${x[0]}</div><b>${x[1]}</b><div class="mut">Mise a jour locale</div></div></div></div>`).join("")}
 function stats(){const a=[["Documents",s.docs.length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾","k-blue"],["Equipements",s.eq.length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âª","k-green"],["Non-conformites ouvertes",s.nc.filter(x=>x.st==="Ouverte").length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â","k-orange"],["Audits a realiser",s.aud.filter(x=>x.st!=="Cloture").length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹","k-red"]];$("#stats").innerHTML=a.map(x=>`<div class="card stat k-card ${x[3]}"><div class="kpi"><i>${x[2]}</i><div><div class="mut">${x[0]}</div><b>${x[1]}</b><div class="mut">Mise a jour locale</div></div></div></div>`).join("")}
 function alerts(){let a=[];s.eq.filter(x=>x.st!=="Valide").forEach(x=>a.push([x.id+" - "+x.n,"Statut: "+x.st]));s.nc.filter(x=>x.st!=="Cloturee").forEach(x=>a.push([x.ref,x.desc]));(s.revc||[]).filter(x=>x.st!=="Approuvee").forEach(x=>a.push([x.ref+" - "+x.client,"Revue de contrat : "+x.st]));$("#alerts").innerHTML=a.length?a.slice(0,8).map(x=>`<div class="it"><b>${x[0]}</b><p>${x[1]}</p></div>`).join(""):`<div class="e">Aucune alerte.</div>`}
@@ -3353,6 +3437,14 @@ function editSwot(id){if(!requirePerm("Modifier"))return;const x=swotItems().fin
 function deleteSwot(id){if(!requirePerm("Supprimer"))return;const items=swotItems(),x=items.find(v=>v.id===id);s.swot=items.filter(v=>v.id!==id);if(editingSwotId===id)resetSwotForm();log("Suppression","Analyse SWOT",x?x.item:id);save("Element SWOT supprime automatiquement");render()}
 function printSwotRegister(){const rows=swotRowsHtml(filteredSwot(),false),html=`<!doctype html><html lang="fr"><meta charset="utf-8"><title>Analyse SWOT</title><style>body{font:12px Segoe UI,Arial,sans-serif;color:#1f2a37;padding:22px}h1{margin:0 0 14px;color:#0f766e}table{width:100%;border-collapse:collapse}th,td{border:1px solid #cbd5e1;padding:7px 8px;vertical-align:top;text-align:left}th{text-align:center;background:#f8fafc}.swot-type{font-weight:800}@page{size:landscape;margin:12mm}</style><body><h1>Analyse SWOT</h1><table><thead><tr><th>Type</th><th>Element</th><th>Plan d'action</th><th>Responsable</th><th>Delais</th><th>Suivi</th></tr></thead><tbody>${rows}</tbody></table></body></html>`;const w=window.open("","_blank","width=1200,height=900");if(!w){sync("Autorise les fenetres popup pour imprimer l'analyse SWOT");return}w.document.open();w.document.write(html);w.document.close();w.onload=()=>setTimeout(()=>w.print(),250);sync("Analyse SWOT prete a imprimer")}
 function downloadSwotExcel(){if(!requirePerm("Telecharger"))return;const rows=swotRowsHtml(filteredSwot(),false),html=`<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel"><head><meta charset="utf-8"><style>table{border-collapse:collapse}th,td{border:1px solid #cbd5e1;padding:7px 8px;vertical-align:top}th{text-align:center;font-weight:700}.swot-type{font-weight:800}</style></head><body><table><thead><tr><th colspan="6">Analyse SWOT</th></tr><tr><th>Type</th><th>Element</th><th>Plan d'action</th><th>Responsable</th><th>Delais</th><th>Suivi</th></tr></thead><tbody>${rows}</tbody></table></body></html>`;downloadText("Analyse_SWOT_"+stamp()+".xls",html,"application/vnd.ms-excel;charset=utf-8");log("Telechargement","Analyse SWOT","Analyse SWOT exportee sous Excel");save("Analyse SWOT telechargee sous Excel")}
+function satItems(){if(!Array.isArray(s.sat))s.sat=[];return s.sat}
+function satQuestionHtml(){return SAT_QUESTIONS.map(g=>`<h3 class="sat-group-title">${esc(g.group)}</h3>`+g.items.map(([id,text,type])=>`<div class="sat-question"><b>${esc(text)}</b><div class="sat-scale ${type==="yesno"?"yesno":""}">${(type==="yesno"?["Oui","Non"]:SAT_SCALE).map(v=>`<label><input type="radio" name="${id}" value="${esc(v)}"> ${esc(v)}</label>`).join("")}</div></div>`).join("")).join("")}
+function satAnswers(){const out={};SAT_QUESTIONS.forEach(g=>g.items.forEach(([id])=>{const el=document.querySelector(`input[name="${id}"]:checked`);out[id]=el?el.value:""}));return out}
+function satScore(a){let total=0,n=0;SAT_QUESTIONS.forEach(g=>g.items.forEach(([id,,type])=>{if(type==="rating"&&a[id]){const i=SAT_SCALE.indexOf(a[id]);if(i>=0){total+=i+1;n++}}}));return n?Math.round((total/(n*4))*100):0}
+function resetSatForm(){["#satCompany","#satName","#satFunction","#satEmail","#satTel","#satFax","#satNotes"].forEach(id=>{const el=$(id);if(el)el.value=""});$("#satDate").value=now().slice(0,10);SAT_QUESTIONS.forEach(g=>g.items.forEach(([id])=>$all(`input[name="${id}"]`).forEach(x=>x.checked=false)))}
+function satView(){const q=$("#satQuestions");if(!q)return;if(!q.innerHTML.trim())q.innerHTML=satQuestionHtml();if(!$("#satDate").value)$("#satDate").value=now().slice(0,10);const term=($("#satSearch").value||"").toLowerCase(),items=satItems().filter(x=>[x.company,x.name,x.email,x.function,x.notes].join(" ").toLowerCase().includes(term));$("#satCount").textContent=`${items.length} enquete${items.length>1?"s":""}`;$("#satTab").innerHTML=items.map(x=>`<tr><td>${esc(x.date)}</td><td>${esc(x.company)}</td><td>${esc(x.name)}</td><td>${esc(x.email||"-")}</td><td>${x.score}%</td><td>${esc(x.notes||"-")}</td><td><button class="btn2 btn" data-sat-del="${esc(x.id)}" type="button">Supprimer</button></td></tr>`).join("")||`<tr><td colspan="7" class="e">Aucune enquete enregistree.</td></tr>`}
+function saveSat(){if(!requirePerm("Ajouter"))return;const company=$("#satCompany").value.trim(),name=$("#satName").value.trim();if(!company||!name){sync("Renseigne la societe et le nom du client");return}const answers=satAnswers(),score=satScore(answers),x=markSaved({id:"SAT-"+stamp(),date:$("#satDate").value||now().slice(0,10),company,name,function:$("#satFunction").value.trim(),email:$("#satEmail").value.trim(),tel:$("#satTel").value.trim(),fax:$("#satFax").value.trim(),answers,score,notes:$("#satNotes").value.trim()});satItems().unshift(x);log("Creation","Satisfaction client",company+" - score "+score+"%");save("Enquete satisfaction client enregistree");resetSatForm();render()}
+function deleteSat(id){if(!requirePerm("Supprimer"))return;const x=satItems().find(v=>v.id===id);s.sat=satItems().filter(v=>v.id!==id);log("Suppression","Satisfaction client",x?x.company:id);save("Enquete satisfaction client supprimee");render()}
 function repoView(){const q=$("#fsq")?$("#fsq").value.trim().toLowerCase():"",files=((s.repo&&s.repo.files)||[]).filter(x=>[x.name,x.path,x.module,x.label].join(" ").toLowerCase().includes(q));$("#fcount").textContent=`${files.length} fichier${files.length>1?"s":""} - ${s.repo&&s.repo.mode?s.repo.mode:"Aucune liaison active"}`;$("#filelist").innerHTML=files.length?files.map(x=>`<div class="it"><b>${esc(x.name)}</b><p>${esc(x.module)} - ${esc(x.label)}</p><p>${esc(x.path)}</p><p>Taille : ${fmtSize(x.size)} | Modifie : ${esc(x.modified||"-")}</p><div style="margin-top:10px"><button class="btn2 btn" data-rf="${esc(x.id)}">Ouvrir</button></div></div>`).join(""):`<div class="e">Aucun fichier detecte. Connecte ou charge le dossier local.</div>`;if(!s.repo||!s.repo.selected)$("#filepreview").innerHTML=previewDefault()}
 async function chooseRepoDir(){if(!window.showDirectoryPicker){sync("Utilise Chrome ou Edge pour connecter un dossier local");return}try{const h=await window.showDirectoryPicker({mode:"readwrite"});if(!await verifyHandle(h,true)){sync("Autorisation refusee pour le dossier");return}repoHandle=h;await idbSet("repoHandle",h);s.repo.folderName=h.name;s.repo.linked=true;s.repo.mode="Dossier connecte";log("Connexion","Dossier local",h.name+" connecte");await scanRepo()}catch(e){if(e&&e.name!=="AbortError")sync("Connexion du dossier echouee")}}
 async function scanRepo(h=repoHandle){if(!h){sync("Aucun dossier connecte");return}repoFilesMap=new Map();const out=[];const walk=async(dir,p="")=>{for await(const [name,entry] of dir.entries()){const cur=p?`${p}/${name}`:name;if(entry.kind==="directory")await walk(entry,cur);else{const f=await entry.getFile(),t=fileType(name);out.push({id:cur,name,path:cur,module:moduleFromPath(cur),label:t.label,kind:t.kind,size:f.size,modified:fmtDate(f.lastModified)});repoFilesMap.set(cur,entry)}}};try{await walk(h);s.repo.files=out.sort((a,b)=>a.path.localeCompare(b.path));s.repo.mode="Dossier connecte";save("Dossier local scanne");repoView()}catch(e){sync("Scan du dossier echoue")}}
@@ -3412,12 +3504,13 @@ function imp(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{s={...c(
 function refreshCurrentPage(){render();page(currentPage,true);sync("Page actualisee")}
 function bindClick(id,fn){const el=$("#"+id);if(el)el.addEventListener("click",e=>{e.preventDefault();fn(e)})}
 bindClick("lbtn",login);$("#lpwd").addEventListener("keydown",e=>{if(e.key==="Enter")login()});bindClick("togglePwd",()=>{const p=$("#lpwd"),b=$("#togglePwd"),shown=p.type==="text";p.type=shown?"password":"text";b.textContent=shown?"Afficher":"Masquer";b.setAttribute("aria-label",shown?"Afficher le mot de passe":"Masquer le mot de passe");b.setAttribute("aria-pressed",String(!shown))});bindClick("out",logout);$("#file").onchange=e=>imp(e.target.files[0]);$("#docFile").onchange=e=>handleDocumentImport(e.target.files);$("#odImportFile").onchange=e=>importOrgDocs(e.target.files);$("#orgReqFile").onchange=e=>importReqDoc(e.target.files[0]);bindClick("weeklyReport",downloadWeeklyReport);
-["#ds","#dpf","#dtf","#df","#ods","#odpf","#odtf","#odf","#es","#ef","#ns","#nf","#nAudit","#nAuditNew","#as","#af","#rs","#rf","#fsq","#diagFilter","#riskSearch","#riskSheet","#swotSearch","#swotType"].forEach(id=>{const el=$(id);if(el){el.addEventListener("input",render);el.addEventListener("change",render)}});
+["#ds","#dpf","#dtf","#df","#ods","#odpf","#odtf","#odf","#es","#ef","#ns","#nf","#nAudit","#nAuditNew","#as","#af","#rs","#rf","#fsq","#diagFilter","#riskSearch","#riskSheet","#swotSearch","#swotType","#satSearch"].forEach(id=>{const el=$(id);if(el){el.addEventListener("input",render);el.addEventListener("change",render)}});
 ["#naStart","#naEnd"].forEach(id=>{const el=$(id);if(el){el.addEventListener("input",updateAuditDuration);el.addEventListener("change",updateAuditDuration)}});
 ["#naMajor","#naMinor"].forEach(id=>{const el=$(id);if(el){el.addEventListener("input",updateNcCountFields);el.addEventListener("change",updateNcCountFields)}});
-["dadd","dsv"].forEach(id=>bindClick(id,addDoc));bindClick("dmaster",exportMasterList);["odadd","odsv"].forEach(id=>bindClick(id,addOrgDoc));bindClick("odImportBtn",()=>{$("#odImportFile").value="";$("#odImportFile").click()});["eadd","esv"].forEach(id=>bindClick(id,addEq));["nadd","nsv"].forEach(id=>bindClick(id,addNc));bindClick("naSave",addNcAudit);["aadd","asv"].forEach(id=>bindClick(id,addAud));["radd","rsv"].forEach(id=>bindClick(id,addRevc));bindClick("usv",addUsr);bindClick("riskSave",addRisk);bindClick("riskPrint",printRiskRegister);bindClick("riskDownload",downloadRiskExcel);bindClick("swotSave",addSwot);bindClick("swotPrint",printSwotRegister);bindClick("swotDownload",downloadSwotExcel);
+["dadd","dsv"].forEach(id=>bindClick(id,addDoc));bindClick("dmaster",exportMasterList);["odadd","odsv"].forEach(id=>bindClick(id,addOrgDoc));bindClick("odImportBtn",()=>{$("#odImportFile").value="";$("#odImportFile").click()});["eadd","esv"].forEach(id=>bindClick(id,addEq));["nadd","nsv"].forEach(id=>bindClick(id,addNc));bindClick("naSave",addNcAudit);["aadd","asv"].forEach(id=>bindClick(id,addAud));["radd","rsv"].forEach(id=>bindClick(id,addRevc));bindClick("usv",addUsr);bindClick("riskSave",addRisk);bindClick("riskPrint",printRiskRegister);bindClick("riskDownload",downloadRiskExcel);bindClick("swotSave",addSwot);bindClick("swotPrint",printSwotRegister);bindClick("swotDownload",downloadSwotExcel);bindClick("satSave",saveSat);bindClick("satClear",()=>{resetSatForm();sync("Nouveau questionnaire pret")});
 $("#riskTab").addEventListener("click",e=>{const edit=e.target.closest("[data-risk-edit]"),del=e.target.closest("[data-risk-del]");if(edit)editRisk(edit.dataset.riskEdit);if(del)deleteRisk(del.dataset.riskDel)});
 $("#swotTab").addEventListener("click",e=>{const edit=e.target.closest("[data-swot-edit]"),del=e.target.closest("[data-swot-del]");if(edit)editSwot(edit.dataset.swotEdit);if(del)deleteSwot(del.dataset.swotDel)});
+$("#satTab").addEventListener("click",e=>{const del=e.target.closest("[data-sat-del]");if(del)deleteSat(del.dataset.satDel)});
 $("#ncAuditGroups").addEventListener("click",e=>{const ap=e.target.closest("[data-na-print]"),ad=e.target.closest("[data-na-download]"),lp=e.target.closest("[data-nalist-print]"),ld=e.target.closest("[data-nalist-download]");if(ap)handleNcAuditExport(ap.dataset.naPrint,"print",false);if(ad)handleNcAuditExport(ad.dataset.naDownload,"download",false);if(lp)handleNcAuditExport(lp.dataset.nalistPrint,"print",true);if(ld)handleNcAuditExport(ld.dataset.nalistDownload,"download",true)});
 bindClick("ncClosedPrint",()=>handleNcClosedExport("print"));bindClick("ncClosedDownload",()=>handleNcClosedExport("download"));
 ["omod","omodAcc","omodSuivi"].forEach(id=>bindClick(id,modifyOrg));["osv","osvAcc","osvSuivi"].forEach(id=>bindClick(id,()=>saveOrg()));bindClick("orgPrint",printOrgSummary);bindClick("diagReset",resetDiag);bindClick("diagExport",exportDiag);
