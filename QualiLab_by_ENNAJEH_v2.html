@@ -1077,34 +1077,109 @@ th {
 }
 .swot-board {
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:14px;
+  grid-template-columns:110px repeat(2,minmax(0,1fr));
+  grid-template-rows:auto repeat(2,minmax(230px,auto));
+  gap:8px;
+  align-items:stretch;
+}
+.swot-axis-top,.swot-axis-side,.swot-box {
+  border:1px solid #c7ceda;
+  box-shadow:0 8px 18px rgba(35,47,72,.10);
+}
+.swot-axis-top {
+  border-radius:14px;
+  padding:12px;
+  text-align:center;
+  font-weight:900;
+  color:#465160;
+  font-size:22px;
+}
+.swot-axis-top span {
+  display:block;
+  font-size:14px;
+  font-weight:800;
+  margin-top:4px;
+}
+.swot-positive {
+  background:#d9f5b8;
+}
+.swot-negative {
+  background:#ff858d;
+}
+.swot-axis-side {
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:14px;
+  padding:12px 8px;
+  color:#41545a;
+  font-weight:900;
+  writing-mode:vertical-rl;
+  transform:rotate(180deg);
+  text-align:center;
+  background:#f8f1b5;
+  font-size:20px;
+}
+.swot-axis-side span {
+  font-size:13px;
+  font-weight:800;
+  margin-top:8px;
+}
+.swot-axis-external {
+  background:#d6e4f6;
 }
 .swot-box {
-  border:1px solid #dce5f4;
-  border-left:7px solid #0f766e;
-  border-radius:18px;
-  background:#fff;
-  padding:14px;
-  min-height:160px;
+  position:relative;
+  overflow:hidden;
+  border-radius:16px;
+  padding:18px;
+  min-height:230px;
+}
+.swot-box::before {
+  content:attr(data-letter);
+  position:absolute;
+  inset:18px 18px auto auto;
+  font-size:150px;
+  line-height:.8;
+  font-weight:900;
+  color:rgba(255,255,255,.36);
+  text-shadow:0 2px 0 rgba(0,0,0,.10);
+  pointer-events:none;
 }
 .swot-box h3 {
-  margin:0 0 10px;
+  position:relative;
+  margin:0 0 12px;
+  color:#4d575f;
+  font-size:28px;
+  line-height:1.1;
+}
+.swot-box h3 span {
+  display:block;
+  color:#008b8b;
+  font-size:20px;
+  margin-top:6px;
+  text-shadow:0 8px 12px rgba(0,0,0,.18);
+}
+.swot-box .list {
+  position:relative;
+  z-index:1;
 }
 .swot-box .it {
   margin-bottom:8px;
+  background:rgba(255,255,255,.70);
+  border-color:rgba(255,255,255,.58);
 }
 .swot-forces {
-  border-left-color:#169b62;
+  background:#fff8b9;
 }
 .swot-faiblesses {
-  border-left-color:#ef8f1a;
+  background:#ff9b33;
 }
 .swot-opportunites {
-  border-left-color:#2f80ed;
+  background:#d7e6f8;
 }
 .swot-menaces {
-  border-left-color:#e5484d;
+  background:#cdb0c8;
 }
 .swot-register {
   min-width:1180px;
@@ -1866,7 +1941,13 @@ th {
     grid-template-columns:repeat(3,minmax(0,1fr))
   }
   .swot-board {
-    grid-template-columns:1fr
+    grid-template-columns:1fr;
+    grid-template-rows:auto
+  }
+  .swot-axis-side {
+    writing-mode:horizontal-tb;
+    transform:none;
+    min-height:64px
   }
 }
 @media(max-width:760px) {
@@ -2986,10 +3067,15 @@ th {
         </div>
       </div>
       <div class="swot-board">
-        <div class="swot-box swot-forces"><h3>Forces</h3><div id="swotForces" class="list"></div></div>
-        <div class="swot-box swot-faiblesses"><h3>Faiblesses</h3><div id="swotFaiblesses" class="list"></div></div>
-        <div class="swot-box swot-opportunites"><h3>Opportunites</h3><div id="swotOpportunites" class="list"></div></div>
-        <div class="swot-box swot-menaces"><h3>Menaces</h3><div id="swotMenaces" class="list"></div></div>
+        <div></div>
+        <div class="swot-axis-top swot-positive">Positif<span>pour atteindre l'objectif</span></div>
+        <div class="swot-axis-top swot-negative">Negatif<span>pour atteindre l'objectif</span></div>
+        <div class="swot-axis-side">Origine interne<span>organisationnelle</span></div>
+        <div class="swot-box swot-forces" data-letter="S"><h3>Forces<span>Strengths</span></h3><div id="swotForces" class="list"></div></div>
+        <div class="swot-box swot-faiblesses" data-letter="W"><h3>Faiblesses<span>Weaknesses</span></h3><div id="swotFaiblesses" class="list"></div></div>
+        <div class="swot-axis-side swot-axis-external">Origine externe<span>environnement</span></div>
+        <div class="swot-box swot-opportunites" data-letter="O"><h3>Opportunites<span>Opportunities</span></h3><div id="swotOpportunites" class="list"></div></div>
+        <div class="swot-box swot-menaces" data-letter="T"><h3>Menaces<span>Threats</span></h3><div id="swotMenaces" class="list"></div></div>
       </div>
       <div class="card">
         <div class="risk-titlebar">
