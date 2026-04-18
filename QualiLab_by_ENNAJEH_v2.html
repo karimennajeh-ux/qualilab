@@ -1859,19 +1859,28 @@ th {
   gap:14px;
   padding:18px 16px;
   border-radius:26px;
-  color:#fff;
-  box-shadow:0 18px 42px rgba(39,63,104,.18);
+  color:#17446d;
+  background:
+    radial-gradient(circle at 24px 28px,rgba(36,92,204,.18) 0 10px,transparent 11px),
+    radial-gradient(circle at 86% 12%,rgba(255,255,255,.58) 0 42px,transparent 43px),
+    linear-gradient(180deg,#dff3ff,#b9e2ff 55%,#96cff7);
+  box-shadow:0 18px 42px rgba(39,63,104,.16);
   overflow:hidden
 }
 .module-rail:before {
-  content:"";
+  content:"✦";
   position:absolute;
-  right:-55px;
-  bottom:-65px;
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  background:rgba(255,255,255,.14);
+  right:18px;
+  bottom:16px;
+  width:84px;
+  height:84px;
+  display:grid;
+  place-items:center;
+  border-radius:28px;
+  background:rgba(255,255,255,.36);
+  color:rgba(36,92,204,.34);
+  font-size:54px;
+  font-weight:900;
   pointer-events:none
 }
 .module-rail>* {
@@ -1899,7 +1908,7 @@ th {
 .module-rail-head span {
   display:block;
   margin-top:6px;
-  color:rgba(255,255,255,.84);
+  color:#3e6f9e;
   font-size:12px;
   line-height:1.45
 }
@@ -1910,8 +1919,8 @@ th {
 .module-org-card {
   padding:12px 13px;
   border-radius:18px;
-  background:rgba(255,255,255,.16);
-  border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.52);
+  border:1px solid rgba(255,255,255,.66);
   backdrop-filter:blur(6px)
 }
 .module-org-card strong {
@@ -1922,7 +1931,7 @@ th {
 }
 .module-org-card p {
   margin:5px 0 0;
-  color:rgba(255,255,255,.9);
+  color:#285c89;
   font-size:12px;
   line-height:1.45
 }
@@ -1930,48 +1939,6 @@ th {
   display:grid;
   gap:16px;
   min-width:0
-}
-.module-db .module-rail {
-  background:linear-gradient(180deg,#a84ccc,#7b40c9)
-}
-.module-docs .module-rail {
-  background:linear-gradient(180deg,#ffb03a,#ff8b12)
-}
-.module-docorg .module-rail {
-  background:linear-gradient(180deg,#f56f92,#eb4f79)
-}
-.module-eq .module-rail {
-  background:linear-gradient(180deg,#8aca48,#66ad22)
-}
-.module-nc .module-rail {
-  background:linear-gradient(180deg,#ffb03a,#ff8b12)
-}
-.module-aud .module-rail {
-  background:linear-gradient(180deg,#f56e75,#eb4e57)
-}
-.module-revc .module-rail {
-  background:linear-gradient(180deg,#5f8dff,#3d69e3)
-}
-.module-usr .module-rail {
-  background:linear-gradient(180deg,#b26cff,#8a45e7)
-}
-.module-set .module-rail {
-  background:linear-gradient(180deg,#adb8ea,#909ed7)
-}
-.module-diag .module-rail {
-  background:linear-gradient(180deg,#5b9cff,#2f67d8)
-}
-.module-repo .module-rail {
-  background:linear-gradient(180deg,#4f7df3,#2f67d8)
-}
-.module-risk .module-rail {
-  background:linear-gradient(180deg,#607d8b,#455a64)
-}
-.module-swot .module-rail {
-  background:linear-gradient(180deg,#0f766e,#115e59)
-}
-.module-sat .module-rail {
-  background:linear-gradient(180deg,#14b8a6,#0f766e)
 }
 @media(max-width:1080px) {
   .module-shell {
