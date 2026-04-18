@@ -287,7 +287,7 @@ button {
   background:linear-gradient(180deg,#2f67d8,#8bb0ff)
 }
 .col:nth-child(5) i {
-  background:linear-gradient(180deg,#f5a524,#ffd479)
+  background:linear-gradient(180deg,#8fd7ff,#dff3ff)
 }
 .col:nth-child(6) i {
   background:linear-gradient(180deg,#20b26b,#84e0ae)
@@ -332,8 +332,8 @@ th {
   color:#20b26b
 }
 .wa {
-  background:#fff4df;
-  color:#f5a524
+  background:#e8f7ff;
+  color:#2f8ed8
 }
 .er {
   background:#ffeaea;
@@ -350,12 +350,14 @@ th {
   font-weight:700;
   font-size:13px;
   line-height:1.2;
-  background:#ff5600;
-  color:#fff;
-  box-shadow:0 10px 20px rgba(47,103,216,.16)
+  background:linear-gradient(135deg,#b9f6d3,#55d98c);
+  color:#0f5132;
+  border:1px solid rgba(85,217,140,.72);
+  box-shadow:0 0 0 1px rgba(255,255,255,.52) inset,0 12px 24px rgba(32,178,107,.22),0 0 18px rgba(132,224,174,.42)
 }
 .btn:hover,.btn2:hover,.btn3:hover,.lbtn:hover {
-  filter:brightness(1.03)
+  filter:brightness(1.04);
+  box-shadow:0 0 0 1px rgba(255,255,255,.64) inset,0 14px 28px rgba(32,178,107,.28),0 0 24px rgba(132,224,174,.58)
 }
 .g .btn,.g .btn2,.g .btn3,.g4 .btn,.g4 .btn2,.g4 .btn3 {
   width:auto;
@@ -509,7 +511,7 @@ th {
   background:linear-gradient(135deg,#42c98a,#20b26b)
 }
 .k-orange {
-  background:linear-gradient(135deg,#ffbf5d,#f5a524)
+  background:linear-gradient(135deg,#8fd7ff,#48aeea)
 }
 .k-red {
   background:linear-gradient(135deg,#ff8c74,#f25f5c)
@@ -730,7 +732,7 @@ th {
   background:linear-gradient(135deg,#42c98a,#20b26b)
 }
 .k-orange {
-  background:linear-gradient(135deg,#ffbf5d,#f5a524)
+  background:linear-gradient(135deg,#8fd7ff,#48aeea)
 }
 .k-red {
   background:linear-gradient(135deg,#ff8c74,#f25f5c)
@@ -1546,8 +1548,10 @@ th {
   border-radius:14px;
   font-size:16px;
   /* background:linear-gradient(135deg,#2f67d8,#3f8cff); */
-  background-color: #ff5600;
-  box-shadow:0 14px 24px rgba(47,103,216,.22)
+  background:linear-gradient(135deg,#b9f6d3,#55d98c);
+  border:1px solid rgba(85,217,140,.72);
+  color:#0f5132;
+  box-shadow:0 0 0 1px rgba(255,255,255,.55) inset,0 14px 24px rgba(32,178,107,.24),0 0 24px rgba(132,224,174,.48)
 }
 #auth .auth-help {
   margin-top:14px;
@@ -1748,7 +1752,7 @@ th {
   border-color:rgba(171,96,224,.18)
 }
 .hub-orange {
-  border-color:rgba(255,181,72,.18)
+  border-color:rgba(143,215,255,.28)
 }
 .hub-green {
   border-color:rgba(153,207,82,.18)
@@ -2422,11 +2426,11 @@ th {
   height:60px;
   border:1px solid rgba(33,72,130,.12);
   border-radius:50px;
-  background:#ff5600;
-  color:#fff;
+  background:linear-gradient(135deg,#b9f6d3,#55d98c);
+  color:#0f5132;
   display:grid;
   place-items:center;
-  box-shadow:0 10px 24px rgba(34,55,99,.1);
+  box-shadow:0 0 0 1px rgba(255,255,255,.55) inset,0 10px 24px rgba(32,178,107,.2),0 0 18px rgba(132,224,174,.38);
   cursor:pointer;
 }
 .hub-action-icon svg {
@@ -2493,14 +2497,14 @@ th {
   height:75px;
   position:relative;
   z-index:1;
-  stroke:#ff5600;
+  stroke:#8fd7ff;
   fill:none;
   stroke-width:2.5;
   stroke-linecap:round;
   stroke-linejoin:round;
 }
 /* .hub-purple .hub-img {background:linear-gradient(135deg,#a94fd8,#7535b5)}
-.hub-orange .hub-img {background:linear-gradient(135deg,#ffb94c,#f07c00)}
+.hub-orange .hub-img {background:linear-gradient(135deg,#8fd7ff,#48aeea)}
 .hub-pink .hub-img {background:linear-gradient(135deg,#f56f92,#df3f70)}
 .hub-blue .hub-img {background:linear-gradient(135deg,#57a7f6,#2f67d8)}
 .hub-green .hub-img {background:linear-gradient(135deg,#8bcf4d,#4f9c22)}
@@ -2627,7 +2631,7 @@ th {
           <p>Solution de gestion qualite des laboratoires</p>
           <div class="f"><label>Adresse e-mail</label><input id="lemail" type="email" value="karimennajeh@gmail.com"></div>
           <div class="f mt12"><label>Mot de passe</label><div class="password-wrap"><input id="lpwd" type="password" value="09318872karim@"><button id="togglePwd" class="password-toggle" type="button" aria-label="Afficher le mot de passe" aria-pressed="false">Afficher</button></div></div>
-          <button id="lbtn" class="btn" style="background:#ff5600; border:1px solid #d84800; font-weight: 500; font-family: outfit;">Se connecter</button>
+          <button id="lbtn" class="btn" style="font-weight: 500; font-family: outfit;">Se connecter</button>
           <div class="auth-help">Mot de passe oublie ?</div>
           <p id="lmsg" class="mut auth-status">Connexion locale prete.</p>
           <div class="auth-foot">&copy; 2026 QUALI - by ENNAJEH | Systeme de management de la qualite</div>
