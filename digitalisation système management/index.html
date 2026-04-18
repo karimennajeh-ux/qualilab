@@ -36,6 +36,15 @@
     </aside>
 
     <main class="content">
+      <div class="hub-app-head">
+        <img src="../image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="../assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="../assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <header class="hero">
         <div>
           <p class="eyebrow">Digitalisation du systeme de management qualite</p>
@@ -199,5 +208,13 @@
   </div>
 
   <script src="./app.js"></script>
+  <script>
+  (function(){
+    var back = document.getElementById('backBtn');
+    var next = document.getElementById('nextBtn');
+    if(back) back.addEventListener('click', function(e){ e.preventDefault(); window.history.back(); });
+    if(next) next.addEventListener('click', function(e){ e.preventDefault(); window.history.forward(); });
+  })();
+  </script>
 </body>
 </html>

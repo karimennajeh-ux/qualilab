@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>QualiLab by ENNAJEH v2</title>
+<title>QUALI by ENNAJEH v2</title>
 <style>
 /* Utility spacing */
 .mt0{margin-top:0}
@@ -30,7 +30,8 @@ body {
   margin:0;
   font:14px "Segoe UI",Arial,sans-serif;
   background:#f4f7fb;
-  color:#25324b
+  color:#25324b;
+  font-family: "Outfit", sans-serif;
 }
 button,input,select,textarea {
   font:inherit
@@ -346,7 +347,7 @@ th {
   font-weight:700;
   font-size:13px;
   line-height:1.2;
-  background:#2f67d8;
+  background:#ff5600;
   color:#fff;
   box-shadow:0 10px 20px rgba(47,103,216,.16)
 }
@@ -385,17 +386,19 @@ th {
   justify-content:center
 }
 .auth {
+  width: 100%;
   min-height:100vh;
-  display:grid;
-  place-items:center;
+  display:flex;
+  align-items: center;
+  justify-content: center;
   background:linear-gradient(145deg,#edf3ff 0%,#ffffff 60%);
   padding:24px;
-  grid-template-columns:300px 470px
+
 }
 .authleft,.authright {
   background:#fff;
   border:1px solid #e7edf6;
-  box-shadow:0 14px 36px rgba(39,63,104,.08)
+  box-shadow:0 14px 36px rgba(39,63,104,.08);
 }
 .authleft {
   padding:28px 24px;
@@ -431,8 +434,12 @@ th {
   width:min(430px,100%);
   padding:10px 6px;
   border:0;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
   box-shadow:none;
-  background:transparent
+  background:transparent;
+  text-align:start;
 }
 .authbox h2 {
   margin:0 0 6px;
@@ -515,7 +522,6 @@ th {
   min-height:100vh;
   display:grid;
   place-items:center;
-  padding:30px;
   background:radial-gradient(circle at 0% 50%,rgba(132,176,255,.18),transparent 26%),linear-gradient(135deg,#eef3ff 0%,#ffffff 44%,#edf4ff 100%)
 }
 .authshell {
@@ -734,12 +740,12 @@ th {
   color:#fff
 }
 .back-nav {
-  position:fixed;
   left:18px;
   top:18px;
   z-index:45;
   display:flex;
-  gap:10px
+  gap:10px;
+  margin-left:18px;
 }
 .back-nav.in-rail {
   position:relative;
@@ -759,20 +765,17 @@ th {
   justify-self:end
 }
 .back-btn {
-  width:48px;
-  height:48px;
-  border:1px solid #d7e4ff;
-  border-radius:16px;
-  background:rgba(255,255,255,.94);
-  color:#2f67d8;
-  box-shadow:0 10px 24px rgba(39,63,104,.14);
-  display:grid;
-  place-items:center;
+  width: 50px;
+  height:50px;
+  display:flex;
+  justify-content: center;
+  align-items: center;
   font-size:22px;
-  font-weight:800
-}
-.back-btn img {
-  display:none
+  font-weight:800;
+  background:none;
+  border: none;
+  outline: none;
+  position:relative;
 }
 .back-btn.off {
   opacity:.45;
@@ -1404,7 +1407,8 @@ th {
   border-radius:30px;
   overflow:hidden;
   background:linear-gradient(180deg,rgba(255,255,255,.99),rgba(247,250,255,.98));
-  box-shadow:0 28px 68px rgba(56,86,149,.18)
+  box-shadow:0 28px 68px rgba(56,86,149,.18);
+  width:100%;
 }
 #auth .authshell:before {
   content:"";
@@ -1427,21 +1431,6 @@ th {
   background:radial-gradient(circle at 40% 30%,rgba(102,155,255,.22),transparent 38%),linear-gradient(180deg,rgba(145,186,255,.16),rgba(255,255,255,0));
   border-radius:50%;
   pointer-events:none
-}
-#auth .auth-topdots {
-  position:absolute;
-  top:16px;
-  left:20px;
-  display:flex;
-  gap:7px;
-  z-index:3
-}
-#auth .auth-topdots i {
-  width:8px;
-  height:8px;
-  border-radius:999px;
-  background:#d7d9e6;
-  display:block
 }
 #auth .auth-ico,#auth .auth-wave,#auth .authleft {
   display:none
@@ -1474,14 +1463,13 @@ th {
   background:transparent!important;
   border:0!important;
   box-shadow:none!important;
-  text-align:center;
+  text-align:start;
   animation:none!important;
   transform:none!important
 }
 #auth .brand-logo-auth {
   display:block;
   width:min(172px,100%);
-  margin:0 auto 20px
 }
 #auth .auth-kicker {
   display:block;
@@ -1554,7 +1542,8 @@ th {
   height:50px;
   border-radius:14px;
   font-size:16px;
-  background:linear-gradient(135deg,#2f67d8,#3f8cff);
+  /* background:linear-gradient(135deg,#2f67d8,#3f8cff); */
+  background-color: #ff5600;
   box-shadow:0 14px 24px rgba(47,103,216,.22)
 }
 #auth .auth-help {
@@ -1613,10 +1602,10 @@ th {
   }
 }
 .hub-page {
+  width: 100%;
   position:relative;
   overflow:hidden;
   min-height:100vh;
-  padding:5% 30px;
   background:radial-gradient(circle at 50% 46%,rgba(255,255,255,.92) 0,rgba(248,244,255,.96) 33%,rgba(236,231,252,.98) 72%,rgba(233,228,251,.98) 100%);
   border:0;
   border-radius:0;
@@ -1697,13 +1686,15 @@ th {
 }
 .hub-node {
   position:relative;
-  width:10%;
+  /* width:350px;
+  height: 350px; */
   border-radius:24px;
   display:flex;
-  flex-direction:row;
+  justify-content:center;
+  align-items: center;
   text-align:center;
   color:#25324b;
-  padding:22px 20px;
+  /* padding:22px 20px; */
   border:1px solid rgba(214,224,245,.9);
   background:#fff;
   box-shadow:0 18px 36px rgba(34,55,99,.08);
@@ -1711,17 +1702,28 @@ th {
   z-index:1;
   transition:transform .25s ease,box-shadow .25s ease;
   left:auto;
-  top:auto
+  top:auto;
+  transition:0.5s;
 }
 .hub-node[class*="orbit-"] {
   left:auto;
   top:auto
 }
+/* .hub-node:hover {
+  transform:translateY(-4px);
+  box-shadow:0 22px 42px rgba(34,55,99,.14)
+} */
 .hub-node b {
   display:block;
+  width: 80%;
+  position: absolute;
+  left: 50%;
+  top: 75%;
+  transform: translateX(-50%);
   font-size:16px;
-  line-height:1.4;
-  letter-spacing:.01em
+  line-height:1.1;
+  letter-spacing:.01em;
+  opacity:0.5;
 }
 .hub-node span {
   display:block;
@@ -1995,6 +1997,10 @@ th {
   }
 }
 @media(max-width:760px) {
+  .module-page-title {
+    font-size:17px;
+    padding:0 8px;
+  }
   .module-rail {
     grid-template-columns:1fr
   }
@@ -2382,7 +2388,6 @@ th {
 
 .hub-node {
   position:absolute;
-  margin: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2426,16 +2431,15 @@ th {
   transform:none !important;
 }
 .hub-page {
-  padding:42px 34px !important;
+  padding:0px 0!important;
   align-items:flex-start !important;
   align-content:flex-start !important;
-  gap:18px !important;
+  gap:10px !important;
 }
 .hub-page:before,.hub-page:after {
   opacity:.35;
 }
 .hub-top-actions {
-  position:absolute;
   top:18px;
   right:22px;
   display:flex;
@@ -2444,38 +2448,38 @@ th {
   z-index:4;
 }
 .hub-action-icon {
-  width:36px;
-  height:36px;
+  width:60px;
+  height:60px;
   border:1px solid rgba(33,72,130,.12);
-  border-radius:14px;
-  background:rgba(255,255,255,.9);
-  color:#2f67d8;
+  border-radius:50px;
+  background:#ff5600;
+  color:#fff;
   display:grid;
   place-items:center;
   box-shadow:0 10px 24px rgba(34,55,99,.1);
   cursor:pointer;
 }
 .hub-action-icon svg {
-  width:18px;
-  height:18px;
+  width:30px;
+  height:30px;
   stroke:currentColor;
   fill:none;
   stroke-width:2.4;
   stroke-linecap:round;
   stroke-linejoin:round;
 }
-.hub-action-icon.profile svg {
-  width:20px;
-  height:20px;
-}
+/* .hub-action-icon.profile svg {
+  width:30px;
+  height:30px;
+} */
 .hub-action-icon:hover {
   transform:translateY(-2px);
   box-shadow:0 14px 28px rgba(34,55,99,.16);
 }
 .hub-node {
-  min-width:150px !important;
-  height:150px !important;
-  /* min-height:300px !important; */
+  min-width:200px !important;
+  height:200px !important;
+  min-height:200px !important;
   flex-direction:column !important;
   gap:8px !important;
   justify-content:center !important;
@@ -2506,30 +2510,7 @@ th {
   color:#fff !important;
   font-size:18px !important;
   font-weight:900 !important;
-  box-shadow:0 12px 24px rgba(31,49,84,.16);
   position:relative;
-  overflow:hidden;
-}
-.hub-img:before {
-  content:"";
-  position:absolute;
-  inset:10px 14px auto;
-  height:12px;
-  border-radius:8px;
-  background:rgba(255,255,255,.34);
-}
-.hub-img:after {
-  content:"";
-  position:absolute;
-  right:11px;
-  bottom:10px;
-  width:18px;
-  height:18px;
-  border-radius:6px;
-  background:rgba(255,255,255,.28);
-}
-.hub-img {
-  isolation:isolate;
 }
 .hub-img {
   text-shadow:0 1px 2px rgba(0,0,0,.18);
@@ -2538,24 +2519,24 @@ th {
   line-height:1;
 }
 .hub-img svg {
-  width:34px;
-  height:34px;
+  width:75px;
+  height:75px;
   position:relative;
   z-index:1;
-  stroke:#fff;
+  stroke:#ff5600;
   fill:none;
   stroke-width:2.5;
   stroke-linecap:round;
   stroke-linejoin:round;
 }
-.hub-purple .hub-img {background:linear-gradient(135deg,#a94fd8,#7535b5)}
+/* .hub-purple .hub-img {background:linear-gradient(135deg,#a94fd8,#7535b5)}
 .hub-orange .hub-img {background:linear-gradient(135deg,#ffb94c,#f07c00)}
 .hub-pink .hub-img {background:linear-gradient(135deg,#f56f92,#df3f70)}
 .hub-blue .hub-img {background:linear-gradient(135deg,#57a7f6,#2f67d8)}
 .hub-green .hub-img {background:linear-gradient(135deg,#8bcf4d,#4f9c22)}
 .hub-red .hub-img {background:linear-gradient(135deg,#f46b73,#d73847)}
 .hub-violet .hub-img {background:linear-gradient(135deg,#af6cf0,#7a43ce)}
-.hub-slate .hub-img {background:linear-gradient(135deg,#aeb8d8,#7d89af)}
+.hub-slate .hub-img {background:linear-gradient(135deg,#aeb8d8,#7d89af)} */
 .hub-summary {
   display:grid !important;
   grid-template-columns:repeat(3,minmax(0,1fr));
@@ -2565,23 +2546,36 @@ th {
 }
 .hub-app-head {
   width:100%;
-  margin:46px auto 10px;
   display:flex;
   align-items:center;
-  justify-content:center;
+  justify-content:space-between;
   gap:18px;
-  padding:18px 22px;
+  padding:18px 3.5%;
   border:1px solid rgba(214,224,245,.9);
-  border-radius:28px;
   background:linear-gradient(180deg,#fff,#fbfcff);
   box-shadow:0 18px 36px rgba(34,55,99,.08);
   position:relative;
   z-index:2;
+  margin-bottom: 2.5%;
 }
-.hub-app-head img {
+.module-page-title {
+  flex:1;
+  text-align:center;
+  color:#25324b;
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:.2px;
+  line-height:1.2;
+  padding:0 18px;
+}
+.logo-header {
   width:150px;
   height:auto;
   display:block;
+  flex:0 0 auto;
+}
+.hub-app-head .hub-top-actions {
+  flex:0 0 auto;
 }
 .hub-app-head b {
   display:block;
@@ -2601,35 +2595,41 @@ th {
   margin-top:4px;
   font-weight:700;
 }
+.arrow {
+  transition: 0.3s;
+  width: 100%;
+  height:auto;
+}
+.arrow:hover {
+  transform: scale(1.15);
+}
 </style>
 </head>
 <body>
 <div id="auth" class="auth">
   <div class="authshell">
-    <div class="auth-topdots"><i></i><i></i><i></i></div>
     <div class="auth-ico left1">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã¢â‚¬Â¹Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â°</div>
     <div class="auth-ico left2">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã…Â¾Ãƒâ€šÃ‚Â¢</div>
     <div class="auth-ico right2">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â°ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹</div>
     <div class="auth-ico right1">ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£</div>
     <div class="authleft">
       <div class="authpanel">
-        <img src="assets/quali-logo.png" alt="QualiLab" class="brand-logo brand-logo-auth">
+        <img src="assets/quali-logo.png" alt="QUALI" class="brand-logo brand-logo-auth">
         <button class="btn auth-side-btn" type="button" data-login="1">Se connecter</button>
       </div>
     </div>
     <div class="authright">
       <div class="authright-inner">
         <div class="authbox">
-          <img src="assets/quali-logo.png" alt="QualiLab" class="brand-logo brand-logo-auth">
-          <p class="mut auth-kicker">Connexion locale</p>
-          <h2>Bienvenue sur QualiLab</h2>
+          <img src="image/logo/SVG/Asset 6.svg" alt="QUALI" class="brand-logo brand-logo-auth" style="width:80px; height:auto; margin-bottom:30px;">
+          <h2 style="width: 70%;">Bienvenue sur QUALI</h2>
           <p>Solution de gestion qualite des laboratoires</p>
           <div class="f"><label>Adresse e-mail</label><input id="lemail" type="email" value="karimennajeh@gmail.com"></div>
           <div class="f mt12"><label>Mot de passe</label><div class="password-wrap"><input id="lpwd" type="password" value="09318872karim@"><button id="togglePwd" class="password-toggle" type="button" aria-label="Afficher le mot de passe" aria-pressed="false">Afficher</button></div></div>
-          <button id="lbtn" class="btn">Se connecter</button>
+          <button id="lbtn" class="btn" style="background:#ff5600; border:1px solid #d84800; font-weight: 500; font-family: outfit;">Se connecter</button>
           <div class="auth-help">Mot de passe oublie ?</div>
           <p id="lmsg" class="mut auth-status">Connexion locale prete.</p>
-          <div class="auth-foot">&copy; 2026 QualiLab - by ENNAJEH | Systeme de management de la qualite</div>
+          <div class="auth-foot">&copy; 2026 QUALI - by ENNAJEH | Systeme de management de la qualite</div>
         </div>
       </div>
     </div>
@@ -2723,13 +2723,9 @@ th {
 </script>
 
 <div id="app" class="app h">
-  <div class="back-nav">
-    <button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente">&#8592;</button>
-    <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante">&#8594;</button>
-  </div>
   <aside class="side">
     <div class="logo">
-      <img src="assets/quali-logo.png" alt="QualiLab" class="brand-logo brand-logo-side">
+      <img src="assets/quali-logo.png" alt="QUALI" class="brand-logo brand-logo-side">
     </div>
     <div class="nav" id="nav">
       <button class="on" data-p="hub"><span class="menu-ico">Q</span><span class="menu-label">Modules</span></button>
@@ -2760,28 +2756,29 @@ th {
 
     <section id="hub" class="row">
       <div class="hub-page">
-          <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
-            <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
-            <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
-            <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
-          </div>
           <div class="hub-app-head">
-            <img src="assets/quali-logo.png" alt="QualiLab">
-            <div><b>QualiLab <small>by ENNAJEH</small></b></div>
-          </div>
-          <button class="hub-node hub-purple orbit-0" data-go="db"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="6" y="10" width="28" height="20" rx="4"></rect><path d="M12 25h4M20 25h8M13 17v4M20 15v6M27 18v3"></path></svg></span><b>Tableau de bord</b><small></small></button>
-          <button class="hub-node hub-orange orbit-1" data-go="docs"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M11 6h14l5 5v23H11z"></path><path d="M25 6v6h6M16 18h12M16 24h12M16 30h8"></path></svg></span><b>Maitrise documentaire</b><small></small></button>
-          <button class="hub-node hub-pink orbit-2" data-go="docorg"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M7 13h12l3 4h11v15H7z"></path><path d="M12 23h16M12 28h10"></path></svg></span><b>Documentation</b><small></small></button>
-          <button class="hub-node hub-blue orbit-3" data-go="revc"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M10 8h15l5 5v19H10z"></path><path d="M25 8v6h6M15 20h10M15 26h8M27 29l6 6"></path><circle cx="26" cy="27" r="5"></circle></svg></span><b>Revue de contrat</b><small></small></button>
-          <button class="hub-node hub-green orbit-4" data-go="eq"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M14 28l12-12M12 14l5 5M23 23l5 5"></path><path d="M10 30l4 4 5-5-4-4zM25 15l5-5 2 2-5 5z"></path><circle cx="20" cy="20" r="3"></circle></svg></span><b>Gestion des equipements</b><small></small></button>
-          <button class="hub-node hub-orange orbit-5" data-go="nc"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 7l15 26H5z"></path><path d="M20 16v8M20 29h.01"></path></svg></span><b>Non-conformites</b><small></small></button>
-          <button class="hub-node hub-red orbit-6" data-go="aud"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="10" y="8" width="20" height="26" rx="3"></rect><path d="M15 16h10M15 22h10M15 28h6M28 25l3 3 6-7"></path></svg></span><b>Audits</b><small></small></button>
-          <button class="hub-node hub-blue orbit-7" data-go="diag"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 30h24M12 30V18M20 30V10M28 30V14"></path><path d="M12 18l8-8 8 4"></path></svg></span><b>Diagnostic ISO</b><small></small></button>
-          <button class="hub-node hub-violet orbit-8" data-go="usr"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="16" cy="15" r="6"></circle><path d="M6 32c2-6 7-9 10-9s8 3 10 9"></path><circle cx="28" cy="17" r="4"></circle><path d="M25 27c3 .5 6 2 8 5"></path></svg></span><b>Utilisateurs</b><small></small></button>
-          <button class="hub-node hub-slate orbit-9" data-go="set"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="5"></circle><path d="M20 7v5M20 28v5M7 20h5M28 20h5M10.8 10.8l3.6 3.6M25.6 25.6l3.6 3.6M29.2 10.8l-3.6 3.6M14.4 25.6l-3.6 3.6"></path></svg></span><b>Parametres</b><small></small></button>
-          <button class="hub-node hub-red orbit-10" data-go="risk"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M20 5l13 5v9c0 8-5 13-13 16C12 32 7 27 7 19v-9z"></path><path d="M14 25l6-10 6 10M17 21h6"></path></svg></span><b>Analyse de risque</b><small></small></button>
-          <button class="hub-node hub-green orbit-11" data-go="swot"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 30V10M8 30h24"></path><path d="M14 25l5-7 5 4 7-11"></path><circle cx="19" cy="18" r="2"></circle><circle cx="24" cy="22" r="2"></circle><circle cx="31" cy="11" r="2"></circle></svg></span><b>Analyse SWOT</b><small></small></button>
-          <button class="hub-node hub-blue orbit-12" data-go="sat"><span class="hub-img"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M8 9h24v22H8z"></path><path d="M14 17h12M14 23h8"></path><path d="M28 24l3 3 6-8"></path></svg></span><b>Satisfaction client</b><small></small></button>
+            <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+            <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+              <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+              <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+              <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+              <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+            </div>
+        </div>
+
+          <button class="hub-node hub-purple orbit-0" data-go="db"><span class="hub-img"><img src="assets/charte-de-croissance.png" alt=""></span><b>Tableau de bord</b><small></small></button>
+          <button class="hub-node hub-orange orbit-1" data-go="docs"><span class="hub-img"><img src="assets/open-folder.png" alt=""></span><b>Maitrise documentaire</b><small></small></button>
+          <button class="hub-node hub-pink orbit-2" data-go="docorg"><span class="hub-img"><img src="assets/google-docs.png" alt=""></span><b>Documentation</b><small></small></button>
+          <button class="hub-node hub-blue orbit-3" data-go="revc"><span class="hub-img"><img src="assets/contract.png" alt=""></span><b>Revue de contrat</b><small></small></button>
+          <button class="hub-node hub-green orbit-4" data-go="eq"><span class="hub-img"><img src="assets/maintenance.png" alt=""></span><b>Gestion des equipements</b><small></small></button>
+          <button class="hub-node hub-orange orbit-5" data-go="nc"><span class="hub-img"><img src="assets/warning.png" alt=""></span><b>Non-conformites</b><small></small></button>
+          <button class="hub-node hub-red orbit-6" data-go="aud"><span class="hub-img"><img src="assets/audit.png" alt=""></span><b>Audits</b><small></small></button>
+          <button class="hub-node hub-blue orbit-7" data-go="diag"><span class="hub-img"><img src="assets/iso.png" alt=""></span><b>Diagnostic ISO</b><small></small></button>
+          <button class="hub-node hub-violet orbit-8" data-go="usr"><span class="hub-img"><img src="assets/group.png" alt=""></span><b>Utilisateurs</b><small></small></button>
+          <button class="hub-node hub-slate orbit-9" data-go="set"><span class="hub-img"><img src="assets/setting.png" alt=""></span><b>Parametres</b><small></small></button>
+          <button class="hub-node hub-red orbit-10" data-go="risk"><span class="hub-img"><img src="assets/risk.png" alt=""></span><b>Analyse de risque</b><small></small></button>
+          <button class="hub-node hub-green orbit-11" data-go="swot"><span class="hub-img"><img src="assets/swot-analysis.png" alt=""></span><b>Analyse SWOT</b><small></small></button>
+          <button class="hub-node hub-blue orbit-12" data-go="sat"><span class="hub-img"><img src="assets/rating.png" alt=""></span><b>Satisfaction client</b><small></small></button>
       </div>
       <div class="hub-summary">
         <div class="mini"><strong>Acces rapide</strong><span class="bl">13 modules</span></div>
@@ -2791,6 +2788,15 @@ th {
     </section>
 
     <section id="db" class="row h">
+      <div class="hub-app-head">
+        <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <div class="row s4" id="stats"></div>
       <div class="row s2">
         <div class="card">
@@ -2818,6 +2824,15 @@ th {
     </section>
 
     <section id="docs" class="row h">
+      <div class="hub-app-head">
+        <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <div class="bar card" style="grid-template-columns:1.3fr auto auto auto auto">
         <input id="ds" placeholder="Rechercher document">
         <select id="dpf"><option value="all">Tous les processus</option><option>Processus pilotage</option><option>Processus operationnel</option><option>Processus support</option></select>
@@ -2832,6 +2847,15 @@ th {
     </section>
 
     <section id="docorg" class="row h">
+      <div class="hub-app-head">
+        <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <div class="card">
         <h3>Documents de tete de la pyramide</h3>
         <div id="odTopDocs" class="s2"></div>
@@ -2861,6 +2885,15 @@ th {
     </section>
 
     <section id="eq" class="row h">
+      <div class="hub-app-head">
+        <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <div class="bar card">
         <input id="es" placeholder="Rechercher equipement">
         <select id="ef"><option value="all">Tous</option><option>Valide</option><option>A etalonner</option><option>Hors service</option></select>
@@ -2872,6 +2905,15 @@ th {
     </section>
 
     <section id="nc" class="row h">
+      <div class="hub-app-head">
+        <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <div class="bar card">
         <input id="ns" placeholder="Rechercher NC">
         <select id="nf"><option value="all">Tous</option><option>Ouverte</option><option>En cours</option><option>Cloturee</option></select>
@@ -2912,6 +2954,15 @@ th {
     </section>
 
     <section id="aud" class="row h">
+      <div class="hub-app-head">
+        <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <div class="bar card">
         <input id="as" placeholder="Rechercher audit">
         <select id="af"><option value="all">Tous</option><option>Planifie</option><option>En cours</option><option>Cloture</option></select>
@@ -2923,6 +2974,15 @@ th {
     </section>
 
     <section id="revc" class="row h">
+      <div class="hub-app-head">
+        <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <div class="bar card">
         <input id="rs" placeholder="Rechercher revue de contrat">
         <select id="rf"><option value="all">Tous</option><option>A revoir</option><option>Approuvee</option><option>En attente client</option></select>
@@ -2944,6 +3004,15 @@ th {
     </section>
 
     <section id="usr" class="row h">
+      <div class="hub-app-head">
+        <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <div class="card">
         <h3>Creation d'un nouveau utilisateur</h3>
         <p class="mut mt-neg6">Renseigne le compte puis coche les autorisations d'acces avant l'enregistrement.</p>
@@ -2966,6 +3035,15 @@ th {
     </section>
 
     <section id="set" class="row h">
+      <div class="hub-app-head">
+        <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <div class="card org-window">
         <div class="org-tabs"><button type="button" class="on" data-orgtab="general">GENERAL</button><button type="button" data-orgtab="accreditation">ACCREDITATION</button><button type="button" data-orgtab="suivi">SUIVI L'ACCREDITATION</button></div>
         <div class="org-sheet">
@@ -3023,6 +3101,15 @@ th {
     </section>
 
     <section id="diag" class="row h">
+      <div class="hub-app-head">
+        <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <div class="card">
         <h3>Informations de l'evaluation</h3>
         <div class="diag-meta">
@@ -3057,6 +3144,15 @@ th {
     </section>
 
     <section id="risk" class="row h">
+      <div class="hub-app-head">
+        <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <div class="bar card" style="grid-template-columns:1.2fr auto auto">
         <input id="riskSearch" placeholder="Rechercher risque">
         <select id="riskSheet"><option value="all">Toutes les feuilles</option><option>risques impartialite</option><option>risques d'activite</option></select>
@@ -3095,6 +3191,15 @@ th {
     </section>
 
     <section id="swot" class="row h">
+      <div class="hub-app-head">
+        <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <div class="bar card" style="grid-template-columns:1.2fr auto auto">
         <input id="swotSearch" placeholder="Rechercher dans l'analyse SWOT">
         <select id="swotType"><option value="all">Tous</option><option>Forces</option><option>Faiblesses</option><option>Opportunites</option><option>Menaces</option></select>
@@ -3134,6 +3239,15 @@ th {
     </section>
 
     <section id="sat" class="row h">
+      <div class="hub-app-head">
+        <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <div class="card sat-intro">
         <h3>Enquete de satisfaction client</h3>
         <p class="mut">Cher client, votre avis nous aide a ameliorer nos prestations afin de mieux satisfaire vos exigences. En cas d'absence de retour, le client est considere satisfait a 100%.</p>
@@ -3165,9 +3279,18 @@ th {
     </section>
 
     <section id="repo" class="row h">
+      <div class="hub-app-head">
+        <img src="image/logo/SVG/Asset 4.svg" alt="QUALI" class="logo-header">
+        <div class="hub-top-actions" aria-label="Raccourcis utilisateur">
+          <button class="hub-action-icon" type="button" title="Messages" aria-label="Messages"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v10H8l-4 4z"></path><path d="M8 10h8M8 14h5"></path></svg></button>
+          <button class="hub-action-icon" type="button" title="Notifications" aria-label="Notifications"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 16H6l2-3V9a4 4 0 0 1 8 0v4z"></path><path d="M10 19a2 2 0 0 0 4 0"></path></svg></button>
+          <button class="hub-action-icon profile" type="button" title="Profil" aria-label="Profil"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"></path></svg></button>
+          <div class="back-nav"><button class="back-btn" id="backBtn" title="Page precedente" aria-label="Page precedente"><img src="assets/left arrow.png" alt="left arrow" class="arrow"></button> <button class="back-btn" id="nextBtn" title="Page suivante" aria-label="Page suivante"><img src="assets/right arrow.png" alt="right arrow" class="arrow"></button></div>
+        </div>
+      </div>
       <div class="card">
         <h3>Bibliotheque documentaire locale</h3>
-        <p class="mut">Dossier recommande : <code>D:\stage prjet fin d'etude 2026\cahier de charge d'application\QualiLab_Documents</code></p>
+        <p class="mut">Dossier recommande : <code>D:\stage prjet fin d'etude 2026\cahier de charge d'application\QUALI_Documents</code></p>
         <div class="acts">
           <button class="btn" id="pickDir">Connecter un dossier</button>
           <button class="btn2 btn" id="scanDir">Scanner le dossier</button>
@@ -3214,7 +3337,7 @@ th {
 <input id="repoDirFallback" type="file" webkitdirectory directory multiple class="h">
 
 <script>
-const K="qualilab_app_v2",S="qualilab_session_v2",M={},RK="qualilab_fs_v1";
+const K="QUALI_app_v2",S="QUALI_session_v2",M={},RK="QUALI_fs_v1";
 const REPO_DIRS=[["01_Gestion_documentaire","Maitrise documentaire"],["02_Gestion_des_equipements","Gestion des equipements"],["03_Non_conformites","Non-conformites"],["04_Audits","Audits"],["05_Revue_de_contrat","Revue de contrat"],["06_Utilisateurs","Utilisateurs"],["07_Parametres_organisme","Parametres organisme"],["08_Imports","Imports"],["09_Exports","Exports"],["10_Images","Images"],["11_Archives","Archives"]];
 const DIAG_ITEMS=[
 {id:"d401",chapter:"4",clause:"4.1",title:"Impartialite",q:"Des dispositions existent-elles pour garantir l'impartialite du laboratoire et suivre les risques pouvant l'affecter ?"},
@@ -3266,12 +3389,12 @@ const SAT_QUESTIONS=[
 {group:"Qualite de la prestation",items:[["sat-q11","La qualite technique de prestation","rating"],["sat-q12","La qualification des operateurs","rating"],["sat-q13","La qualite des etalons utilises","rating"],["sat-q14","Le delai de l'emission des certificats / rapport / constat","rating"],["sat-q15","La qualite et la clarte des certificats / rapport / constat","rating"],["sat-q16","Le respect des exigences de la securite","rating"]]},
 {group:"Communication et Information",items:[["sat-q17","Connaissez-vous le site web d'ENER Metrologie ?","yesno"],["sat-q18","Si oui, comment jugez-vous le site web ?","rating"],["sat-q19","Connaissez-vous la page Facebook d'ENER Metrologie ?","yesno"],["sat-q20","Si oui, comment jugez-vous la page Facebook ?","rating"]]}
 ];
-const D={u:{name:"John Doe",email:"john.doe@ener.tn",role:"Administrateur",dept:"Direction",ini:"JD"},org:{name:"QualiLab by ENNAJEH",fiscal:"MF-2026-001",acc:"Accredite",accDate:"2026-01-15",validDate:"2027-01-15",manager:"John Doe",phone:"+216 71 000 000",fax:"+216 71 000 001",mail:"contact@qualilab.tn",address:"Zone industrielle, Tunis, Tunisie",docs:"Manuel qualite\nCertificat d'accreditation\nAnnexe technique\nPolitique qualite de l'organisme"},diag:{person:"",date:"",answers:{},notes:{},updated:""},repo:{folderName:"QualiLab_Documents",linked:false,files:[],selected:"",mode:"Aucune liaison active"},docs:[{id:1,ref:"PRO-LAB-001",title:"Programme d'etalonnage",p:"Processus support",type:"Procedure",v:"2.1",st:"A valider",o:"Resp. qualite",d:"2026-04-01"},{id:2,ref:"INS-LAB-004",title:"Utilisation balance analytique",p:"Processus operationnel",type:"Instruction",v:"1.3",st:"Valide",o:"Technicien senior",d:"2026-03-18"}],orgDocs:[{id:101,ref:"PRO-PIL-001",title:"Audit client",ie:"IE-01",p:"Processus pilotage",type:"Procedure",page:"1/3",v:"1.0",st:"Valide",o:"Direction",d:"2026-03-12"},{id:102,ref:"INS-OPE-002",title:"Reception et traitement des echantillons",ie:"IE-02",p:"Processus operationnel",type:"Instruction",page:"1/2",v:"2.0",st:"A valider",o:"Chef laboratoire",d:"2026-04-02"},{id:103,ref:"FOR-SUP-003",title:"Demande d'achat de consommables",ie:"IE-03",p:"Processus support",type:"Formulaire",page:"1/1",v:"1.4",st:"Valide",o:"Service achats",d:"2026-02-20"},{id:104,ref:"ENR-SUP-004",title:"Fiche de maintenance preventive",ie:"IE-04",p:"Processus support",type:"Enregistrement",page:"1/1",v:"3.1",st:"Valide",o:"Metrologie",d:"2026-03-25"}],eq:[{id:"EQ-001",n:"Balance analytique",m:"Mettler XS-205",sn:"SN-1234",l:"2026-01-10",nx:"2026-04-10",st:"A etalonner",ciq:"Quotidien",u:"+/- 0.1 mg"},{id:"EQ-002",n:"pH-metre",m:"Metrohm 914",sn:"SN-5678",l:"2026-02-01",nx:"2026-08-01",st:"Valide",ciq:"Avant usage",u:"+/- 0.01 pH"}],nc:[{ref:"NC-2026-001",desc:"Certificat manquant",g:"Critique",act:"Bloquer l'equipement",st:"Ouverte",o:"Resp. qualite",due:"2026-04-10"},{ref:"NC-2026-002",desc:"Rapport incomplet",g:"Majeure",act:"Corriger modele",st:"En cours",o:"Technicien",due:"2026-04-15"}],aud:[{ref:"AI-2026-001",ty:"Audit interne",sc:"Equipements et tracabilite",o:"A. Bensalem",d:"2026-04-20",st:"Planifie",f:"-"},{ref:"AC-2026-001",ty:"Audit externe (client)",sc:"Systeme complet",o:"Direction",d:"2026-05-05",st:"En cours",f:"2 actions"}],revc:[{ref:"RC-2026-001",client:"Client pharmaceutique",dem:"Etalonnage balances de precision",scope:"Capacite validee, methode disponible, delai confirme",resp:"Resp. qualite",d:"2026-04-12",st:"Approuvee"},{ref:"RC-2026-002",client:"Client industriel",dem:"Verification d'un pH-metre terrain",scope:"Ressources a confirmer et besoin de retour client",resp:"Chef laboratoire",d:"2026-04-14",st:"En attente client"}],usr:[{name:"John Doe",email:"john.doe@ener.tn",role:"Administrateur",dept:"Direction",ini:"JD"},{name:"Amina El Idrissi",email:"amina@ener.tn",role:"Responsable qualite",dept:"Qualite",ini:"AE"}],trailWeek:"",trailArchive:[],trail:[{t:"2026-04-07 09:30",u:"John Doe",a:"Connexion",m:"Session",x:"Ouverture de l'application"},{t:"2026-04-07 09:10",u:"Amina El Idrissi",a:"Creation",m:"NC",x:"NC-2026-001 ajoutee"}]};
+const D={u:{name:"John Doe",email:"john.doe@ener.tn",role:"Administrateur",dept:"Direction",ini:"JD"},org:{name:"QUALI by ENNAJEH",fiscal:"MF-2026-001",acc:"Accredite",accDate:"2026-01-15",validDate:"2027-01-15",manager:"John Doe",phone:"+216 71 000 000",fax:"+216 71 000 001",mail:"contact@QUALI.tn",address:"Zone industrielle, Tunis, Tunisie",docs:"Manuel qualite\nCertificat d'accreditation\nAnnexe technique\nPolitique qualite de l'organisme"},diag:{person:"",date:"",answers:{},notes:{},updated:""},repo:{folderName:"QUALI_Documents",linked:false,files:[],selected:"",mode:"Aucune liaison active"},docs:[{id:1,ref:"PRO-LAB-001",title:"Programme d'etalonnage",p:"Processus support",type:"Procedure",v:"2.1",st:"A valider",o:"Resp. qualite",d:"2026-04-01"},{id:2,ref:"INS-LAB-004",title:"Utilisation balance analytique",p:"Processus operationnel",type:"Instruction",v:"1.3",st:"Valide",o:"Technicien senior",d:"2026-03-18"}],orgDocs:[{id:101,ref:"PRO-PIL-001",title:"Audit client",ie:"IE-01",p:"Processus pilotage",type:"Procedure",page:"1/3",v:"1.0",st:"Valide",o:"Direction",d:"2026-03-12"},{id:102,ref:"INS-OPE-002",title:"Reception et traitement des echantillons",ie:"IE-02",p:"Processus operationnel",type:"Instruction",page:"1/2",v:"2.0",st:"A valider",o:"Chef laboratoire",d:"2026-04-02"},{id:103,ref:"FOR-SUP-003",title:"Demande d'achat de consommables",ie:"IE-03",p:"Processus support",type:"Formulaire",page:"1/1",v:"1.4",st:"Valide",o:"Service achats",d:"2026-02-20"},{id:104,ref:"ENR-SUP-004",title:"Fiche de maintenance preventive",ie:"IE-04",p:"Processus support",type:"Enregistrement",page:"1/1",v:"3.1",st:"Valide",o:"Metrologie",d:"2026-03-25"}],eq:[{id:"EQ-001",n:"Balance analytique",m:"Mettler XS-205",sn:"SN-1234",l:"2026-01-10",nx:"2026-04-10",st:"A etalonner",ciq:"Quotidien",u:"+/- 0.1 mg"},{id:"EQ-002",n:"pH-metre",m:"Metrohm 914",sn:"SN-5678",l:"2026-02-01",nx:"2026-08-01",st:"Valide",ciq:"Avant usage",u:"+/- 0.01 pH"}],nc:[{ref:"NC-2026-001",desc:"Certificat manquant",g:"Critique",act:"Bloquer l'equipement",st:"Ouverte",o:"Resp. qualite",due:"2026-04-10"},{ref:"NC-2026-002",desc:"Rapport incomplet",g:"Majeure",act:"Corriger modele",st:"En cours",o:"Technicien",due:"2026-04-15"}],aud:[{ref:"AI-2026-001",ty:"Audit interne",sc:"Equipements et tracabilite",o:"A. Bensalem",d:"2026-04-20",st:"Planifie",f:"-"},{ref:"AC-2026-001",ty:"Audit externe (client)",sc:"Systeme complet",o:"Direction",d:"2026-05-05",st:"En cours",f:"2 actions"}],revc:[{ref:"RC-2026-001",client:"Client pharmaceutique",dem:"Etalonnage balances de precision",scope:"Capacite validee, methode disponible, delai confirme",resp:"Resp. qualite",d:"2026-04-12",st:"Approuvee"},{ref:"RC-2026-002",client:"Client industriel",dem:"Verification d'un pH-metre terrain",scope:"Ressources a confirmer et besoin de retour client",resp:"Chef laboratoire",d:"2026-04-14",st:"En attente client"}],usr:[{name:"John Doe",email:"john.doe@ener.tn",role:"Administrateur",dept:"Direction",ini:"JD"},{name:"Amina El Idrissi",email:"amina@ener.tn",role:"Responsable qualite",dept:"Qualite",ini:"AE"}],trailWeek:"",trailArchive:[],trail:[{t:"2026-04-07 09:30",u:"John Doe",a:"Connexion",m:"Session",x:"Ouverture de l'application"},{t:"2026-04-07 09:10",u:"Amina El Idrissi",a:"Creation",m:"NC",x:"NC-2026-001 ajoutee"}]};
 let s=load();
 const RISK_EMPTY_VERSION="risk-empty-20260415";
 try{if(localStorage.getItem(RISK_EMPTY_VERSION)!=="1"){s.risk=[];localStorage.setItem(RISK_EMPTY_VERSION,"1");ss(K,JSON.stringify(s))}}catch(e){s.risk=[]}
 let repoHandle=null,repoFilesMap=new Map(),previewUrl="";
-let orgHandle=null,orgFilesMap=new Map(),orgPreviewUrl="",activeOrgProc="",orgRootName="QualiLab_Organisme",orgFiles=[],activeOrgType="",activeOrgStatus="";
+let orgHandle=null,orgFilesMap=new Map(),orgPreviewUrl="",activeOrgProc="",orgRootName="QUALI_Organisme",orgFiles=[],activeOrgType="",activeOrgStatus="";
 let orgReqFilesMap=new Map(),orgReqPreviewUrl="",activeOrgReqDoc="",orgDocFilesMap=new Map();
 let currentPage="hub",pageHistory=[],nextPageHistory=[],currentOrgTab="general",editingRiskId="",editingSwotId="";
 function c(v){return JSON.parse(JSON.stringify(v))}
@@ -3287,7 +3410,6 @@ function ini(n){return String(n||"US").split(" ").filter(Boolean).map(x=>x[0]).j
 function now(){const d=new Date(),p=n=>String(n).padStart(2,"0");return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes())}
 function esc(v){return String(v??"").replaceAll("&","&amp;").replaceAll("<","&lt;").replaceAll(">","&gt;").replaceAll('"',"&quot;")}
 function sessionActive(){const auth=$("#auth"),app=$("#app");return !!(auth&&app&&auth.classList.contains("h")&&!app.classList.contains("h"))}
-function placeBackButton(){const nav=$(".back-nav"),app=$("#app");if(!nav||!app)return;const rail=(currentPage&&moduleRailMeta[currentPage])?$("#"+currentPage+" .module-rail"):null;if(rail){rail.insertAdjacentElement("afterbegin",nav);nav.classList.add("in-rail")}else{app.insertAdjacentElement("afterbegin",nav);nav.classList.remove("in-rail")}}
 function updateBackButton(){const b=$("#backBtn"),n=$("#nextBtn");if(!b||!n)return;const active=sessionActive();b.classList.remove("h");n.classList.toggle("h",!active);b.classList.remove("off");n.classList.toggle("off",!active||!nextPageHistory.length)}
 function fmtSize(n){if(!n&&n!==0)return"-";const u=["o","Ko","Mo","Go"];let i=0,v=n;while(v>=1024&&i<u.length-1){v/=1024;i++}return (i?v.toFixed(v>=10?1:2):v)+" "+u[i]}
 function fmtDate(v){if(!v)return"-";try{return new Date(v).toLocaleString("fr-FR")}catch(e){return v}}
@@ -3295,9 +3417,9 @@ function stamp(){const d=new Date(),p=n=>String(n).padStart(2,"0");return d.getF
 function weekKey(d=new Date()){const x=new Date(Date.UTC(d.getFullYear(),d.getMonth(),d.getDate())),day=x.getUTCDay()||7;x.setUTCDate(x.getUTCDate()+4-day);const y=new Date(Date.UTC(x.getUTCFullYear(),0,1)),w=Math.ceil((((x-y)/86400000)+1)/7);return x.getUTCFullYear()+"-S"+String(w).padStart(2,"0")}
 function downloadText(name,content,type="text/html;charset=utf-8"){const b=new Blob([content],{type}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(u)}
 function ensureTrailWeek(){const wk=weekKey();s.trailArchive=s.trailArchive||[];s.trail=s.trail||[];if(!s.trailWeek){s.trailWeek=wk;return}if(s.trailWeek!==wk){if(s.trail.length)s.trailArchive.unshift({week:s.trailWeek,closed:now(),items:s.trail.slice(0,500)});s.trailArchive=s.trailArchive.slice(0,8);s.trail=[];s.trailWeek=wk;save("Nouvelle semaine : journal remis a zero")}}
-function weeklyReportHtml(items=s.trail,week=s.trailWeek||weekKey(),edition=now()){const org=s.org||{},rows=(items||[]).map(x=>`<tr><td>${esc(x.t)}</td><td>${esc(x.u)}</td><td>${esc(x.email||"-")}</td><td>${esc(x.role||"-")}</td><td>${esc(x.a)}</td><td>${esc(x.m)}</td><td>${esc(x.x)}</td></tr>`).join("")||`<tr><td colspan="7">Aucune action enregistree pour cette semaine.</td></tr>`;return `<!doctype html><html lang="fr"><meta charset="utf-8"><title>Rapport hebdomadaire QualiLab ${esc(week)}</title><style>body{font:14px Segoe UI,Arial,sans-serif;color:#24324a;padding:28px}h1{color:#245ccc}table{border-collapse:collapse;width:100%;margin-top:18px}th,td{padding:9px;border:1px solid #dbe6f5;text-align:left;vertical-align:top}th{background:#eef4ff}.meta{background:#f6f9ff;border:1px solid #dbe6f5;border-radius:14px;padding:14px}</style><body><h1>Rapport hebdomadaire des actions QualiLab</h1><div class="meta"><b>Organisme :</b> ${esc(org.name||"-")}<br><b>Semaine :</b> ${esc(week)}<br><b>Date d'edition :</b> ${esc(edition)}<br><b>Nombre d'actions :</b> ${(items||[]).length}</div><table><thead><tr><th>Date</th><th>Compte</th><th>Email</th><th>Role</th><th>Action</th><th>Module</th><th>Detail</th></tr></thead><tbody>${rows}</tbody></table></body></html>`}
+function weeklyReportHtml(items=s.trail,week=s.trailWeek||weekKey(),edition=now()){const org=s.org||{},rows=(items||[]).map(x=>`<tr><td>${esc(x.t)}</td><td>${esc(x.u)}</td><td>${esc(x.email||"-")}</td><td>${esc(x.role||"-")}</td><td>${esc(x.a)}</td><td>${esc(x.m)}</td><td>${esc(x.x)}</td></tr>`).join("")||`<tr><td colspan="7">Aucune action enregistree pour cette semaine.</td></tr>`;return `<!doctype html><html lang="fr"><meta charset="utf-8"><title>Rapport hebdomadaire QUALI ${esc(week)}</title><style>body{font:14px Segoe UI,Arial,sans-serif;color:#24324a;padding:28px}h1{color:#245ccc}table{border-collapse:collapse;width:100%;margin-top:18px}th,td{padding:9px;border:1px solid #dbe6f5;text-align:left;vertical-align:top}th{background:#eef4ff}.meta{background:#f6f9ff;border:1px solid #dbe6f5;border-radius:14px;padding:14px}</style><body><h1>Rapport hebdomadaire des actions QUALI</h1><div class="meta"><b>Organisme :</b> ${esc(org.name||"-")}<br><b>Semaine :</b> ${esc(week)}<br><b>Date d'edition :</b> ${esc(edition)}<br><b>Nombre d'actions :</b> ${(items||[]).length}</div><table><thead><tr><th>Date</th><th>Compte</th><th>Email</th><th>Role</th><th>Action</th><th>Module</th><th>Detail</th></tr></thead><tbody>${rows}</tbody></table></body></html>`}
 function printWeeklyPdf(html){const w=window.open("","_blank","width=1100,height=900");if(!w){sync("Autorise les fenetres popup pour telecharger le rapport en PDF");return false}w.document.open();w.document.write(html);w.document.close();w.onload=()=>setTimeout(()=>w.print(),250);return true}
-function weeklyReportPreview(){const r=s.weeklyReportPreview;if(!r)return"";return `<iframe title="Rapport hebdomadaire QualiLab" srcdoc="${esc(r.html)}" style="width:100%;height:360px;border:1px solid #e7edf6;border-radius:14px;background:#fff"></iframe>`}
+function weeklyReportPreview(){const r=s.weeklyReportPreview;if(!r)return"";return `<iframe title="Rapport hebdomadaire QUALI" srcdoc="${esc(r.html)}" style="width:100%;height:360px;border:1px solid #e7edf6;border-radius:14px;background:#fff"></iframe>`}
 function downloadWeeklyReport(){ensureTrailWeek();const week=s.trailWeek||weekKey(),items=(s.trail||[]).slice(0,500),edition=now(),html=weeklyReportHtml(items,week,edition);s.weeklyReportPreview={week,edition,items,html};printWeeklyPdf(html);s.trailArchive=s.trailArchive||[];if(items.length)s.trailArchive.unshift({week,closed:edition,items});s.trailArchive=s.trailArchive.slice(0,8);s.trail=[];s.trailWeek=weekKey();save("Rapport hebdomadaire PDF genere, affiche et journal remis a zero");render()}
 function markSaved(x){if(x&&typeof x==="object"){x.updatedAt=now();x.updatedBy=(s.u&&s.u.email)||"systeme"}return x}
 function fileExt(n){return (String(n||"").split(".").pop()||"").toLowerCase()}
@@ -3307,10 +3429,10 @@ function canReadTextFile(n){return["txt","json","xml","md","log","yaml","yml","i
 function csvTable(txt,sep=","){const rows=String(txt||"").replace(/\r/g,"").split("\n").filter(Boolean).slice(0,16).map(r=>r.split(sep).slice(0,8));if(!rows.length)return"";const head=rows[0],body=rows.slice(1);return`<div class="it"><b>Apercu tabulaire</b><div style="overflow:auto"><table><thead><tr>${head.map(x=>`<th>${esc(x)}</th>`).join("")}</tr></thead><tbody>${body.map(r=>`<tr>${head.map((_,i)=>`<td>${esc(r[i]||"")}</td>`).join("")}</tr>`).join("")}</tbody></table></div></div>`}
 function hexDump(buf){const bytes=[...new Uint8Array(buf)].slice(0,192),lines=[];for(let i=0;i<bytes.length;i+=16){const chunk=bytes.slice(i,i+16),hex=chunk.map(b=>b.toString(16).padStart(2,"0")).join(" "),asc=chunk.map(b=>(b>=32&&b<=126)?String.fromCharCode(b):".").join("");lines.push(i.toString(16).padStart(4,"0")+"  "+hex.padEnd(47," ")+"  "+asc)}return lines.join("\n")}
 async function objectUrlForFile(f){const mime=mimeForName(f.name);if(!mime||f.type&&f.type!=="application/octet-stream")return URL.createObjectURL(f);const clone=new File([await f.arrayBuffer()],f.name,{type:mime,lastModified:f.lastModified});return URL.createObjectURL(clone)}
-async function buildFilePreview(f,url,t){const mime=mimeForName(f.name)||f.type||"Non detecte",ext=fileExt(f.name);let body=`<div class="it"><b>${esc(f.name)}</b><p>Type : ${esc(t.label)}</p><p>Extension : ${esc(ext||"-")}</p><p>MIME : ${esc(mime)}</p><p>Taille : ${fmtSize(f.size)}</p><p>Derniere modification : ${fmtDate(f.lastModified)}</p><p><a href="${url}" target="_blank" download="${esc(f.name)}">Ouvrir ou telecharger</a></p></div>`;if(t.kind==="image")return body+`<div class="it"><img src="${url}" alt="${esc(f.name)}" style="max-width:100%;border-radius:14px"></div>`;if(t.kind==="pdf")return body+`<div class="it"><iframe src="${url}" style="width:100%;height:460px;border:0;border-radius:12px"></iframe></div>`;if(t.kind==="video")return body+`<div class="it"><video controls style="width:100%;border-radius:14px"><source src="${url}" type="${esc(mimeForName(f.name)||"video/mp4")}"></video></div>`;if(t.kind==="audio")return body+`<div class="it"><audio controls style="width:100%"><source src="${url}" type="${esc(mimeForName(f.name)||"audio/mpeg")}"></audio></div>`;if(t.kind==="html"){const txt=await f.text();return body+`<div class="it"><iframe src="${url}" style="width:100%;height:440px;border:1px solid #e7edf6;border-radius:12px;background:#fff"></iframe></div><div class="it"><b>Code source</b><pre style="margin:0;white-space:pre-wrap;word-break:break-word;font:12px Consolas,monospace">${esc(txt.slice(0,8000))}</pre></div>`}if(t.kind==="table"){const txt=await f.text(),sep=ext==="tsv"?"\t":",";return body+csvTable(txt,sep)+`<div class="it"><b>Contenu brut</b><pre style="margin:0;white-space:pre-wrap;word-break:break-word;font:12px Consolas,monospace">${esc(txt.slice(0,8000))}</pre></div>`}if(t.kind==="text"){const txt=await f.text();return body+`<div class="it"><pre style="margin:0;white-space:pre-wrap;word-break:break-word;font:12px Consolas,monospace">${esc(txt.slice(0,12000))}</pre></div>`}body+=`<div class="it"><b>Lecture integree</b><p>QualiLab tente un affichage direct de ce fichier dans l'application. Selon le navigateur, l'aperÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§u peut apparaitre pour Word, Excel, PowerPoint, archives ou autres formats.</p><div style="display:grid;gap:10px"><object data="${url}" type="${esc(mimeForName(f.name)||f.type||"application/octet-stream")}" style="width:100%;height:460px;border:1px solid #e7edf6;border-radius:12px;background:#fff"></object><iframe src="${url}" style="width:100%;height:460px;border:1px solid #e7edf6;border-radius:12px;background:#fff"></iframe></div></div>`;if(canReadTextFile(f.name)){try{const txt=await f.text();if(txt.trim())body+=`<div class="it"><b>Lecture texte</b><pre style="margin:0;white-space:pre-wrap;word-break:break-word;font:12px Consolas,monospace">${esc(txt.slice(0,12000))}</pre></div>`}catch(e){}}else{try{const hex=hexDump(await f.slice(0,192).arrayBuffer());body+=`<div class="it"><b>Apercu technique</b><p>Le contenu n'est pas lisible directement en texte. QualiLab affiche les premiers octets du fichier pour confirmer sa lecture.</p><pre style="margin:0;white-space:pre-wrap;word-break:break-word;font:12px Consolas,monospace">${esc(hex)}</pre></div>`}catch(e){}}return body}
+async function buildFilePreview(f,url,t){const mime=mimeForName(f.name)||f.type||"Non detecte",ext=fileExt(f.name);let body=`<div class="it"><b>${esc(f.name)}</b><p>Type : ${esc(t.label)}</p><p>Extension : ${esc(ext||"-")}</p><p>MIME : ${esc(mime)}</p><p>Taille : ${fmtSize(f.size)}</p><p>Derniere modification : ${fmtDate(f.lastModified)}</p><p><a href="${url}" target="_blank" download="${esc(f.name)}">Ouvrir ou telecharger</a></p></div>`;if(t.kind==="image")return body+`<div class="it"><img src="${url}" alt="${esc(f.name)}" style="max-width:100%;border-radius:14px"></div>`;if(t.kind==="pdf")return body+`<div class="it"><iframe src="${url}" style="width:100%;height:460px;border:0;border-radius:12px"></iframe></div>`;if(t.kind==="video")return body+`<div class="it"><video controls style="width:100%;border-radius:14px"><source src="${url}" type="${esc(mimeForName(f.name)||"video/mp4")}"></video></div>`;if(t.kind==="audio")return body+`<div class="it"><audio controls style="width:100%"><source src="${url}" type="${esc(mimeForName(f.name)||"audio/mpeg")}"></audio></div>`;if(t.kind==="html"){const txt=await f.text();return body+`<div class="it"><iframe src="${url}" style="width:100%;height:440px;border:1px solid #e7edf6;border-radius:12px;background:#fff"></iframe></div><div class="it"><b>Code source</b><pre style="margin:0;white-space:pre-wrap;word-break:break-word;font:12px Consolas,monospace">${esc(txt.slice(0,8000))}</pre></div>`}if(t.kind==="table"){const txt=await f.text(),sep=ext==="tsv"?"\t":",";return body+csvTable(txt,sep)+`<div class="it"><b>Contenu brut</b><pre style="margin:0;white-space:pre-wrap;word-break:break-word;font:12px Consolas,monospace">${esc(txt.slice(0,8000))}</pre></div>`}if(t.kind==="text"){const txt=await f.text();return body+`<div class="it"><pre style="margin:0;white-space:pre-wrap;word-break:break-word;font:12px Consolas,monospace">${esc(txt.slice(0,12000))}</pre></div>`}body+=`<div class="it"><b>Lecture integree</b><p>QUALI tente un affichage direct de ce fichier dans l'application. Selon le navigateur, l'aperÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§u peut apparaitre pour Word, Excel, PowerPoint, archives ou autres formats.</p><div style="display:grid;gap:10px"><object data="${url}" type="${esc(mimeForName(f.name)||f.type||"application/octet-stream")}" style="width:100%;height:460px;border:1px solid #e7edf6;border-radius:12px;background:#fff"></object><iframe src="${url}" style="width:100%;height:460px;border:1px solid #e7edf6;border-radius:12px;background:#fff"></iframe></div></div>`;if(canReadTextFile(f.name)){try{const txt=await f.text();if(txt.trim())body+=`<div class="it"><b>Lecture texte</b><pre style="margin:0;white-space:pre-wrap;word-break:break-word;font:12px Consolas,monospace">${esc(txt.slice(0,12000))}</pre></div>`}catch(e){}}else{try{const hex=hexDump(await f.slice(0,192).arrayBuffer());body+=`<div class="it"><b>Apercu technique</b><p>Le contenu n'est pas lisible directement en texte. QUALI affiche les premiers octets du fichier pour confirmer sa lecture.</p><pre style="margin:0;white-space:pre-wrap;word-break:break-word;font:12px Consolas,monospace">${esc(hex)}</pre></div>`}catch(e){}}return body}
 function moduleFromPath(p){const m=REPO_DIRS.find(x=>p.includes(x[0]+"/")||p.includes(x[0]+"\\")||p===x[0]);return m?m[1]:"Autre"}
-function previewDefault(){return`<div class="it"><b>Aucun fichier selectionne</b><p>Choisis un fichier dans la liste pour afficher ses informations et son apercu directement dans l'application.</p><p>QualiLab prend en charge PDF, images, audio, video, HTML, CSV, fichiers texte, Word, Excel, PowerPoint, archives et autres formats avec tentative de lecture integree ou repli adapte.</p></div>`}
-function orgPreviewDefault(){return`<div class="it"><b>Lecture directe QualiLab</b><p>Connecte le dossier exact <code>D:\\QualiLab_Organisme</code>, puis choisis un fichier pour le lire directement dans ce module.</p><p>QualiLab essaye maintenant de lire tous les types de fichiers dans l'application : affichage natif si possible, sinon apercu technique ou ouverture locale.</p></div>`}
+function previewDefault(){return`<div class="it"><b>Aucun fichier selectionne</b><p>Choisis un fichier dans la liste pour afficher ses informations et son apercu directement dans l'application.</p><p>QUALI prend en charge PDF, images, audio, video, HTML, CSV, fichiers texte, Word, Excel, PowerPoint, archives et autres formats avec tentative de lecture integree ou repli adapte.</p></div>`}
+function orgPreviewDefault(){return`<div class="it"><b>Lecture directe QUALI</b><p>Connecte le dossier exact <code>D:\\QUALI_Organisme</code>, puis choisis un fichier pour le lire directement dans ce module.</p><p>QUALI essaye maintenant de lire tous les types de fichiers dans l'application : affichage natif si possible, sinon apercu technique ou ouverture locale.</p></div>`}
 function importTarget(){return $("#fstarget")?$("#fstarget").value:"07_Imports"}
 function diagState(){if(!s.diag)s.diag=c(D.diag);if(!s.diag.answers)s.diag.answers={};if(!s.diag.notes)s.diag.notes={};return s.diag}
 function diagValue(v){return v==="yes"?100:v==="partial"?50:v==="no"?0:null}
@@ -3330,32 +3452,33 @@ function isPilotLogin(e,p){return String(e||"").trim().toLowerCase()==="karimenn
 function login(){const e=$("#lemail").value.trim(),p=$("#lpwd").value;if(!isPilotLogin(e,p)){$("#lmsg").textContent="Acces refuse : e-mail ou mot de passe incorrect.";sr(S);$("#app").classList.add("h");$("#auth").classList.remove("h");return}try{ensurePilotAccount();const u=s.usr.find(x=>x.email.toLowerCase()===e.toLowerCase())||pilotAccount();s.u=u;ss(S,JSON.stringify({email:s.u.email}));log("Connexion","Session",e);save("Session ouverte");openApp()}catch(err){console.error(err);$("#lmsg").textContent="Erreur de connexion. Verifie l'application puis recommence.";sr(S);$("#auth").classList.remove("h");$("#app").classList.add("h")}}
 function logout(){log("Deconnexion","Session",s.u.email);save("Session fermee");sr(S);pageHistory=[];nextPageHistory=[];currentPage="hub";$("#app").classList.add("h");$("#auth").classList.remove("h");updateBackButton()}
 const moduleRailMeta={db:{cls:"module-db",title:"Tableau de bord",tag:""},docs:{cls:"module-docs",title:"Maitrise documentaire",tag:""},docorg:{cls:"module-docorg",title:"Documentation",tag:""},eq:{cls:"module-eq",title:"Gestion des equipements",tag:""},nc:{cls:"module-nc",title:"Non-conformites",tag:""},aud:{cls:"module-aud",title:"Audits",tag:""},revc:{cls:"module-revc",title:"Revue de contrat",tag:""},usr:{cls:"module-usr",title:"Utilisateurs",tag:""},set:{cls:"module-set",title:"Parametres",tag:""},diag:{cls:"module-diag",title:"Diagnostic ISO 17025",tag:""},risk:{cls:"module-risk",title:"Analyse de risque",tag:""},swot:{cls:"module-swot",title:"Analyse SWOT",tag:""},sat:{cls:"module-sat",title:"Satisfaction client",tag:""},repo:{cls:"module-repo",title:"Dossier principal",tag:""}};
-function moduleOrgRailHtml(){const o=s.org||{},name=o.name||"QualiLab by ENNAJEH",mail=o.mail||"contact@qualilab.tn",phone=o.phone||"+216 71 000 000",addr=[o.address,o.city].filter(Boolean).join(" - ")||"Tunis, Tunisie",ref=o.accRef||o.acc||"Accredite";return `<div class="module-org"><div class="module-org-card"><strong>Organisme</strong><p>${esc(name)}</p></div><div class="module-org-card"><strong>Reference</strong><p>${esc(o.accStd||"ISO/IEC 17025:2017")}<br>${esc(ref)}</p></div><div class="module-org-card"><strong>Contact</strong><p>${esc(mail)}<br>${esc(phone)}</p></div><div class="module-org-card"><strong>Adresse</strong><p>${esc(addr)}</p></div></div>`}
-function buildModuleRail(id){const meta=moduleRailMeta[id];if(!meta)return null;const rail=document.createElement("aside");rail.className="module-rail";rail.innerHTML=`<div class="module-rail-logo"><img src="assets/quali-logo.png" alt="QualiLab"></div><div class="module-rail-head"><b>${esc(meta.title)}</b><span>${esc(meta.tag)}</span></div>${moduleOrgRailHtml()}`;return rail}
+function moduleOrgRailHtml(){const o=s.org||{},name=o.name||"QUALI by ENNAJEH",mail=o.mail||"contact@QUALI.tn",phone=o.phone||"+216 71 000 000",addr=[o.address,o.city].filter(Boolean).join(" - ")||"Tunis, Tunisie",ref=o.accRef||o.acc||"Accredite";return `<div class="module-org"><div class="module-org-card"><strong>Organisme</strong><p>${esc(name)}</p></div><div class="module-org-card"><strong>Reference</strong><p>${esc(o.accStd||"ISO/IEC 17025:2017")}<br>${esc(ref)}</p></div><div class="module-org-card"><strong>Contact</strong><p>${esc(mail)}<br>${esc(phone)}</p></div><div class="module-org-card"><strong>Adresse</strong><p>${esc(addr)}</p></div></div>`}
+function buildModuleRail(id){const meta=moduleRailMeta[id];if(!meta)return null;const rail=document.createElement("aside");rail.className="module-rail";rail.innerHTML=`<div class="module-rail-logo"><img src="image/logo/SVG/asset 5.svg" alt="QUALI"></div><div class="module-rail-head"><b>${esc(meta.title)}</b><span>${esc(meta.tag)}</span></div>${moduleOrgRailHtml()}`;return rail}
 function updateModuleRails(){Object.keys(moduleRailMeta).forEach(id=>{const org=$("#"+id+" .module-org");if(org)org.outerHTML=moduleOrgRailHtml()})}
+function updateModuleHeadTitles(){const titles={hub:"Modules"};Object.keys(moduleRailMeta).forEach(id=>titles[id]=moduleRailMeta[id].title);Object.keys(titles).forEach(id=>{const head=$("#"+id+" .hub-app-head");if(!head)return;let t=head.querySelector(".module-page-title");if(!t){t=document.createElement("div");t.className="module-page-title";const actions=head.querySelector(".hub-top-actions");if(actions)head.insertBefore(t,actions);else head.appendChild(t)}t.textContent=titles[id]})}
 function enhanceModulePanels(){Object.keys(moduleRailMeta).forEach(id=>{const section=$("#"+id);if(!section||section.dataset.railReady==="1")return;section.dataset.railReady="1";section.classList.add("module-shell",moduleRailMeta[id].cls);const body=document.createElement("div");body.className="module-content";while(section.firstChild)body.appendChild(section.firstChild);section.appendChild(buildModuleRail(id));section.appendChild(body)})}
 function page(id,skipHistory){const m={hub:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],db:[`Bienvenue, ${s.u&&s.u.name?s.u.name:"Utilisateur"}`,""],docs:["Maitrise documentaire",""],docorg:["Documentation",""],eq:["Gestion des equipements",""],nc:["Non-conformites",""],aud:["Audits",""],revc:["Revue de contrat",""],usr:["Utilisateurs",""],set:["Parametres",""],diag:["Diagnostic ISO 17025",""],risk:["Analyse de risque",""],swot:["Analyse SWOT",""],sat:["Satisfaction client",""],repo:["Dossier principal",""]};if(!skipHistory&&currentPage&&currentPage!==id){pageHistory.push(currentPage);nextPageHistory=[]}currentPage=id;["hub","db","docs","docorg","eq","nc","aud","revc","usr","set","diag","risk","swot","sat","repo"].forEach(x=>$("#"+x).classList.toggle("h",x!==id));$("#app").classList.toggle("hub-mode",id==="hub");$all("#nav button").forEach(b=>b.classList.toggle("on",b.dataset.p===id));$("#pt").textContent=m[id][0];$("#ps").textContent=m[id][1];placeBackButton();updateBackButton()}
 function goBackPage(){if(pageHistory.length){nextPageHistory.push(currentPage);page(pageHistory.pop(),true);return}if(sessionActive()&&currentPage==="hub"){logout();return}if(sessionActive()){nextPageHistory.push(currentPage);page("hub",true)}}
 function goNextPage(){if(!sessionActive()||!nextPageHistory.length)return;page(nextPageHistory.pop(),true)}
-function render(){dashboardStats();alerts();trail();quick();docs();orgDocsView();eq();nc();aud();revc();usr();settings();diagView();riskView();swotView();satView();repoView();updateModuleRails();$("#uname").textContent=s.u.name;$("#urole").textContent=s.u.role+" - "+s.u.dept}
+function render(){dashboardStats();alerts();trail();quick();docs();orgDocsView();eq();nc();aud();revc();usr();settings();diagView();riskView();swotView();satView();repoView();updateModuleHeadTitles();updateModuleRails();$("#uname").textContent=s.u.name;$("#urole").textContent=s.u.role+" - "+s.u.dept}
 function dashboardStats(){const a=[["Documents",s.docs.length,"DOC","k-blue"],["Equipements",s.eq.length,"EQ","k-green"],["Non-conformites ouvertes",s.nc.filter(x=>x.st==="Ouverte").length,"NC","k-orange"],["Audits a realiser",s.aud.filter(x=>x.st!=="Cloture").length,"AUD","k-red"]];$("#stats").innerHTML=a.map(x=>`<div class="card stat k-card ${x[3]}"><div class="kpi"><i>${x[2]}</i><div><div class="mut">${x[0]}</div><b>${x[1]}</b><div class="mut">Mise a jour locale</div></div></div></div>`).join("")}
 function stats(){const a=[["Documents",s.docs.length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã‚Â¾","k-blue"],["Equipements",s.eq.length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â§ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Âª","k-green"],["Non-conformites ouvertes",s.nc.filter(x=>x.st==="Ouverte").length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¡ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¯ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â","k-orange"],["Audits a realiser",s.aud.filter(x=>x.st!=="Cloture").length,"ÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â°ÃƒÆ’Ã¢â‚¬Â¦Ãƒâ€šÃ‚Â¸ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€¦Ã¢â‚¬Å“ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â‚¬Å¡Ã‚Â¬Ãƒâ€šÃ‚Â¹","k-red"]];$("#stats").innerHTML=a.map(x=>`<div class="card stat k-card ${x[3]}"><div class="kpi"><i>${x[2]}</i><div><div class="mut">${x[0]}</div><b>${x[1]}</b><div class="mut">Mise a jour locale</div></div></div></div>`).join("")}
 function alerts(){let a=[];s.eq.filter(x=>x.st!=="Valide").forEach(x=>a.push([x.id+" - "+x.n,"Statut: "+x.st]));s.nc.filter(x=>x.st!=="Cloturee").forEach(x=>a.push([x.ref,x.desc]));(s.revc||[]).filter(x=>x.st!=="Approuvee").forEach(x=>a.push([x.ref+" - "+x.client,"Revue de contrat : "+x.st]));$("#alerts").innerHTML=a.length?a.slice(0,8).map(x=>`<div class="it"><b>${x[0]}</b><p>${x[1]}</p></div>`).join(""):`<div class="e">Aucune alerte.</div>`}
 function trail(){ensureTrailWeek();const info=`<div class="mini"><strong>Semaine active</strong><span class="bl">${esc(s.trailWeek||weekKey())}</span></div><div class="mini"><strong>Actions enregistrees</strong><span class="bl">${(s.trail||[]).length}</span></div>`,items=(s.trail||[]).slice(0,12).map(x=>`<div class="it"><b>${esc(x.a)} - ${esc(x.m)}</b><p>${esc(x.u)}${x.email?" - "+esc(x.email):""}${x.role?" - "+esc(x.role):""}</p><p>${esc(x.t)} - ${esc(x.x)}</p></div>`).join("")||`<div class="e">Aucune modification cette semaine.</div>`;$("#trailA").innerHTML=info+items;$("#trailB").innerHTML=weeklyReportPreview()||items}
 function quick(){const dm=diagMetrics(),st=diagState(),q=[["Documents maitrises",s.docs.filter(x=>["Valide","Approuve","Diffuse"].includes(x.st)).length],["Equipements a etalonner",s.eq.filter(x=>x.st==="A etalonner").length],["NC ouvertes",s.nc.filter(x=>x.st!=="Cloturee").length],["Revues de contrat a traiter",(s.revc||[]).filter(x=>x.st!=="Approuvee").length],["Diagnostic ISO 17025",dm.score+"%"]];$("#quick").innerHTML=q.map(x=>`<div class="mini"><strong>${x[0]}</strong><span class="bl">${x[1]}</span></div>`).join("");$("#diagDash").innerHTML=`<div class="dash-diag"><div class="it"><div class="diag-score">${dm.score}%</div><p>Niveau : ${diagLevel(dm.score)}</p><p>Evaluateur : ${st.person||"-"}</p><p>Date d'evaluation : ${st.date||"-"}</p><p>Taux de completion : ${dm.completion}%</p></div><div class="radar-box">${radarSvg(dm.chapters,190)}</div></div><div class="mini"><strong>Chapitre prioritaire</strong><span class="${diagTheme([...dm.chapters].sort((a,b)=>a.score-b.score)[0].score)}">${[...dm.chapters].sort((a,b)=>a.score-b.score)[0].chapter}</span></div>`}
-const DOC_PROCS=["Processus pilotage","Processus operationnel","Processus support"],ORG_TOP_DOC_TYPES=["Manuel qualite","Politique qualite"],ORG_DOC_TYPES=["Procedure","Instruction","Formulaire","Enregistrement"],DOC_TYPES=[...ORG_TOP_DOC_TYPES,...ORG_DOC_TYPES],DOC_FORMATS=["Brouillon","En revue","A corriger","Approuve","Diffuse","Archive"],ORG_DIR_BASE="D:\\QualiLab_Organisme",ORG_TEMPLATES={Procedure:"D:\\stage prjet fin d'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©tude 2026\\cahier de charge d'application\\modÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨le procÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©dure.docx",Instruction:"D:\\stage prjet fin d'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©tude 2026\\cahier de charge d'application\\modÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨le instruction.docx",Formulaire:"D:\\stage prjet fin d'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©tude 2026\\cahier de charge d'application\\modÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨le formulaire.docx",Enregistrement:"D:\\stage prjet fin d'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©tude 2026\\cahier de charge d'application\\modÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨le Enregistrement.docx"};
+const DOC_PROCS=["Processus pilotage","Processus operationnel","Processus support"],ORG_TOP_DOC_TYPES=["Manuel qualite","Politique qualite"],ORG_DOC_TYPES=["Procedure","Instruction","Formulaire","Enregistrement"],DOC_TYPES=[...ORG_TOP_DOC_TYPES,...ORG_DOC_TYPES],DOC_FORMATS=["Brouillon","En revue","A corriger","Approuve","Diffuse","Archive"],ORG_DIR_BASE="D:\\QUALI_Organisme",ORG_TEMPLATES={Procedure:"D:\\stage prjet fin d'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©tude 2026\\cahier de charge d'application\\modÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨le procÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©dure.docx",Instruction:"D:\\stage prjet fin d'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©tude 2026\\cahier de charge d'application\\modÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨le instruction.docx",Formulaire:"D:\\stage prjet fin d'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©tude 2026\\cahier de charge d'application\\modÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨le formulaire.docx",Enregistrement:"D:\\stage prjet fin d'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©tude 2026\\cahier de charge d'application\\modÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¨le Enregistrement.docx"};
 function normDoc(x){const st=x.st==="Valide"?"Approuve":x.st==="A valider"?"En revue":x.st||"Brouillon";return {...x,p:x.p||"Processus support",ie:x.ie||"-",st,verif:x.verif||"-",app:x.app||"-",review:x.review||"-",diff:x.diff||"-",body:x.body||"",history:x.history||[]}}
 const MODEL_BASE=String.raw`D:\stage prjet fin d'étude 2026\cahier de charge d'application`;
 Object.assign(ORG_TEMPLATES,{Procedure:`${MODEL_BASE}\\modèle procédure.docx`,Instruction:`${MODEL_BASE}\\modèle instruction.docx`,Formulaire:`${MODEL_BASE}\\modèle formulaire.docx`,Enregistrement:`${MODEL_BASE}\\modèle Enregistrement.docx`,"Manuel qualite":`${MODEL_BASE}\\modèle procédure.docx`,"Politique qualite":`${MODEL_BASE}\\modèle procédure.docx`});
 const ORG_WORKFLOW=[["Brouillon","Creation"],["En revue","Verification"],["Approuve","Approbation"],["Diffuse","Diffusion"]];
-function docStoragePath(x){const clean=v=>String(v||"").replace(/[\\/:*?"<>|]/g,"_").replace(/\s+/g,"_"),proc=clean(x.p||"Processus support"),type=clean(x.type||"Document"),st=clean(x.st||"A_valider"),name=clean((x.ref||"DOC")+"_"+(x.title||"document"));return `QualiLab_Documents/${proc}/${type}/${st}/${name}`}
+function docStoragePath(x){const clean=v=>String(v||"").replace(/[\\/:*?"<>|]/g,"_").replace(/\s+/g,"_"),proc=clean(x.p||"Processus support"),type=clean(x.type||"Document"),st=clean(x.st||"A_valider"),name=clean((x.ref||"DOC")+"_"+(x.title||"document"));return `QUALI_Documents/${proc}/${type}/${st}/${name}`}
 function storageCell(x){const mode=x.store||"A definir",url=x.url||"",path=url||docStoragePath(x),text=esc(mode)+"<br><small></small>";return url?`<a href="${esc(url)}" target="_blank" rel="noopener">${text}</a>`:text}
-function docHierarchy(list,clickable=false){const docs=(list||[]).map(normDoc),org=s.org&&s.org.name?s.org.name:"QualiLab";return `<div class="doc-tree"><div class="doc-root"><h4>${esc(org)}</h4><p class="mut">Structure ERP documentaire : organisme -> processus -> type -> statut -> document.</p></div><div class="doc-proc-grid">${DOC_PROCS.map(proc=>{const pdocs=docs.filter(x=>(x.p||"Processus support")===proc),open=clickable?`<button class="doc-open" type="button" data-oproc="${esc(proc)}">Ouvrir</button>`:"";return `<div class="doc-proc"><div class="doc-proc-head"><b>${esc(proc)}</b><span class="bl">${pdocs.length}</span>${open}</div>${DOC_TYPES.map(type=>{const tdocs=pdocs.filter(x=>x.type===type),leaves=tdocs.slice(0,4).map(x=>`<div class="doc-leaf">${esc(x.ref)} - ${esc(x.title)} <span class="${tag(x.st)}">${esc(x.st)}</span></div>`).join("")||`<div class="doc-leaf">Aucun document classe</div>`;return `<div class="doc-type"><strong>${esc(type)} <span>${tdocs.length}</span></strong><div class="doc-status"><span class="wa">Brouillon ${tdocs.filter(x=>x.st==="Brouillon").length}</span><span class="wa">En revue ${tdocs.filter(x=>x.st==="En revue").length}</span><span class="wa">A corriger ${tdocs.filter(x=>x.st==="A corriger").length}</span><span class="ok">Approuve ${tdocs.filter(x=>x.st==="Approuve").length}</span><span class="ok">Diffuse ${tdocs.filter(x=>x.st==="Diffuse").length}</span><span class="er">Archive ${tdocs.filter(x=>["Archive","Obsolete"].includes(x.st)).length}</span></div><div class="doc-leaves">${leaves}</div></div>`}).join("")}</div>`}).join("")}</div></div>`}
+function docHierarchy(list,clickable=false){const docs=(list||[]).map(normDoc),org=s.org&&s.org.name?s.org.name:"QUALI";return `<div class="doc-tree"><div class="doc-root"><h4>${esc(org)}</h4><p class="mut">Structure ERP documentaire : organisme -> processus -> type -> statut -> document.</p></div><div class="doc-proc-grid">${DOC_PROCS.map(proc=>{const pdocs=docs.filter(x=>(x.p||"Processus support")===proc),open=clickable?`<button class="doc-open" type="button" data-oproc="${esc(proc)}">Ouvrir</button>`:"";return `<div class="doc-proc"><div class="doc-proc-head"><b>${esc(proc)}</b><span class="bl">${pdocs.length}</span>${open}</div>${DOC_TYPES.map(type=>{const tdocs=pdocs.filter(x=>x.type===type),leaves=tdocs.slice(0,4).map(x=>`<div class="doc-leaf">${esc(x.ref)} - ${esc(x.title)} <span class="${tag(x.st)}">${esc(x.st)}</span></div>`).join("")||`<div class="doc-leaf">Aucun document classe</div>`;return `<div class="doc-type"><strong>${esc(type)} <span>${tdocs.length}</span></strong><div class="doc-status"><span class="wa">Brouillon ${tdocs.filter(x=>x.st==="Brouillon").length}</span><span class="wa">En revue ${tdocs.filter(x=>x.st==="En revue").length}</span><span class="wa">A corriger ${tdocs.filter(x=>x.st==="A corriger").length}</span><span class="ok">Approuve ${tdocs.filter(x=>x.st==="Approuve").length}</span><span class="ok">Diffuse ${tdocs.filter(x=>x.st==="Diffuse").length}</span><span class="er">Archive ${tdocs.filter(x=>["Archive","Obsolete"].includes(x.st)).length}</span></div><div class="doc-leaves">${leaves}</div></div>`}).join("")}</div>`}).join("")}</div></div>`}
 function docSummary(list){return docHierarchy(list,false)}
 function docHistory(x){const h=(x.history||[]).slice(-4).map(i=>`<p>${esc(i.t)} - ${esc(i.a)} - ${esc(i.u||"-")}</p>`).join("");return h||"<p>Aucun historique detaille.</p>"}
 function docDetail(x){return `<div class="it"><b>Fiche document : ${esc(x.ref)} - ${esc(x.title)}</b><p>Processus : ${esc(x.p)} | Type : ${esc(x.type)} | Version : ${esc(x.v)}</p><p>Cycle de vie : ${esc(x.st)} | Revue prevue : ${esc(x.review||"-")}</p><p>Redacteur : ${esc(x.o||"-")} | Verificateur : ${esc(x.verif||"-")} | Approbateur : ${esc(x.app||"-")}</p><p>Diffusion : ${esc(x.diff||"-")}</p><p>Stockage : ${esc(x.store||"-")} | ${esc(x.url||"-")}</p><b>Historique</b>${docHistory(x)}</div>`}
 function docNextStatus(st){const flow=["Brouillon","En revue","Approuve","Diffuse","Obsolete","Archive"],i=flow.indexOf(st);return flow[Math.min(i+1,flow.length-1)]||"En revue"}
-function exportMasterList(){if(!requirePerm("Exporter"))return;const docs=(s.docs||[]).map(normDoc),rows=docs.map(x=>`<tr><td>${esc(x.ref)}</td><td>${esc(x.title)}</td><td>${esc(x.p)}</td><td>${esc(x.type)}</td><td>${esc(x.v)}</td><td>${esc(x.st)}</td><td>${esc(x.o||"-")}</td><td>${esc(x.verif||"-")}</td><td>${esc(x.app||"-")}</td><td>${esc(x.review||"-")}</td><td>${esc(x.diff||"-")}</td></tr>`).join("")||`<tr><td colspan="11">Aucun document.</td></tr>`,html=`<!doctype html><html lang="fr"><meta charset="utf-8"><title>Liste maitresse documentaire</title><style>body{font:13px Segoe UI,Arial,sans-serif;color:#24324a;padding:24px}h1{color:#245ccc}table{border-collapse:collapse;width:100%;margin-top:16px}th,td{padding:8px;border:1px solid #dbe6f5;text-align:left;vertical-align:top}th{background:#eef4ff}</style><body><h1>Liste maitresse documentaire QualiLab</h1><p><b>Date d'edition :</b> ${esc(now())}<br><b>Nombre de documents :</b> ${docs.length}</p><table><thead><tr><th>Ref</th><th>Titre</th><th>Processus</th><th>Type</th><th>Version</th><th>Statut</th><th>Redacteur</th><th>Verificateur</th><th>Approbateur</th><th>Revue</th><th>Diffusion</th></tr></thead><tbody>${rows}</tbody></table></body></html>`,w=window.open("","_blank","width=1100,height=900");if(!w){sync("Autorise les fenetres popup pour exporter la liste maitresse PDF");return}w.document.open();w.document.write(html);w.document.close();w.onload=()=>setTimeout(()=>w.print(),250);sync("Liste maitresse prete a enregistrer en PDF")}
+function exportMasterList(){if(!requirePerm("Exporter"))return;const docs=(s.docs||[]).map(normDoc),rows=docs.map(x=>`<tr><td>${esc(x.ref)}</td><td>${esc(x.title)}</td><td>${esc(x.p)}</td><td>${esc(x.type)}</td><td>${esc(x.v)}</td><td>${esc(x.st)}</td><td>${esc(x.o||"-")}</td><td>${esc(x.verif||"-")}</td><td>${esc(x.app||"-")}</td><td>${esc(x.review||"-")}</td><td>${esc(x.diff||"-")}</td></tr>`).join("")||`<tr><td colspan="11">Aucun document.</td></tr>`,html=`<!doctype html><html lang="fr"><meta charset="utf-8"><title>Liste maitresse documentaire</title><style>body{font:13px Segoe UI,Arial,sans-serif;color:#24324a;padding:24px}h1{color:#245ccc}table{border-collapse:collapse;width:100%;margin-top:16px}th,td{padding:8px;border:1px solid #dbe6f5;text-align:left;vertical-align:top}th{background:#eef4ff}</style><body><h1>Liste maitresse documentaire QUALI</h1><p><b>Date d'edition :</b> ${esc(now())}<br><b>Nombre de documents :</b> ${docs.length}</p><table><thead><tr><th>Ref</th><th>Titre</th><th>Processus</th><th>Type</th><th>Version</th><th>Statut</th><th>Redacteur</th><th>Verificateur</th><th>Approbateur</th><th>Revue</th><th>Diffusion</th></tr></thead><tbody>${rows}</tbody></table></body></html>`,w=window.open("","_blank","width=1100,height=900");if(!w){sync("Autorise les fenetres popup pour exporter la liste maitresse PDF");return}w.document.open();w.document.write(html);w.document.close();w.onload=()=>setTimeout(()=>w.print(),250);sync("Liste maitresse prete a enregistrer en PDF")}
 function orgProcessButtons(list){return docHierarchy(list,true)}
 function folderPath(proc,type,fmt){return `${ORG_DIR_BASE}\\${proc}\\${type}\\${fmt}`}
 function processRootPath(proc){return `${ORG_DIR_BASE}\\${proc}`}
@@ -3369,8 +3492,8 @@ function processStorage(proc){const docs=(s.orgDocs||[]).map(normDoc).filter(x=>
 function orgFolders(proc){const docs=(s.orgDocs||[]).map(normDoc).filter(x=>(x.p||"Processus support")===proc);return ORG_DOC_TYPES.map(t=>{const items=docs.filter(x=>x.type===t),subs=DOC_FORMATS.map(fmt=>{const files=items.filter(x=>(x.st||"Brouillon")===fmt),nums=files.length?files.map((_,i)=>String(i+1)).join("<br>"):"Aucun fichier.",cls=["Approuve","Diffuse"].includes(fmt)?"valide":fmt==="Archive"?"obsolete":"avalider";return `<div class="subfolder ${cls}"><strong>${fmt}</strong><p>${files.length} document${files.length>1?"s":""}</p><p>${nums}</p><div class="reader-actions"><button class="btn2 btn" type="button" data-orgpick="1" data-otype="${esc(t)}" data-ost="${esc(fmt)}">Activer lecture dans l'application</button><button class="btn2 btn" type="button" data-orgscan="1" data-otype="${esc(t)}" data-ost="${esc(fmt)}">Actualiser la lecture</button></div></div>`}).join("");return `<div class="it folder-item"><b>${t}</b><p>${items.length} document${items.length>1?"s":""}</p><div class="subfolders">${subs}</div></div>`}).join("")}
 function renderOrgReaderList(files,proc){orgFiles=files;const cur=(s.orgReader||{}).selected||"",filtered=files.filter(x=>(!activeOrgType||x.type===activeOrgType)&&(!activeOrgStatus||x.status===activeOrgStatus)),ctx=[activeOrgType,activeOrgStatus].filter(Boolean).join(" / ");$("#procReaderList").innerHTML=filtered.length?filtered.map(x=>`<div class="reader-file${x.id===cur?" on":""}"><b>${esc(x.name)}</b><p>${esc(x.type)} - ${esc(x.status)}</p><p>${esc(x.label)} | ${fmtSize(x.size)}</p><p>${esc(x.path)}</p><div class="reader-actions"><button class="btn2 btn" type="button" data-orgf="${esc(x.id)}">Lire</button></div></div>`).join(""):`<div class="it"><b>Aucun fichier detecte</b><p>Aucun document n'a ete trouve dans <b>${esc(proc)}</b>${ctx?` pour <b>${esc(ctx)}</b>`:""}.</p><p>Ajoute des fichiers dans <code>${esc(processRootPath(proc))}</code>, puis clique sur <b>Actualiser la lecture</b>.</p></div>`}
 function orgReaderState(title,msg){$("#procReaderList").innerHTML=`<div class="it"><b>${title}</b><p>${msg}</p><div class="reader-actions"><button class="btn2 btn" type="button" data-orgpick="1">Activer lecture dans l'application</button><button class="btn2 btn" type="button" data-orgscan="1">Actualiser</button></div></div>`;$("#procReaderPreview").innerHTML=orgPreviewDefault()}
-async function chooseOrgDir(){if(!window.showDirectoryPicker){sync("Utilise Chrome ou Edge pour lire le dossier D: dans l'application");return}try{const h=await window.showDirectoryPicker({mode:"read"});if(!await verifyHandle(h,false)){sync("Autorisation refusee pour le dossier D:");return}if((h.name||"")!=="QualiLab_Organisme"){sync("Choisis exactement le dossier D:\\QualiLab_Organisme");return}orgHandle=h;orgRootName=h.name||"QualiLab_Organisme";await idbSet("orgHandle",h);sync("Dossier D:\\QualiLab_Organisme connecte");if(activeOrgProc)await scanOrgProc(activeOrgProc);if($("#procStorage"))$("#procStorage").innerHTML=processStorage(activeOrgProc||DOC_PROCS[0])}catch(e){if(e&&e.name!=="AbortError")sync("Connexion du dossier D: echouee")}}
-async function scanOrgProc(proc){activeOrgProc=proc;$("#procStorage").innerHTML=processStorage(proc);$("#procReaderPreview").innerHTML=orgPreviewDefault();if(!orgHandle){orgReaderState("Connexion requise","Choisis le dossier racine D:\\QualiLab_Organisme pour afficher les documents directement dans QualiLab.");return}if(!await verifyHandle(orgHandle,false)){orgHandle=null;orgReaderState("Autorisation requise","Reconnecte le dossier D:\\QualiLab_Organisme pour poursuivre la lecture dans l'application.");$("#procStorage").innerHTML=processStorage(proc);return}orgFilesMap=new Map();orgFiles=[];$("#procReaderList").innerHTML=`<div class="it"><b>Lecture en cours</b><p>Scan du dossier ${esc(proc)}...</p></div>`;try{const dir=await orgHandle.getDirectoryHandle(proc),out=[];const walk=async(cur,p="")=>{for await(const [name,entry] of cur.entries()){const rel=p?`${p}/${name}`:name;if(entry.kind==="directory")await walk(entry,rel);else{const f=await entry.getFile(),parts=rel.split("/"),t=fileType(name),id=`${proc}/${rel}`;out.push({id,name,path:id,type:parts[0]||"-",status:parts[1]||"-",label:t.label,kind:t.kind,size:f.size,modified:fmtDate(f.lastModified)});orgFilesMap.set(id,entry)}}};await walk(dir);out.sort((a,b)=>a.path.localeCompare(b.path));s.orgReader={selected:""};renderOrgReaderList(out,proc);const shown=out.filter(x=>(!activeOrgType||x.type===activeOrgType)&&(!activeOrgStatus||x.status===activeOrgStatus)).length,ctx=[activeOrgType,activeOrgStatus].filter(Boolean).join(" / ");$("#procReaderPreview").innerHTML=out.length?`<div class="it"><b>${shown} fichier${shown>1?"s":""} affiche${shown>1?"s":""}</b><p>${ctx?`Filtre actif : ${esc(ctx)}. `:""}Choisis un document dans la colonne de gauche pour lire son contenu directement ici.</p></div>`:orgPreviewDefault();sync(shown+" document(s) lus depuis "+proc)}catch(e){orgReaderState("Dossier introuvable","Le processus "+proc+" n'a pas ete trouve dans le dossier connecte. Verifie que tu as bien choisi D:\\QualiLab_Organisme.");$("#procStorage").innerHTML=processStorage(proc)}}
+async function chooseOrgDir(){if(!window.showDirectoryPicker){sync("Utilise Chrome ou Edge pour lire le dossier D: dans l'application");return}try{const h=await window.showDirectoryPicker({mode:"read"});if(!await verifyHandle(h,false)){sync("Autorisation refusee pour le dossier D:");return}if((h.name||"")!=="QUALI_Organisme"){sync("Choisis exactement le dossier D:\\QUALI_Organisme");return}orgHandle=h;orgRootName=h.name||"QUALI_Organisme";await idbSet("orgHandle",h);sync("Dossier D:\\QUALI_Organisme connecte");if(activeOrgProc)await scanOrgProc(activeOrgProc);if($("#procStorage"))$("#procStorage").innerHTML=processStorage(activeOrgProc||DOC_PROCS[0])}catch(e){if(e&&e.name!=="AbortError")sync("Connexion du dossier D: echouee")}}
+async function scanOrgProc(proc){activeOrgProc=proc;$("#procStorage").innerHTML=processStorage(proc);$("#procReaderPreview").innerHTML=orgPreviewDefault();if(!orgHandle){orgReaderState("Connexion requise","Choisis le dossier racine D:\\QUALI_Organisme pour afficher les documents directement dans QUALI.");return}if(!await verifyHandle(orgHandle,false)){orgHandle=null;orgReaderState("Autorisation requise","Reconnecte le dossier D:\\QUALI_Organisme pour poursuivre la lecture dans l'application.");$("#procStorage").innerHTML=processStorage(proc);return}orgFilesMap=new Map();orgFiles=[];$("#procReaderList").innerHTML=`<div class="it"><b>Lecture en cours</b><p>Scan du dossier ${esc(proc)}...</p></div>`;try{const dir=await orgHandle.getDirectoryHandle(proc),out=[];const walk=async(cur,p="")=>{for await(const [name,entry] of cur.entries()){const rel=p?`${p}/${name}`:name;if(entry.kind==="directory")await walk(entry,rel);else{const f=await entry.getFile(),parts=rel.split("/"),t=fileType(name),id=`${proc}/${rel}`;out.push({id,name,path:id,type:parts[0]||"-",status:parts[1]||"-",label:t.label,kind:t.kind,size:f.size,modified:fmtDate(f.lastModified)});orgFilesMap.set(id,entry)}}};await walk(dir);out.sort((a,b)=>a.path.localeCompare(b.path));s.orgReader={selected:""};renderOrgReaderList(out,proc);const shown=out.filter(x=>(!activeOrgType||x.type===activeOrgType)&&(!activeOrgStatus||x.status===activeOrgStatus)).length,ctx=[activeOrgType,activeOrgStatus].filter(Boolean).join(" / ");$("#procReaderPreview").innerHTML=out.length?`<div class="it"><b>${shown} fichier${shown>1?"s":""} affiche${shown>1?"s":""}</b><p>${ctx?`Filtre actif : ${esc(ctx)}. `:""}Choisis un document dans la colonne de gauche pour lire son contenu directement ici.</p></div>`:orgPreviewDefault();sync(shown+" document(s) lus depuis "+proc)}catch(e){orgReaderState("Dossier introuvable","Le processus "+proc+" n'a pas ete trouve dans le dossier connecte. Verifie que tu as bien choisi D:\\QUALI_Organisme.");$("#procStorage").innerHTML=processStorage(proc)}}
 async function openOrgFile(id){if(!id)return;let f=null;const src=orgFilesMap.get(id);try{if(src&&src.kind==="file")f=await src.getFile();else if(src instanceof File)f=src}catch(e){}if(!f){sync("Fichier introuvable dans le dossier D:");return}const t=fileType(f.name);if(!s.orgReader)s.orgReader={selected:""};s.orgReader.selected=id;if(orgPreviewUrl)try{URL.revokeObjectURL(orgPreviewUrl)}catch(e){}orgPreviewUrl=await objectUrlForFile(f);renderOrgReaderList(orgFiles,activeOrgProc);$("#procReaderPreview").innerHTML=await buildFilePreview(f,orgPreviewUrl,t)}
 function openProcessWindow(proc){activeOrgProc=proc;activeOrgType="";activeOrgStatus="";$("#procTitle").textContent=proc;$("#procStorage").innerHTML=processStorage(proc);$("#procFolders").innerHTML=orgFolders(proc);$("#procPanel").classList.remove("h");$("#procReaderList").innerHTML=`<div class="it"><b>Documents stockes</b><p>Charge le contenu du dossier <code>${esc(processRootPath(proc))}</code> pour lire les fichiers dans l'application.</p></div>`;$("#procReaderPreview").innerHTML=orgPreviewDefault();scanOrgProc(proc);$("#procPanel").scrollIntoView({behavior:"smooth",block:"start"})}
 function closeProcessWindow(){$("#procPanel").classList.add("h");activeOrgProc="";activeOrgType="";activeOrgStatus=""}
@@ -3448,10 +3571,10 @@ function deleteSat(id){if(!requirePerm("Supprimer"))return;const x=satItems().fi
 function repoView(){const q=$("#fsq")?$("#fsq").value.trim().toLowerCase():"",files=((s.repo&&s.repo.files)||[]).filter(x=>[x.name,x.path,x.module,x.label].join(" ").toLowerCase().includes(q));$("#fcount").textContent=`${files.length} fichier${files.length>1?"s":""} - ${s.repo&&s.repo.mode?s.repo.mode:"Aucune liaison active"}`;$("#filelist").innerHTML=files.length?files.map(x=>`<div class="it"><b>${esc(x.name)}</b><p>${esc(x.module)} - ${esc(x.label)}</p><p>${esc(x.path)}</p><p>Taille : ${fmtSize(x.size)} | Modifie : ${esc(x.modified||"-")}</p><div style="margin-top:10px"><button class="btn2 btn" data-rf="${esc(x.id)}">Ouvrir</button></div></div>`).join(""):`<div class="e">Aucun fichier detecte. Connecte ou charge le dossier local.</div>`;if(!s.repo||!s.repo.selected)$("#filepreview").innerHTML=previewDefault()}
 async function chooseRepoDir(){if(!window.showDirectoryPicker){sync("Utilise Chrome ou Edge pour connecter un dossier local");return}try{const h=await window.showDirectoryPicker({mode:"readwrite"});if(!await verifyHandle(h,true)){sync("Autorisation refusee pour le dossier");return}repoHandle=h;await idbSet("repoHandle",h);s.repo.folderName=h.name;s.repo.linked=true;s.repo.mode="Dossier connecte";log("Connexion","Dossier local",h.name+" connecte");await scanRepo()}catch(e){if(e&&e.name!=="AbortError")sync("Connexion du dossier echouee")}}
 async function scanRepo(h=repoHandle){if(!h){sync("Aucun dossier connecte");return}repoFilesMap=new Map();const out=[];const walk=async(dir,p="")=>{for await(const [name,entry] of dir.entries()){const cur=p?`${p}/${name}`:name;if(entry.kind==="directory")await walk(entry,cur);else{const f=await entry.getFile(),t=fileType(name);out.push({id:cur,name,path:cur,module:moduleFromPath(cur),label:t.label,kind:t.kind,size:f.size,modified:fmtDate(f.lastModified)});repoFilesMap.set(cur,entry)}}};try{await walk(h);s.repo.files=out.sort((a,b)=>a.path.localeCompare(b.path));s.repo.mode="Dossier connecte";save("Dossier local scanne");repoView()}catch(e){sync("Scan du dossier echoue")}}
-function scanFallbackDir(list){repoHandle=null;repoFilesMap=new Map();const base=(list[0]&&list[0].webkitRelativePath?list[0].webkitRelativePath.split("/")[0]:"QualiLab_Documents")||"QualiLab_Documents";const out=[...list].map(f=>{const p=f.webkitRelativePath||f.name,t=fileType(f.name);repoFilesMap.set(p,f);return{id:p,name:f.name,path:p,module:moduleFromPath(p),label:t.label,kind:t.kind,size:f.size,modified:fmtDate(f.lastModified)}}).sort((a,b)=>a.path.localeCompare(b.path));s.repo.folderName=base;s.repo.linked=false;s.repo.mode="Dossier charge en lecture seule";s.repo.files=out;s.repo.selected="";save("Dossier charge");repoView()}
+function scanFallbackDir(list){repoHandle=null;repoFilesMap=new Map();const base=(list[0]&&list[0].webkitRelativePath?list[0].webkitRelativePath.split("/")[0]:"QUALI_Documents")||"QUALI_Documents";const out=[...list].map(f=>{const p=f.webkitRelativePath||f.name,t=fileType(f.name);repoFilesMap.set(p,f);return{id:p,name:f.name,path:p,module:moduleFromPath(p),label:t.label,kind:t.kind,size:f.size,modified:fmtDate(f.lastModified)}}).sort((a,b)=>a.path.localeCompare(b.path));s.repo.folderName=base;s.repo.linked=false;s.repo.mode="Dossier charge en lecture seule";s.repo.files=out;s.repo.selected="";save("Dossier charge");repoView()}
 function loadLooseFiles(list,folder="07_Imports"){if(!list||!list.length)return;repoFilesMap=new Map();const out=[...list].map((f,i)=>{const path=`${folder}/${f.name}`,t=fileType(f.name),id=`${path}#${i}`;repoFilesMap.set(id,f);return{id,name:f.name,path,module:moduleFromPath(path),label:t.label,kind:t.kind,size:f.size,modified:fmtDate(f.lastModified)}}).sort((a,b)=>a.path.localeCompare(b.path));s.repo.linked=false;s.repo.folderName="Documents importes";s.repo.mode="Documents charges depuis le PC";s.repo.files=out;s.repo.selected="";save("Documents charges");page("repo");repoView();sync(out.length+" document(s) charges et relies au PC")}
 async function importRepoFiles(list,folder=importTarget()){if(!list||!list.length)return;if(!repoHandle){sync("Connecte d'abord le dossier local pour importer");return}if(!await verifyHandle(repoHandle,true)){sync("Autorisation d'ecriture refusee");return}try{const dir=await repoHandle.getDirectoryHandle(folder,{create:true});for(const f of list){const fh=await dir.getFileHandle(f.name,{create:true}),w=await fh.createWritable();await w.write(f);await w.close()}log("Importation","Dossier local",list.length+" fichier(s) importes dans "+folder);await scanRepo();sync(list.length+" fichier(s) importes dans "+folder)}catch(e){sync("Importation de fichiers echouee")}}
-async function exportRepoData(){if(!repoHandle){sync("Connecte d'abord le dossier local");return}if(!await verifyHandle(repoHandle,true)){sync("Autorisation d'ecriture refusee");return}try{const dir=await repoHandle.getDirectoryHandle("08_Exports",{create:true});const fh=await dir.getFileHandle("qualilab-export-"+stamp()+".json",{create:true});const w=await fh.createWritable();await w.write(JSON.stringify(s,null,2));await w.close();log("Exportation","Dossier local","Export JSON genere");await scanRepo();sync("Export enregistre dans 08_Exports")}catch(e){sync("Exportation vers le dossier echouee")}}
+async function exportRepoData(){if(!repoHandle){sync("Connecte d'abord le dossier local");return}if(!await verifyHandle(repoHandle,true)){sync("Autorisation d'ecriture refusee");return}try{const dir=await repoHandle.getDirectoryHandle("08_Exports",{create:true});const fh=await dir.getFileHandle("QUALI-export-"+stamp()+".json",{create:true});const w=await fh.createWritable();await w.write(JSON.stringify(s,null,2));await w.close();log("Exportation","Dossier local","Export JSON genere");await scanRepo();sync("Export enregistre dans 08_Exports")}catch(e){sync("Exportation vers le dossier echouee")}}
 async function openRepoFile(id){if(!id)return;let f=null;const src=repoFilesMap.get(id);try{if(src&&src.kind==="file")f=await src.getFile();else if(src instanceof File)f=src}catch(e){}if(!f){sync("Fichier introuvable");return}const t=fileType(f.name);s.repo.selected=id;if(previewUrl)try{URL.revokeObjectURL(previewUrl)}catch(e){}previewUrl=await objectUrlForFile(f);$("#filepreview").innerHTML=await buildFilePreview(f,previewUrl,t)}
 async function downloadRepoFile(id=s.repo&&s.repo.selected){if(!id){sync("Selectionne d'abord un document dans Dossier local");page("repo");return}let f=null;const src=repoFilesMap.get(id);try{if(src&&src.kind==="file")f=await src.getFile();else if(src instanceof File)f=src}catch(e){}if(!f){sync("Document introuvable");return}const u=URL.createObjectURL(f),a=document.createElement("a");a.href=u;a.download=f.name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),1500);sync("Document exporte ; Windows peut l'ouvrir avec Word, Excel ou l'application associee")}
 function handleImportButton(){if(!requirePerm("Importer"))return;const m=$("#impMode").value;if(m==="json"){$("#file").click();return}if(m==="documents"){$("#docFile").click();return}if(repoHandle){$("#docFile").click();sync("Importation vers "+importTarget())}else if(window.showDirectoryPicker){chooseRepoDir()}else{$("#repoDirFallback").click()}}
@@ -3459,7 +3582,7 @@ function handleDocumentImport(list){if(!list||!list.length)return;const m=$("#im
 function handleExportButton(){const m=$("#expMode").value;if(m==="document"){if(!requirePerm("Telecharger"))return;downloadRepoFile();return}if(!requirePerm("Exporter"))return;if(m==="json"){exp();return}exportRepoData()}
 function clearFields(ids){ids.forEach(id=>{const el=$(id);if(!el)return;if(el.tagName==="SELECT")el.selectedIndex=0;else el.value=""})}
 const PERMS=["Ajouter","Modifier","Supprimer","Valider","Telecharger","Importer","Exporter","Parametres","Comptes"];
-function pilotAccount(){return{name:"Pilote QualiLab",firstName:"Pilote",lastName:"QualiLab",email:"karimennajeh@gmail.com",role:"Administrateur",dept:"Pilotage application",func:"Pilote de l'application",matricule:"PILOT-001",ini:"PQ",perms:[...PERMS],passwordHint:"Mot de passe pilote : 09318872karim@"}}
+function pilotAccount(){return{name:"Pilote QUALI",firstName:"Pilote",lastName:"QUALI",email:"karimennajeh@gmail.com",role:"Administrateur",dept:"Pilotage application",func:"Pilote de l'application",matricule:"PILOT-001",ini:"PQ",perms:[...PERMS],passwordHint:"Mot de passe pilote : 09318872karim@"}}
 function ensurePilotAccount(){const p=pilotAccount(),oldEmail="admin@ener.tn";s.usr=s.usr||[];const i=s.usr.findIndex(x=>[p.email,oldEmail].includes(String(x.email||"").toLowerCase()));if(i>=0)s.usr[i]={...s.usr[i],...p};else s.usr.unshift(markSaved(p));if([p.email,oldEmail].includes(String((s.u&&s.u.email)||"").toLowerCase()))s.u={...s.u,...p}}
 function userPerms(u=s.u){if(u&&Array.isArray(u.perms))return u.perms;if(u&&u.role==="Administrateur")return PERMS;return["Telecharger"]}
 function hasPerm(p){return userPerms().includes(p)}
@@ -3467,7 +3590,7 @@ function requirePerm(p){if(hasPerm(p))return true;sync("Acces refuse : autorisat
 function selectedPerms(){return $all("#uperms input:checked").map(x=>x.value)}
 function permsHtml(u){return `<div class="perm-tags">${userPerms(u).map(p=>`<span>${esc(p)}</span>`).join("")}</div>`}
 function validPassword(v){return String(v||"").length>=8&&/[A-Za-z]/.test(v)&&/\d/.test(v)&&/[^A-Za-z0-9]/.test(v)}
-function notifyAccount(u,pw){const subject=encodeURIComponent("Creation de votre compte QualiLab"),body=encodeURIComponent(`Bonjour ${u.firstName||u.name},\n\nVotre compte QualiLab a ete cree.\n\nIdentifiant : ${u.email}\nMot de passe provisoire : ${pw}\nRole : ${u.role}\nFonction : ${u.func||"-"}\nMatricule : ${u.matricule||"-"}\nAutorisations : ${(u.perms||[]).join(", ")||"-"}\n\nMerci de conserver ces informations de maniere securisee.`),a=document.createElement("a");a.href=`mailto:${encodeURIComponent(u.email)}?subject=${subject}&body=${body}`;a.style.display="none";document.body.appendChild(a);a.click();a.remove()}
+function notifyAccount(u,pw){const subject=encodeURIComponent("Creation de votre compte QUALI"),body=encodeURIComponent(`Bonjour ${u.firstName||u.name},\n\nVotre compte QUALI a ete cree.\n\nIdentifiant : ${u.email}\nMot de passe provisoire : ${pw}\nRole : ${u.role}\nFonction : ${u.func||"-"}\nMatricule : ${u.matricule||"-"}\nAutorisations : ${(u.perms||[]).join(", ")||"-"}\n\nMerci de conserver ces informations de maniere securisee.`),a=document.createElement("a");a.href=`mailto:${encodeURIComponent(u.email)}?subject=${subject}&body=${body}`;a.style.display="none";document.body.appendChild(a);a.click();a.remove()}
 function addDoc(){if(!requirePerm("Ajouter"))return;const t=$("#dt").value.trim(),r=$("#dr").value.trim();if(!t||!r){sync("Renseigne le titre et la reference du document");return}s.docs=(s.docs||[]).map(normDoc);const prev=s.docs.filter(x=>x.ref===r).length,doc=markSaved({id:Date.now(),ref:r,title:t,p:$("#dpr").value,type:$("#dty").value,v:prev?"1."+prev:"1.0",st:$("#dstat").value,o:$("#do").value.trim()||s.u.name,verif:$("#dverif").value.trim()||"-",app:$("#dapp").value.trim()||"-",review:$("#drev").value||"-",diff:$("#ddiff").value.trim()||"-",d:now().slice(0,10),store:$("#dst").value,url:$("#durl").value.trim(),history:[{t:now(),a:"Creation",u:(s.u&&s.u.name)||"Utilisateur"}]});s.docs.unshift(doc);log("Creation","Documents",r+" ajoute, classe et trace dans "+docStoragePath(doc));save("Document enregistre automatiquement");clearFields(["#dt","#dr","#do","#dverif","#dapp","#drev","#ddiff","#durl"]);render()}
 function orgDocHistory(x){return ((x.history||[]).slice(-5).map(i=>`<p>${esc(i.t)} - ${esc(i.a)} - ${esc(i.u||"-")}</p>`).join(""))||"<p>Aucun historique.</p>"}
 function orgDocDetail(x){return `<div class="it"><b>Fiche de creation : ${esc(x.ref)} - ${esc(x.title)}</b><p>Objectif : ${esc(x.ie||"-")}</p><p>Processus : ${esc(x.p)} | Type : ${esc(x.type)} | Version : ${esc(x.v)} | Statut : ${esc(x.st)}</p><p>Redacteur : ${esc(x.o||"-")} | Verificateur : ${esc(x.verif||"-")} | Approbateur : ${esc(x.app||"-")}</p><p>Diffusion : ${esc(x.diff||"-")}</p><p>Contenu principal : ${esc(x.body||"-")}</p><p>Stockage : ${esc(x.store||"-")} | ${esc(x.url||"-")}</p><b>Historique</b>${orgDocHistory(x)}</div>`}
@@ -3486,7 +3609,7 @@ function addRevc(){if(!requirePerm("Ajouter"))return;const r=$("#rr").value.trim
 function addUsr(){if(!requirePerm("Comptes"))return;const fn=$("#ufn").value.trim(),ln=$("#uln").value.trim(),e=$("#ue").value.trim(),pw=$("#upw").value,pw2=$("#upw2").value,func=$("#ufunc").value.trim(),mat=$("#umat").value.trim(),n=(fn+" "+ln).trim();if(!fn||!ln||!e){sync("Renseigne le prenom, le nom et l'adresse mail du compte");return}if(!validPassword(pw)){sync("Mot de passe invalide : minimum 8 caracteres avec lettres, chiffres et symbole");return}if(pw!==pw2){sync("Confirmation du mot de passe incorrecte");return}if(!func||!mat){sync("Renseigne le poste/fonction et la matricule de l'agent");return}const user=markSaved({firstName:fn,lastName:ln,name:n,email:e,role:$("#ur").value,dept:$("#ud").value.trim()||"-",func,matricule:mat,ini:ini(n),perms:selectedPerms(),passwordHint:"Mot de passe cree et notifie par email"});s.usr.unshift(user);log("Creation","Utilisateurs",n+" ajoute avec acces : "+selectedPerms().join(", "));save("Utilisateur enregistre automatiquement");notifyAccount(user,pw);clearFields(["#ufn","#uln","#ue","#upw","#upw2","#ufunc","#umat","#ud"]);render()}
 function saveOrg(actionLabel="Enregistrement"){if(!requirePerm("Parametres"))return;const get=id=>{const el=$("#"+id);return el?el.value.trim():""};s.org=markSaved({...(s.org||{}),name:get("oname"),acc:get("oacc"),accDate:get("oad"),validDate:get("ovd"),manager:get("omgr"),city:get("ocity"),phone:get("otel"),fax:get("ofax"),mail:get("omail"),address:get("oaddr"),accRef:get("oaref"),accStd:get("oastd"),accBody:get("oabody"),accScope:get("oascope"),accResp:get("oaresp"),accNext:get("oanext"),accDecision:get("oadec"),accActionDate:get("oaactiondate"),accActions:get("oaactions"),docs:(s.org&&s.org.docs)||"",createdAt:(s.org&&s.org.createdAt)||now(),lastAction:actionLabel+" de la configuration organisme"});log(actionLabel,"Parametres","Configuration accreditation et organisme mise a jour et affichee dans les documents necessaires");save("Configuration organisme mise a jour et affichee dans les documents necessaires");render();sync("Configuration organisme mise a jour et affichee dans Documents necessaires")}
 function modifyOrg(){saveOrg("Modification")}
-function printOrgSummary(){const o=s.org||{},sections=orgSummarySections(o).map(sec=>`<h2>${esc(sec.title)}</h2><table>${sec.rows.map(x=>`<tr><th>${esc(x[0])}</th><td>${esc(x[1]||"-")}</td></tr>`).join("")}</table>`).join(""),html=`<!doctype html><html lang="fr"><meta charset="utf-8"><title>Resume organisme QualiLab PDF</title><style>body{font:14px Segoe UI,Arial,sans-serif;color:#25324b;padding:28px}h1{color:#7c89c4;margin:0 0 10px}h2{margin:22px 0 8px;color:#51627f}.meta{color:#6f7d99;margin-bottom:18px}table{width:100%;border-collapse:collapse;margin-bottom:10px}th,td{padding:10px 12px;border:1px solid #d9def2;text-align:left;vertical-align:top}th{width:260px;background:#f2f4fc;color:#51627f}.box{border:1px solid #d9def2;border-radius:14px;padding:16px;margin-bottom:18px}</style><body><h1>Resume organisme</h1><div class="meta">QualiLab - Edition : ${esc(now())}</div><div class="box"><b>${esc(o.name||"Organisme")}</b><p>General, accreditation et suivi de l'accreditation.</p></div>${sections}</body></html>`;const w=window.open("","_blank","width=900,height=720");if(!w){sync("Autorise les fenetres popup pour imprimer le resume organisme en PDF");return}w.document.open();w.document.write(html);w.document.close();w.onload=()=>setTimeout(()=>w.print(),250);sync("Resume organisme pret : choisir Enregistrer en PDF dans la fenetre d'impression")}
+function printOrgSummary(){const o=s.org||{},sections=orgSummarySections(o).map(sec=>`<h2>${esc(sec.title)}</h2><table>${sec.rows.map(x=>`<tr><th>${esc(x[0])}</th><td>${esc(x[1]||"-")}</td></tr>`).join("")}</table>`).join(""),html=`<!doctype html><html lang="fr"><meta charset="utf-8"><title>Resume organisme QUALI PDF</title><style>body{font:14px Segoe UI,Arial,sans-serif;color:#25324b;padding:28px}h1{color:#7c89c4;margin:0 0 10px}h2{margin:22px 0 8px;color:#51627f}.meta{color:#6f7d99;margin-bottom:18px}table{width:100%;border-collapse:collapse;margin-bottom:10px}th,td{padding:10px 12px;border:1px solid #d9def2;text-align:left;vertical-align:top}th{width:260px;background:#f2f4fc;color:#51627f}.box{border:1px solid #d9def2;border-radius:14px;padding:16px;margin-bottom:18px}</style><body><h1>Resume organisme</h1><div class="meta">QUALI - Edition : ${esc(now())}</div><div class="box"><b>${esc(o.name||"Organisme")}</b><p>General, accreditation et suivi de l'accreditation.</p></div>${sections}</body></html>`;const w=window.open("","_blank","width=900,height=720");if(!w){sync("Autorise les fenetres popup pour imprimer le resume organisme en PDF");return}w.document.open();w.document.write(html);w.document.close();w.onload=()=>setTimeout(()=>w.print(),250);sync("Resume organisme pret : choisir Enregistrer en PDF dans la fenetre d'impression")}
 function pickReqDoc(id){if(!requirePerm("Importer"))return;activeOrgReqDoc=id;const el=$("#orgReqFile");if(el){el.value="";el.accept=reqDocPdfOnly(id)?"application/pdf,.pdf":"";el.click()}}
 async function importReqDoc(f){if(!f||!activeOrgReqDoc)return;if(reqDocPdfOnly(activeOrgReqDoc)&&fileExt(f.name)!=="pdf"){sync("Le manuel qualite doit etre importe sous forme PDF");return}s.org=s.org||{};s.org.reqDocs=s.org.reqDocs||{};const t=fileType(f.name),meta=markSaved({id:activeOrgReqDoc,name:f.name,label:t.label,kind:t.kind,size:fmtSize(f.size),modified:fmtDate(f.lastModified)});orgReqFilesMap.set(activeOrgReqDoc,f);s.org.reqDocs[activeOrgReqDoc]=meta;log("Importation","Parametres","Document necessaire importe : "+f.name);save("Document necessaire importe");await readReqDoc(activeOrgReqDoc);render()}
 async function readReqDoc(id){const f=orgReqFilesMap.get(id),meta=reqDocMeta(id);if(!f){$("#orgReqPreview").innerHTML=`<div class="it"><b>${esc(meta&&meta.name?meta.name:"Document non importe")}</b><p>Le fichier n'est pas disponible dans cette session. Reimporte le document pour le lire directement dans l'application.</p></div>`;return}const t=fileType(f.name);if(orgReqPreviewUrl)try{URL.revokeObjectURL(orgReqPreviewUrl)}catch(e){}orgReqPreviewUrl=await objectUrlForFile(f);$("#orgReqPreview").innerHTML=await buildFilePreview(f,orgReqPreviewUrl,t);sync("Lecture directe du document necessaire")}
@@ -3499,7 +3622,7 @@ function diagField(e){const t=e.target;if(t.matches("[data-diag]"))saveDiag(t.da
 function act(e){const da=e.target.closest("[data-da]"),doo=e.target.closest("[data-do]"),dd=e.target.closest("[data-dd]"),oda=e.target.closest("[data-oda]"),odo=e.target.closest("[data-odo]"),odd=e.target.closest("[data-odd]"),op=e.target.closest("[data-oproc]"),orgpick=e.target.closest("[data-orgpick]"),orgscan=e.target.closest("[data-orgscan]"),orgf=e.target.closest("[data-orgf]"),orgReqImport=e.target.closest("[data-orgreq-import]"),orgReqRead=e.target.closest("[data-orgreq-read]"),et=e.target.closest("[data-et]"),ed=e.target.closest("[data-ed]"),nt=e.target.closest("[data-nt]"),nd=e.target.closest("[data-nd]"),at=e.target.closest("[data-at]"),ad=e.target.closest("[data-ad]"),rt=e.target.closest("[data-rt]"),rd=e.target.closest("[data-rd]"),ud=e.target.closest("[data-ud]"),rf=e.target.closest("[data-rf]");if((da||oda)&&!requirePerm("Valider"))return;if((doo||odo||et||nt||at||rt)&&!requirePerm("Modifier"))return;if((dd||odd||ed||nd||ad||rd||ud)&&!requirePerm("Supprimer"))return;if(op)openProcessWindow(op.dataset.oproc);if(orgpick){activeOrgType=orgpick.dataset.otype||activeOrgType;activeOrgStatus=orgpick.dataset.ost||activeOrgStatus;chooseOrgDir()}if(orgscan&&activeOrgProc){activeOrgType=orgscan.dataset.otype||activeOrgType;activeOrgStatus=orgscan.dataset.ost||activeOrgStatus;scanOrgProc(activeOrgProc)}if(orgf)openOrgFile(orgf.dataset.orgf);if(orgReqImport)pickReqDoc(orgReqImport.dataset.orgreqImport);if(orgReqRead)readReqDoc(orgReqRead.dataset.orgreqRead);if(da){let x=s.docs.find(v=>v.id==da.dataset.da);if(x){x.st="Valide";markSaved(x);log("Validation","Documents",x.ref+" valide");save("Document valide");render()}}if(doo){let x=s.docs.find(v=>v.id==doo.dataset.do);if(x){x.st="Obsolete";markSaved(x);log("Mise a jour","Documents",x.ref+" obsolete");save("Document obsolete");render()}}if(dd){let x=s.docs.find(v=>v.id==dd.dataset.dd);if(x){s.docs=s.docs.filter(v=>v.id!=dd.dataset.dd);log("Suppression","Documents",x.ref+" supprime");save("Document supprime");render()}}if(oda){let x=(s.orgDocs||[]).find(v=>v.id==oda.dataset.oda);if(x){x.st="Valide";markSaved(x);log("Validation","Document organisme",x.ref+" valide");save("Document organisme valide");render()}}if(odo){let x=(s.orgDocs||[]).find(v=>v.id==odo.dataset.odo);if(x){x.st="Obsolete";markSaved(x);log("Mise a jour","Document organisme",x.ref+" obsolete");save("Document organisme obsolete");render()}}if(odd){let x=(s.orgDocs||[]).find(v=>v.id==odd.dataset.odd);if(x){s.orgDocs=s.orgDocs.filter(v=>v.id!=odd.dataset.odd);log("Suppression","Document organisme",x.ref+" supprime");save("Document organisme supprime");render()}}if(et){let x=s.eq.find(v=>v.id==et.dataset.et);x.st=x.st==="Valide"?"A etalonner":x.st==="A etalonner"?"Hors service":"Valide";markSaved(x);log("Mise a jour","Equipements",x.id+" -> "+x.st);save("Equipement mis a jour");render()}if(ed){let x=s.eq.find(v=>v.id==ed.dataset.ed);if(x){s.eq=s.eq.filter(v=>v.id!=ed.dataset.ed);log("Suppression","Equipements",x.id+" supprime");save("Equipement supprime");render()}}if(nt){let x=s.nc.find(v=>v.ref==nt.dataset.nt);x.st=x.st==="Ouverte"?"En cours":"Cloturee";markSaved(x);log("Mise a jour","NC",x.ref+" -> "+x.st);save("NC mise a jour");render()}if(nd){let x=s.nc.find(v=>v.ref==nd.dataset.nd);if(x){s.nc=s.nc.filter(v=>v.ref!=nd.dataset.nd);log("Suppression","NC",x.ref+" supprimee");save("NC supprimee");render()}}if(at){let x=s.aud.find(v=>v.ref==at.dataset.at);x.st=x.st==="Planifie"?"En cours":"Cloture";markSaved(x);log("Mise a jour","Audits",x.ref+" -> "+x.st);save("Audit mis a jour");render()}if(ad){let x=s.aud.find(v=>v.ref==ad.dataset.ad);if(x){s.aud=s.aud.filter(v=>v.ref!=ad.dataset.ad);log("Suppression","Audits",x.ref+" supprime");save("Audit supprime");render()}}if(rt){let x=(s.revc||[]).find(v=>v.ref==rt.dataset.rt);if(x){x.st=x.st==="A revoir"?"En attente client":x.st==="En attente client"?"Approuvee":"Approuvee";markSaved(x);log("Mise a jour","Revue de contrat",x.ref+" -> "+x.st);save("Revue de contrat mise a jour");render()}}if(rd){let x=(s.revc||[]).find(v=>v.ref==rd.dataset.rd);if(x){s.revc=s.revc.filter(v=>v.ref!=rd.dataset.rd);log("Suppression","Revue de contrat",x.ref+" supprimee");save("Revue de contrat supprimee");render()}}if(ud){let x=s.usr.find(v=>v.email==ud.dataset.ud);if(x){s.usr=s.usr.filter(v=>v.email!=ud.dataset.ud);log("Suppression","Utilisateurs",x.email+" supprime");save("Utilisateur supprime");render()}}if(rf)openRepoFile(rf.dataset.rf)}
 function docAct(e){const dcycle=e.target.closest("[data-dcycle]"),ddetail=e.target.closest("[data-ddetail]"),dread=e.target.closest("[data-dread]");if(!dcycle&&!ddetail&&!dread)return;if(dcycle){if(!requirePerm("Valider"))return;const x=s.docs.find(v=>v.id==dcycle.dataset.dcycle);if(x){x.st=docNextStatus(x.st);x.history=[...(x.history||[]),{t:now(),a:"Cycle -> "+x.st,u:(s.u&&s.u.name)||"Utilisateur"}];markSaved(x);log("Cycle documentaire","Documents",x.ref+" -> "+x.st);save("Cycle documentaire mis a jour");render()}}if(ddetail){const x=s.docs.find(v=>v.id==ddetail.dataset.ddetail),summary=$("#dSummary");if(x&&summary)summary.innerHTML=docDetail(normDoc(x));else if(x)sync("Fiche document disponible depuis le tableau principal")}if(dread){if(!requirePerm("Telecharger"))return;const x=s.docs.find(v=>v.id==dread.dataset.dread);if(x&&x.url)window.open(x.url,"_blank");else sync("Aucun lien fichier associe a ce document")}}
 function orgDocAct(e){const review=e.target.closest("[data-odreview]"),approve=e.target.closest("[data-odapprove]"),diffuse=e.target.closest("[data-oddiffuse]"),correct=e.target.closest("[data-odcorrect]"),detail=e.target.closest("[data-oddetail]"),read=e.target.closest("[data-odread]"),archive=e.target.closest("[data-odarchive]"),tpl=e.target.closest("[data-odtemplate]"),edit=e.target.closest("[data-odedit]"),top=e.target.closest("[data-odtop]");if(!review&&!approve&&!diffuse&&!correct&&!detail&&!read&&!archive&&!tpl&&!edit&&!top)return;if(edit)openDocTemplate(edit.dataset.odedit);if(top){const ty=top.dataset.odtop;$("#odt").value=ty;$("#odr").value=ty==="Manuel qualite"?"MQ-001":"POL-001";$("#odie").value="Document de tete de la pyramide documentaire";if(!$all("#odty option").some(o=>o.value===ty))$("#odty").insertAdjacentHTML("beforeend",`<option>${esc(ty)}</option>`);$("#odty").value=ty;sync("Champ specifique selectionne : "+ty)}if(tpl){$("#odty").value=tpl.dataset.odtemplate;sync("Modele selectionne : "+tpl.dataset.odtemplate)}if(review)setOrgDocStatus(review.dataset.odreview,"En revue","Envoi pour verification");if(approve)setOrgDocStatus(approve.dataset.odapprove,"Approuve","Approbation");if(diffuse)setOrgDocStatus(diffuse.dataset.oddiffuse,"Diffuse","Diffusion");if(correct)setOrgDocStatus(correct.dataset.odcorrect,"A corriger","Demande de correction");if(archive)setOrgDocStatus(archive.dataset.odarchive,"Archive","Archivage");if(detail){const x=(s.orgDocs||[]).find(v=>v.id==detail.dataset.oddetail);if(x)$("#odSummary").innerHTML=orgDocDetail(normDoc(x))}if(read){if(!requirePerm("Telecharger"))return;const x=(s.orgDocs||[]).find(v=>v.id==read.dataset.odread);if(x)readOrgDocFile(x);else sync("Aucun document selectionne")}}
-function exp(){const b=new Blob([JSON.stringify(s,null,2)],{type:"application/json"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="qualilab-export.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(u);sync("Export genere")}
+function exp(){const b=new Blob([JSON.stringify(s,null,2)],{type:"application/json"}),u=URL.createObjectURL(b),a=document.createElement("a");a.href=u;a.download="QUALI-export.json";document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(u);sync("Export genere")}
 function imp(f){if(!f)return;const r=new FileReader();r.onload=()=>{try{s={...c(D),...JSON.parse(r.result)};log("Importation","Systeme","Importation JSON");save("Importation terminee");render()}catch(e){sync("Importation echouee")}};r.readAsText(f)}
 function refreshCurrentPage(){render();page(currentPage,true);sync("Page actualisee")}
 function bindClick(id,fn){const el=$("#"+id);if(el)el.addEventListener("click",e=>{e.preventDefault();fn(e)})}
@@ -3516,13 +3639,34 @@ bindClick("ncClosedPrint",()=>handleNcClosedExport("print"));bindClick("ncClosed
 ["omod","omodAcc","omodSuivi"].forEach(id=>bindClick(id,modifyOrg));["osv","osvAcc","osvSuivi"].forEach(id=>bindClick(id,()=>saveOrg()));bindClick("orgPrint",printOrgSummary);bindClick("diagReset",resetDiag);bindClick("diagExport",exportDiag);
 bindClick("pickDir",chooseRepoDir);bindClick("scanDir",()=>scanRepo());bindClick("fallbackDir",()=>$("#repoDirFallback").click());$("#repoDirFallback").onchange=e=>scanFallbackDir(e.target.files);bindClick("pickFiles",()=>$("#repoFiles").click());$("#repoFiles").onchange=e=>importRepoFiles(e.target.files,importTarget());bindClick("exportDir",exportRepoData);
 
-enhanceModulePanels();
-bindClick("backBtn",goBackPage);
-bindClick("nextBtn",goNextPage);
-bindClick("procClose",closeProcessWindow);
+    enhanceModulePanels();
+    // Wire header arrow buttons to in-app navigation (supports multiple duplicated headers)
+    (function(){
+      const bindArrow = (btn)=>{
+        if(btn.dataset.arrowBound) return;
+        btn.addEventListener('click',e=>{
+          e.preventDefault();
+          const title = (btn.getAttribute('aria-label')||btn.title||'').toLowerCase();
+          const img = btn.querySelector('img');
+          const imgAlt = (img && img.alt || '').toLowerCase();
+          const isBack = /precede|pr[eé]cedente|left/.test(title) || /left/.test(imgAlt);
+          if(isBack){ if(typeof goBackPage==='function') return goBackPage(); return window.history.back(); }
+          else { if(typeof goNextPage==='function') return goNextPage(); return window.history.forward(); }
+        });
+        btn.dataset.arrowBound = '1';
+      };
+      document.querySelectorAll('.hub-app-head .back-nav button').forEach(bindArrow);
+      // Keyboard shortcuts: Alt/Meta + ArrowLeft / ArrowRight
+      document.addEventListener('keydown',e=>{
+        if(!(e.altKey||e.metaKey)) return;
+        if(e.key==='ArrowLeft'){ e.preventDefault(); if(typeof goBackPage==='function') goBackPage(); else window.history.back(); }
+        if(e.key==='ArrowRight'){ e.preventDefault(); if(typeof goNextPage==='function') goNextPage(); else window.history.forward(); }
+      });
+    })();
+    bindClick("procClose",closeProcessWindow);
 $("#nav").addEventListener("click",e=>{const b=e.target.closest("button[data-p]");if(b)page(b.dataset.p)});document.body.addEventListener("click",act);document.body.addEventListener("click",docAct);document.body.addEventListener("click",orgDocAct);document.body.addEventListener("change",diagField);document.body.addEventListener("click",e=>{const b=e.target.closest("[data-go]"),ot=e.target.closest("[data-orgtab]");if(b)page(b.dataset.go);if(ot)switchOrgTab(ot.dataset.orgtab)});
 async function restoreRepo(){const h=await idbGet("repoHandle");if(!h)return;if(await verifyHandle(h,false)){repoHandle=h;s.repo.folderName=h.name;s.repo.linked=true;s.repo.mode="Dossier reconnecte";await scanRepo(h)}else{s.repo.mode="Reconnecter le dossier local";repoView()}}
-async function restoreOrgDir(){const h=await idbGet("orgHandle");if(!h)return;if(await verifyHandle(h,false)){orgHandle=h;orgRootName=h.name||"QualiLab_Organisme";if(activeOrgProc)await scanOrgProc(activeOrgProc)}}
+async function restoreOrgDir(){const h=await idbGet("orgHandle");if(!h)return;if(await verifyHandle(h,false)){orgHandle=h;orgRootName=h.name||"QUALI_Organisme";if(activeOrgProc)await scanOrgProc(activeOrgProc)}}
 ensurePilotAccount();
 sr(S);$("#lmsg").textContent="Connexion locale prete.";$("#auth").classList.remove("h");$("#app").classList.add("h");
 restoreRepo();
