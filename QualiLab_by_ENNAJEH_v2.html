@@ -2113,6 +2113,7 @@
       font-weight: 700;
       z-index: 1;
       transition: transform .25s ease, box-shadow .25s ease;
+      cursor: pointer;
       left: auto;
       top: auto;
       transition: 0.5s;
@@ -2137,7 +2138,9 @@
       font-size: 16px;
       line-height: 1.1;
       letter-spacing: .01em;
-      opacity: 0.5;
+      opacity: 1;
+      color: #236bd8;
+      font-weight: 900;
     }
 
     .hub-node span {
@@ -2152,6 +2155,11 @@
     .hub-node:hover {
       transform: translateY(-4px);
       box-shadow: 0 22px 42px rgba(34, 55, 99, .14)
+    }
+
+    .hub-node:focus-visible {
+      outline: 3px solid rgba(35, 107, 216, .35);
+      outline-offset: 4px;
     }
 
     .hub-node.top,
@@ -3030,8 +3038,9 @@
     }
 
     .hub-node b {
-      font-size: 14px !important;
-      color: #48aeea;
+      font-size: 16px !important;
+      color: #236bd8;
+      opacity: 1 !important;
     }
 
     .hub-node small {
@@ -3419,20 +3428,20 @@
           <button class="hub-node hub-purple orbit-0" data-go="db"><span class="hub-img"><img
                 src="boutan/tableau-de-bord.png" alt=""></span><b>Tableau de bord</b><small></small></button>
           <button class="hub-node hub-orange orbit-1" data-go="docs"><span class="hub-img"><img
-                src="boutan/document.png" alt=""></span><b>Maitrise
+                src="boutan/gestion-de-donnees.png" alt=""></span><b>Maitrise
               documentaire</b><small></small></button>
           <button class="hub-node hub-pink orbit-2" data-go="docorg"><span class="hub-img"><img
-                src="boutan/gestion-de-donnees.png" alt=""></span><b>Documentation</b><small></small></button>
+                src="boutan/document.png" alt=""></span><b>Documentation</b><small></small></button>
           <button class="hub-node hub-blue orbit-3" data-go="revc"><span class="hub-img"><img
-                src="boutan/document.png" alt=""></span><b>Revue de contrat</b><small></small></button>
+                src="boutan/contrat-de-travail.png" alt=""></span><b>Revue de contrat</b><small></small></button>
           <button class="hub-node hub-green orbit-4" data-go="eq"><span class="hub-img"><img
-                src="boutan/equipe.png" alt=""></span><b>Gestion des equipements</b><small></small></button>
+                src="boutan/gestion-de-projet.png" alt=""></span><b>Gestion des equipements</b><small></small></button>
           <button class="hub-node hub-orange orbit-5" data-go="nc"><span class="hub-img"><img
                 src="boutan/conformite.png" alt=""></span><b>Non-conformites</b><small></small></button>
           <button class="hub-node hub-red orbit-6" data-go="aud"><span class="hub-img"><img
                 src="boutan/audit.png" alt=""></span><b>Audits</b><small></small></button>
           <button class="hub-node hub-blue orbit-7" data-go="diag"><span class="hub-img"><img
-                src="boutan/analyse-swot.png" alt=""></span><b>Diagnostic ISO</b><small></small></button>
+                src="boutan/diagnostic.png" alt=""></span><b>Diagnostic ISO</b><small></small></button>
           <button class="hub-node hub-violet orbit-8" data-go="usr"><span class="hub-img"><img
                 src="boutan/equipe.png" alt=""></span><b>Utilisateurs</b><small></small></button>
           <button class="hub-node hub-slate orbit-9" data-go="set"><span class="hub-img"><img
@@ -3440,7 +3449,7 @@
           <button class="hub-node hub-red orbit-10" data-go="risk"><span class="hub-img"><img
                 src="boutan/diagnostique.png" alt=""></span><b>Analyse de risque</b><small></small></button>
           <button class="hub-node hub-green orbit-11" data-go="swot"><span class="hub-img"><img
-                src="boutan/contrat-de-travail.png" alt=""></span><b>Analyse SWOT</b><small></small></button>
+                src="boutan/analyse-swot.png" alt=""></span><b>Analyse SWOT</b><small></small></button>
           <button class="hub-node hub-blue orbit-12" data-go="sat"><span class="hub-img"><img
                 src="boutan/la-satisfaction.png" alt=""></span><b>Satisfaction client</b><small></small></button>
         </div>
