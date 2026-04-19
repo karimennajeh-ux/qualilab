@@ -3486,7 +3486,7 @@
           <button class="hub-node hub-blue orbit-12" data-go="sat"><span class="hub-img"><img
                 src="boutan/la-satisfaction.png" alt=""></span><b>Satisfaction client</b><small></small></button>
           <button class="hub-node hub-violet orbit-13" data-go="pers"><span class="hub-img"><img
-                src="boutan/equipe.png" alt=""></span><b>Personnel</b><small></small></button>
+                src="boutan/developpeurs.png" alt=""></span><b>Personnel</b><small></small></button>
         </div>
         <div class="hub-summary">
           <div class="mini"><strong>Acces rapide</strong><span class="bl">14 modules</span></div>
@@ -4704,7 +4704,17 @@
             <button class="btn" id="perSave" type="button">Enregistrer</button>
           </div>
         </div>
-        <div class="s4" id="perStats"></div>
+        <div class="tb">
+          <table>
+            <thead>
+              <tr>
+                <th>Indicateur</th>
+                <th>Valeur</th>
+              </tr>
+            </thead>
+            <tbody id="perStats"></tbody>
+          </table>
+        </div>
         <div class="bar card" style="grid-template-columns:1.2fr auto auto auto">
           <input id="perSearch" placeholder="Rechercher personnel, qualification, habilitation">
           <span class="mut" id="perCount"></span>
@@ -5064,7 +5074,7 @@
     function personnelFiltered() { const q = ($("#perSearch").value || "").toLowerCase(); return personnelItems().filter(x => [x.mat, x.name, x.job, x.diploma, x.cert, x.domains, x.tasks, x.level, x.train, x.eval, x.status, x.manager].join(" ").toLowerCase().includes(q)) }
     function resetPersonnelForm() { editingPersonnelId = ""; clearFields(["#perName", "#perMat", "#perJob", "#perDiploma", "#perCert", "#perDomains", "#perExp", "#perTasks", "#perManager", "#perTrain", "#perNext"]); $("#perStatus").value = "Actif"; $("#perLevel").value = "Operateur"; $("#perSign").value = "Signature autorisee : Oui"; $("#perEval").value = "Evaluation reussie"; $("#perSave").textContent = "Enregistrer" }
     function personnelFormData() { const sign = ($("#perSign").value || "").includes("Oui") ? "Oui" : "Non"; return markSaved({ id: editingPersonnelId || "PER-" + stamp(), mat: $("#perMat").value.trim() || "PER-" + stamp(), name: $("#perName").value.trim(), job: $("#perJob").value.trim() || "-", diploma: $("#perDiploma").value.trim() || "-", cert: $("#perCert").value.trim() || "-", domains: $("#perDomains").value.trim() || "-", exp: $("#perExp").value.trim() || "-", tasks: $("#perTasks").value.trim() || "-", level: $("#perLevel").value, sign, train: $("#perTrain").value.trim() || "-", eval: $("#perEval").value, next: $("#perNext").value || "-", status: $("#perStatus").value, manager: $("#perManager").value.trim() || "-" }) }
-    function personnelStats(items) { const all = personnelItems(); return `<div class="mini"><strong>Personnel total</strong><span class="bl">${all.length}</span></div><div class="mini"><strong>Actifs</strong><span class="ok">${all.filter(x => x.status === "Actif").length}</span></div><div class="mini"><strong>En formation</strong><span class="wa">${all.filter(x => x.status === "En formation").length}</span></div><div class="mini"><strong>Qualifications affichees</strong><span class="bl">${items.length}</span></div>` }
+    function personnelStats(items) { const all = personnelItems(), rows = [["Personnel total", all.length, "bl"], ["Actifs", all.filter(x => x.status === "Actif").length, "ok"], ["En formation", all.filter(x => x.status === "En formation").length, "wa"], ["Qualifications affichees", items.length, "bl"]]; return rows.map(x => `<tr><td><b>${esc(x[0])}</b></td><td><span class="${x[2]}">${x[1]}</span></td></tr>`).join("") }
     function personnelView() { const tab = $("#perTab"); if (!tab) return; const items = personnelFiltered(); $("#perSave").textContent = editingPersonnelId ? "Modifier" : "Enregistrer"; $("#perCount").textContent = `${items.length} personne${items.length > 1 ? "s" : ""}`; $("#perStats").innerHTML = personnelStats(items); tab.innerHTML = items.map(x => `<tr><td>${esc(x.mat)}</td><td><b>${esc(x.name)}</b><br><small>${esc(x.manager || "-")}</small></td><td>${esc(x.job)}</td><td>${esc(x.domains)}<br><small>${esc(x.diploma)} | ${esc(x.cert)}</small></td><td>${esc(x.tasks)}<br><small>${esc(x.level)} | Signature : ${esc(x.sign)}</small></td><td>${esc(x.train)}<br><small>${esc(x.eval)} | Requalification : ${esc(x.next || "-")}</small></td><td><span class="${tag(x.status)}">${esc(x.status)}</span></td><td><button class="btn2 btn" data-per-edit="${esc(x.id)}" type="button">Modifier</button> <button class="btn2 btn" data-per-del="${esc(x.id)}" type="button">Supprimer</button></td></tr>`).join("") || `<tr><td colspan="8" class="e">Aucun personnel trouve.</td></tr>` }
     function addPersonnel() { if (!requirePerm(editingPersonnelId ? "Modifier" : "Ajouter")) return; const x = personnelFormData(); if (!x.name) { sync("Renseigne le nom et prenom du personnel"); return } const items = personnelItems(), i = items.findIndex(v => v.id === editingPersonnelId); if (i >= 0) { items[i] = { ...items[i], ...x }; log("Modification", "Personnel", x.name + " mis a jour"); save("Personnel modifie automatiquement") } else { items.unshift(x); log("Creation", "Personnel", x.name + " ajoute"); save("Personnel enregistre automatiquement") } resetPersonnelForm(); render() }
     function editPersonnel(id) { if (!requirePerm("Modifier")) return; const x = personnelItems().find(v => v.id === id); if (!x) return; editingPersonnelId = id; $("#perName").value = x.name || ""; $("#perMat").value = x.mat || ""; $("#perJob").value = x.job || ""; $("#perStatus").value = x.status || "Actif"; $("#perDiploma").value = x.diploma || ""; $("#perCert").value = x.cert || ""; $("#perDomains").value = x.domains || ""; $("#perExp").value = x.exp || ""; $("#perTasks").value = x.tasks || ""; $("#perLevel").value = x.level || "Operateur"; $("#perSign").value = "Signature autorisee : " + (x.sign || "Oui"); $("#perManager").value = x.manager || ""; $("#perTrain").value = x.train || ""; $("#perEval").value = x.eval || "Evaluation reussie"; $("#perNext").value = x.next && x.next !== "-" ? x.next : ""; sync("Personnel charge pour modification"); personnelView(); $("#perName").scrollIntoView({ behavior: "smooth", block: "center" }) }
