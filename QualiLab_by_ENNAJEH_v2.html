@@ -1581,6 +1581,26 @@
       color: #0f766e;
     }
 
+    .sat-score-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .sat-score-card {
+      border: 1px solid #dbe6f5;
+      border-radius: 14px;
+      background: #f8fbff;
+      padding: 12px;
+    }
+
+    .sat-score-card b {
+      display: block;
+      color: #0f766e;
+      margin-bottom: 6px;
+    }
+
     .risk-titlebar {
       display: flex;
       align-items: center;
@@ -4595,6 +4615,7 @@
           <span class="mut" id="satCount"></span>
           <button class="btn2 btn" id="satClear" type="button">Nouveau questionnaire</button>
         </div>
+        <div class="card h" id="satDetail"></div>
         <div class="tb">
           <table>
             <thead>
@@ -4734,6 +4755,7 @@
       { id: "SWOT-012", type: "Menaces", item: "Concurrence deloyale", action: "Renforcer la communication technique avec les clients pour consolider leur confiance.", resp: "Direction", delay: "En permanence", follow: "en cours" }
     ];
     const SAT_SCALE = ["Insatisfait", "Peu satisfait", "Satisfait", "Tres satisfait"];
+    const SAT_POINTS = { "Insatisfait": 25, "Peu satisfait": 50, "Satisfait": 75, "Tres satisfait": 100 };
     const SAT_QUESTIONS = [
       { group: "Accueil et contact", items: [["sat-q1", "L'accueil telephonique", "rating"], ["sat-q2", "Les delais de reponses a vos demandes", "rating"], ["sat-q3", "Le traitement de vos reclamations", "rating"]] },
       { group: "Revue des demandes, contrat et appels d'offres", items: [["sat-q4", "La comprehension de votre besoin", "rating"], ["sat-q5", "Le traitement de votre demande", "rating"], ["sat-q6", "Le delai de traitement de votre demande", "rating"], ["sat-q7", "La reactivite du service commercial", "rating"], ["sat-q8", "Les delais de planification d'intervention", "rating"], ["sat-q9", "Les portees d'accreditation du laboratoire", "rating"], ["sat-q10", "La tarification", "rating"]] },
@@ -4920,10 +4942,13 @@
     function satItems() { if (!Array.isArray(s.sat)) s.sat = []; return s.sat }
     function satQuestionHtml() { return SAT_QUESTIONS.map(g => `<h3 class="sat-group-title">${esc(g.group)}</h3>` + g.items.map(([id, text, type]) => `<div class="sat-question"><b>${esc(text)}</b><div class="sat-scale ${type === "yesno" ? "yesno" : ""}">${(type === "yesno" ? ["Oui", "Non"] : SAT_SCALE).map(v => `<label><input type="radio" name="${id}" value="${esc(v)}"> ${esc(v)}</label>`).join("")}</div></div>`).join("")).join("") }
     function satAnswers() { const out = {}; SAT_QUESTIONS.forEach(g => g.items.forEach(([id]) => { const el = document.querySelector(`input[name="${id}"]:checked`); out[id] = el ? el.value : "" })); return out }
-    function satScore(a) { let total = 0, n = 0; SAT_QUESTIONS.forEach(g => g.items.forEach(([id, , type]) => { if (type === "rating" && a[id]) { const i = SAT_SCALE.indexOf(a[id]); if (i >= 0) { total += i + 1; n++ } } })); return n ? Math.round((total / (n * 4)) * 100) : 0 }
+    function satGroupScores(a) { return SAT_QUESTIONS.map(g => { let total = 0, n = 0; g.items.forEach(([id, text, type]) => { if (type === "rating" && a[id] && SAT_POINTS[a[id]]) { total += SAT_POINTS[a[id]]; n++ } }); return { group: g.group, score: n ? Math.round(total / n) : 100, answered: n, total: g.items.filter(x => x[2] === "rating").length } }) }
+    function satScore(a) { const groups = satGroupScores(a), rated = groups.filter(x => x.answered); return rated.length ? Math.round(rated.reduce((n, x) => n + x.score, 0) / rated.length) : 100 }
+    function satDetailHtml(x) { const details = x.details || satGroupScores(x.answers || {}), rows = details.map(d => `<div class="sat-score-card"><b>${esc(d.group)}</b><p>Note : <strong>${d.score}%</strong></p><p class="mut">${d.answered}/${d.total} reponse(s) notees</p></div>`).join(""); return `<h3>Note detaillee - ${esc(x.company || "-")}</h3><p class="mut">Bareme utilise : Insatisfait 25%, Peu satisfait 50%, Satisfait 75%, Tres satisfait 100%.</p><div class="sat-score-grid">${rows}</div><p><strong>Score global : ${x.score}%</strong></p>` }
+    function showSatDetail(id) { const x = satItems().find(v => v.id === id), box = $("#satDetail"); if (!x || !box) return; box.innerHTML = satDetailHtml(x); box.classList.remove("h"); box.scrollIntoView({ behavior: "smooth", block: "nearest" }) }
     function resetSatForm() { ["#satCompany", "#satName", "#satFunction", "#satEmail", "#satTel", "#satFax", "#satNotes"].forEach(id => { const el = $(id); if (el) el.value = "" }); $("#satDate").value = now().slice(0, 10); SAT_QUESTIONS.forEach(g => g.items.forEach(([id]) => $all(`input[name="${id}"]`).forEach(x => x.checked = false))) }
-    function satView() { const q = $("#satQuestions"); if (!q) return; if (!q.innerHTML.trim()) q.innerHTML = satQuestionHtml(); if (!$("#satDate").value) $("#satDate").value = now().slice(0, 10); const term = ($("#satSearch").value || "").toLowerCase(), items = satItems().filter(x => [x.company, x.name, x.email, x.function, x.notes].join(" ").toLowerCase().includes(term)); $("#satCount").textContent = `${items.length} enquete${items.length > 1 ? "s" : ""}`; $("#satTab").innerHTML = items.map(x => `<tr><td>${esc(x.date)}</td><td>${esc(x.company)}</td><td>${esc(x.name)}</td><td>${esc(x.email || "-")}</td><td>${x.score}%</td><td>${esc(x.notes || "-")}</td><td><button class="btn2 btn" data-sat-del="${esc(x.id)}" type="button">Supprimer</button></td></tr>`).join("") || `<tr><td colspan="7" class="e">Aucune enquete enregistree.</td></tr>` }
-    function saveSat() { if (!requirePerm("Ajouter")) return; const company = $("#satCompany").value.trim(), name = $("#satName").value.trim(); if (!company || !name) { sync("Renseigne la societe et le nom du client"); return } const answers = satAnswers(), score = satScore(answers), x = markSaved({ id: "SAT-" + stamp(), date: $("#satDate").value || now().slice(0, 10), company, name, function: $("#satFunction").value.trim(), email: $("#satEmail").value.trim(), tel: $("#satTel").value.trim(), fax: $("#satFax").value.trim(), answers, score, notes: $("#satNotes").value.trim() }); satItems().unshift(x); log("Creation", "Satisfaction client", company + " - score " + score + "%"); save("Enquete satisfaction client enregistree"); resetSatForm(); render() }
+    function satView() { const q = $("#satQuestions"); if (!q) return; if (!q.innerHTML.trim()) q.innerHTML = satQuestionHtml(); if (!$("#satDate").value) $("#satDate").value = now().slice(0, 10); const term = ($("#satSearch").value || "").toLowerCase(), items = satItems().filter(x => [x.company, x.name, x.email, x.function, x.notes].join(" ").toLowerCase().includes(term)); $("#satCount").textContent = `${items.length} enquete${items.length > 1 ? "s" : ""}`; $("#satTab").innerHTML = items.map(x => `<tr><td>${esc(x.date)}</td><td>${esc(x.company)}</td><td>${esc(x.name)}</td><td>${esc(x.email || "-")}</td><td>${x.score}%</td><td>${esc(x.notes || "-")}</td><td><button class="btn2 btn" data-sat-detail="${esc(x.id)}" type="button">Note detaillee</button> <button class="btn2 btn" data-sat-del="${esc(x.id)}" type="button">Supprimer</button></td></tr>`).join("") || `<tr><td colspan="7" class="e">Aucune enquete enregistree.</td></tr>` }
+    function saveSat() { if (!requirePerm("Ajouter")) return; const company = $("#satCompany").value.trim(), name = $("#satName").value.trim(); if (!company || !name) { sync("Renseigne la societe et le nom du client"); return } const answers = satAnswers(), details = satGroupScores(answers), score = satScore(answers), x = markSaved({ id: "SAT-" + stamp(), date: $("#satDate").value || now().slice(0, 10), company, name, function: $("#satFunction").value.trim(), email: $("#satEmail").value.trim(), tel: $("#satTel").value.trim(), fax: $("#satFax").value.trim(), answers, details, score, notes: $("#satNotes").value.trim() }); satItems().unshift(x); log("Creation", "Satisfaction client", company + " - score " + score + "%"); save("Enquete satisfaction client enregistree"); resetSatForm(); render(); showSatDetail(x.id) }
     function deleteSat(id) { if (!requirePerm("Supprimer")) return; const x = satItems().find(v => v.id === id); s.sat = satItems().filter(v => v.id !== id); log("Suppression", "Satisfaction client", x ? x.company : id); save("Enquete satisfaction client supprimee"); render() }
     function repoView() { const q = $("#fsq") ? $("#fsq").value.trim().toLowerCase() : "", files = ((s.repo && s.repo.files) || []).filter(x => [x.name, x.path, x.module, x.label].join(" ").toLowerCase().includes(q)); $("#fcount").textContent = `${files.length} fichier${files.length > 1 ? "s" : ""} - ${s.repo && s.repo.mode ? s.repo.mode : "Aucune liaison active"}`; $("#filelist").innerHTML = files.length ? files.map(x => `<div class="it"><b>${esc(x.name)}</b><p>${esc(x.module)} - ${esc(x.label)}</p><p>${esc(x.path)}</p><p>Taille : ${fmtSize(x.size)} | Modifie : ${esc(x.modified || "-")}</p><div style="margin-top:10px"><button class="btn2 btn" data-rf="${esc(x.id)}">Ouvrir</button></div></div>`).join("") : `<div class="e">Aucun fichier detecte. Connecte ou charge le dossier local.</div>`; if (!s.repo || !s.repo.selected) $("#filepreview").innerHTML = previewDefault() }
     async function chooseRepoDir() { if (!window.showDirectoryPicker) { sync("Utilise Chrome ou Edge pour connecter un dossier local"); return } try { const h = await window.showDirectoryPicker({ mode: "readwrite" }); if (!await verifyHandle(h, true)) { sync("Autorisation refusee pour le dossier"); return } repoHandle = h; await idbSet("repoHandle", h); s.repo.folderName = h.name; s.repo.linked = true; s.repo.mode = "Dossier connecte"; log("Connexion", "Dossier local", h.name + " connecte"); await scanRepo() } catch (e) { if (e && e.name !== "AbortError") sync("Connexion du dossier echouee") } }
@@ -4994,7 +5019,7 @@
     ["dadd", "dsv"].forEach(id => bindClick(id, addDoc)); bindClick("dmaster", exportMasterList); bindClick("dprint", printDocsTable); bindClick("ddownload", downloadDocsTable);["odadd", "odsv"].forEach(id => bindClick(id, addOrgDoc)); bindClick("odImportBtn", () => { $("#odImportFile").value = ""; $("#odImportFile").click() });["eadd", "esv"].forEach(id => bindClick(id, addEq));["nadd", "nsv"].forEach(id => bindClick(id, addNc)); bindClick("naSave", addNcAudit);["aadd", "asv"].forEach(id => bindClick(id, addAud));["radd", "rsv"].forEach(id => bindClick(id, addRevc)); bindClick("usv", addUsr); bindClick("riskSave", addRisk); bindClick("riskPrint", printRiskRegister); bindClick("riskDownload", downloadRiskExcel); bindClick("swotSave", addSwot); bindClick("swotPrint", printSwotRegister); bindClick("swotDownload", downloadSwotExcel); bindClick("satSave", saveSat); bindClick("satClear", () => { resetSatForm(); sync("Nouveau questionnaire pret") });
     $("#riskTab").addEventListener("click", e => { const edit = e.target.closest("[data-risk-edit]"), del = e.target.closest("[data-risk-del]"); if (edit) editRisk(edit.dataset.riskEdit); if (del) deleteRisk(del.dataset.riskDel) });
     $("#swotTab").addEventListener("click", e => { const edit = e.target.closest("[data-swot-edit]"), del = e.target.closest("[data-swot-del]"); if (edit) editSwot(edit.dataset.swotEdit); if (del) deleteSwot(del.dataset.swotDel) });
-    $("#satTab").addEventListener("click", e => { const del = e.target.closest("[data-sat-del]"); if (del) deleteSat(del.dataset.satDel) });
+    $("#satTab").addEventListener("click", e => { const detail = e.target.closest("[data-sat-detail]"), del = e.target.closest("[data-sat-del]"); if (detail) showSatDetail(detail.dataset.satDetail); if (del) deleteSat(del.dataset.satDel) });
     $("#ncAuditGroups").addEventListener("click", e => { const ap = e.target.closest("[data-na-print]"), ad = e.target.closest("[data-na-download]"), lp = e.target.closest("[data-nalist-print]"), ld = e.target.closest("[data-nalist-download]"); if (ap) handleNcAuditExport(ap.dataset.naPrint, "print", false); if (ad) handleNcAuditExport(ad.dataset.naDownload, "download", false); if (lp) handleNcAuditExport(lp.dataset.nalistPrint, "print", true); if (ld) handleNcAuditExport(ld.dataset.nalistDownload, "download", true) });
     bindClick("ncClosedPrint", () => handleNcClosedExport("print")); bindClick("ncClosedDownload", () => handleNcClosedExport("download"));
     ["omod", "omodAcc", "omodSuivi"].forEach(id => bindClick(id, modifyOrg));["osv", "osvAcc", "osvSuivi"].forEach(id => bindClick(id, () => saveOrg())); bindClick("orgPrint", printOrgSummary); bindClick("diagReset", resetDiag); bindClick("diagExport", exportDiag);
